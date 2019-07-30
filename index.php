@@ -7,6 +7,7 @@
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
   		crossorigin="anonymous"></script>
+  <script src="Frameworks/Flipbook/js/jquery.min.js"></script>
 	<script src="Frameworks/Semantic/semantic.min.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
 </head>

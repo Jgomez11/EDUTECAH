@@ -13,9 +13,10 @@
     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
     crossorigin="anonymous"></script>
 
-
+    <script src="Frameworks/Flipbook/js/jquery.min.js"></script>
   <script src="Frameworks/Bootstrap/js/bootstrap.min.js"></script>
   <script src="Frameworks/Semantic/semantic.min.js"></script>
+  <script src="Frameworks/Semantic/semantic.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
 </head>
 
@@ -24,32 +25,24 @@
     <div class="text-center mb-4">
       <img class="mb-4" src="Recursos/Imagenes/logoDark.png" alt="" width="200">
       <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
-    </div>  
-
-    <div class="form-label-group">
-      <input type="email" id="txtCorreo" name="txtCorreo" class="form-control" placeholder="Email address" required autofocus>
-      <label for="inputEmail">Correo electrónico</label>
     </div>
 
-    <div class="form-label-group">
-      <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Password" required autofocus>
-      <label for="inputPassword">Contraseña</label>
+    <div class="ui buttons btn-block">
+      <button class="ui gray button" type="button" onclick="cargarDiv('contenido','Contenido/loginAlumno.php')">Alumno</button>
+      <div class="or" data-text="O"></div>
+      <button class="ui teal button" type="button" onclick="cargarDiv('contenido','Contenido/loginDocente.php')">Docente</button>
     </div>
 
-    <div class="checkbox mb-3">
-      <div class="ui toggle checkbox">
-        <input type="checkbox" tabindex="0" class="hidden">
-        <label>Recuérdame</label>
-      </div>
+    <div id="contenido" class="mt-3">
+      <a href="index.php" class="btn btn-block ui red button">Cancelar</a>
     </div>
+
 
     <div id="error"></div>
-    
-    <div id="cargar" class="form-signin">
-    </div>
-    <button class="btn btn-block ui primary button" type="submit">Iniciar Sesión</button>
-    <a href="index.php" class="btn btn-block ui red button">Cancelar</a>
+
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
+
+    <div id="cargar" class="form-signin"></div>
   </form>
   <script type="text/javascript">
     $(document).ready(function(){

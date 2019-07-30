@@ -1,4 +1,4 @@
-<div class="ui inverted secondary menu fixed top navbar navbar-expand-md" style="background-color: #55876d;">
+<div class="ui teal inverted secondary menu fixed top navbar navbar-expand-md" >
   
   <!--Botones de izquierda-->
   <a class="navbar-brand" href="#"><img height="40px" src="Recursos/Imagenes/logo.png"></a>
@@ -18,7 +18,7 @@
   </div>
   
   <!--Botones de derecha-->
-  <a class="item" href="#"><i class="user circle icon"></i>Perfil</a>
+  <a class="item" href="perfil.php"><i class="user circle icon"></i>Perfil</a>
   <a class="item" href="#"><i class="envelope icon"></i><div class="floating ui red circular label">2</div></a>
   <a class="item" href="#"><i class="bell icon"></i><div class="floating ui red circular label">2</div></a>
   
