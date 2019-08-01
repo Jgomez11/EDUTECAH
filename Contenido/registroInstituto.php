@@ -52,5 +52,5 @@
 
 <div id="error"></div>
 
-<button id="boton" class="btn btn-block ui primary button" type="submit" value="0">Registrar</button>
+<button id="boton" class="btn btn-block ui primary submit button" type="submit" value="0">Registrar</button>
 <a href="index.php" class="btn btn-block ui red button">Cancelar</a>

@@ -62,6 +62,4 @@
 			return mysqli_num_rows($resultado);
 		}
 	}
-
-
 ?>

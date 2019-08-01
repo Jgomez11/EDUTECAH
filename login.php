@@ -49,14 +49,13 @@
       $('#form').on('submit', function(e){
         e.preventDefault();
         
-        if (validarLogin()) {
-          this.submit();
+        if ($('#boton').val() == 1) {
+          if (validarLogin()) {
+            this.submit();
+          }
         }
       });
     });
-    
-    $('.ui.checkbox')
-      .checkbox();
   </script>
 </body>
 </html>

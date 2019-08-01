@@ -54,14 +54,15 @@ function validarLogin(){
     },
     success   : function (response) {
       error = response;
+      alert(error);
       document.getElementById("cargar").innerHTML ='';
-      if (error == 1){
-        document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>La contraseña ingresada es incorrecta, por favor intente de nuevo.</p></div>';
-        return true;
-      } else if (error == 0) {
+      if (error == 0){
         window.location.href = "index.php";
         return true;
-      } else if (error == 3) {
+      } else if (error == 1) {
+        document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>La contraseña ingresada es incorrecta, por favor intente de nuevo.</p></div>';
+        return true;
+      } else if (error == 2) {
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' no está registrado en el sistema, puedes registrarlo siguiendo <a href="registro.php">este enlace</a>.</p></div>'; 
         return true;
        } else{
@@ -105,7 +106,7 @@ function registrar(tipo){
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo '+codigoI+' ya fue utilizado anteriormente para registrar otro instituto. Si crees que se trata de fraude puede reportarlo siguiendo <a href="#">este enlace</a></p></div>';
           return true;
         } else if (error == 0) {
-          window.location.href = "index.php";
+          window.location.href = "planes.php";
           return true;
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 

@@ -46,6 +46,7 @@
 			$user->registrar($conexion);
 			
 #	Crear sesion
+	#	Datos Personales
 			$consulta = sprintf("SELECT IDUsuario, TipoUsuario FROM tblUsuario WHERE Correo = '%s'",$conexion->antiInyeccion($correo));
 			$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDUsuario'];
 			$_SESSION['TipoUsuario'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['TipoUsuario'];
@@ -54,6 +55,7 @@
 			$_SESSION['Apellido'] = $apellido;
 			$_SESSION['Correo'] = $correo;
 			$_SESSION['Imagen'] = NULL;
+			$_SESSION['Pase'] = $pase;
 
 #	Insercion en tblINSTTUTO
 			$consulta = sprintf("INSERT INTO tblInstituto(CodigoIns, NombreIns, Pase, IDMunicipio, Direccion, Director) values('%s','%s','%s','%s','%s','%s')",
@@ -64,18 +66,36 @@
 				$conexion->antiInyeccion($direccion),
 				$conexion->antiInyeccion($_SESSION['ID']));
 			$conexion->ejecutarconsulta($consulta);
+			
+#	Insercion en tblDocentesXInstituto
+	#	Datos Instituto
+			$consulta = sprintf("SELECT IDInstituto FROM tblInstituto WHERE Director = '%s'", $conexion->antiInyeccion($_SESSION['ID']));
+			$_SESSION['Instituto'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDInstituto'];
 
+			$consulta = sprintf("INSERT INTO tblDocxInstituto(IDDocente, IDInstituto) values('%s','%s')",
+				$conexion->antiInyeccion($_SESSION['ID']),
+				$conexion->antiInyeccion($_SESSION['Instituto']));
+			$conexion->ejecutarconsulta($consulta);
+			
+#	Insercion en tblPlan
+			$consulta = sprintf("INSERT INTO tblPlan(IDTipoPlan, IDInstituto, DiasPrueba, AulasDisponibles) values('%s','%s','%s','%s')",
+				$conexion->antiInyeccion('1'),
+				$conexion->antiInyeccion($_SESSION['Instituto']),
+				$conexion->antiInyeccion('30'),
+				$conexion->antiInyeccion('10'));
+			$conexion->ejecutarconsulta($consulta);
+			
 #	Insercion en tblLOGS
 			$fecha=date("Y-m-d");
 			$hora=date("G:i:s");
-			$consulta = sprintf("INSERT INTO tblLogs(evento, descripcion, fecha, hora, ipusuario, usuarioid) values('%s','%s','%s','%s','%s','%s')",
+			$consultaLog = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IPusuario, IDUsuario) values('%s','%s','%s','%s','%s','%s')",
 				$conexion->antiInyeccion("Nuevo registro"),
-				$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo:"." ".$correo),
+				$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo: ".$correo),
 				$conexion->antiInyeccion($fecha),
 				$conexion->antiInyeccion($hora),
 				$conexion->antiInyeccion($conexion->ip()),
 				$conexion->antiInyeccion($_SESSION['ID']));
-			$conexion->ejecutarconsulta($consulta);
+			$conexion->ejecutarconsulta($consultaLog);
 			
 #	Retorno a JavaScript Exito
 			echo '0';
