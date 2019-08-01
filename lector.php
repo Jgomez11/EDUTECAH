@@ -1,9 +1,3 @@
-<?php 
-  session_start();
-  if (empty($_SESSION)) {
-    header('Location: index.php');
-  }
- ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,15 +22,20 @@
     <!--Fin de Barra Principal-->
     <div id="cargar"></div>
     <div class="row" style="margin-top: 80px;">
-      <div id="columnaOpciones" class="col-md-3"></div>
-      <div id="columnaContenido" class="col-md-9"></div>
-    </div>
+    	<div id="columnaContenido" class="col-md-12">
+    		<h1 align="center">LIBRO X</h1>
+    		<?php 
+    			if (isset($_GET["q"])) {
+    				echo '<div id="lector" class="flip-book-container solid-container container" style="height: 85vh" src="'.$_GET["q"].'.pdf"></div>';
+    			}
+    		 ?>
+    	</div>
+	</div>
 
         <script type="text/javascript">
       $(document).ready(function() {
           cargarDiv("barra","Contenido/barra.php");
           cargarDiv("columnaOpciones","Contenido/columnaPerfil.php");
-          cargarDiv("columnaContenido","Contenido/recursos.php");  
       });
     </script>
     <script src="Frameworks/Flipbook/js/html2canvas.min.js"></script>

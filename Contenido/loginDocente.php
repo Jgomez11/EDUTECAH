@@ -4,7 +4,7 @@
     </div>
 
     <div class="form-label-group">
-      <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Contraseña" required autofocus>
+      <input type="password" id="txtPassword" name="txtPassword" class="form-control" placeholder="Contraseña" required>
       <label for="inputPassword">Contraseña</label>
     </div>
 

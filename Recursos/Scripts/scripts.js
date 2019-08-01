@@ -54,7 +54,6 @@ function validarLogin(){
     },
     success   : function (response) {
       error = response;
-      alert(error);
       document.getElementById("cargar").innerHTML ='';
       if (error == 0){
         window.location.href = "index.php";
@@ -81,7 +80,6 @@ function registrar(tipo){
   correo = $("#txtCorreo").val();
   pass = $("#txtPassword").val();
   cadenaUsuario = 'txtNombre='+nombre+'&txtApellido='+apellido+'&txtCorreo='+correo+'&txtPassword='+pass;
-  
   if (tipo == "0") {
     codigoI = $("#txtCodInstituto").val();
     nombreI = $("#txtNomInstituto").val();
@@ -107,6 +105,33 @@ function registrar(tipo){
           return true;
         } else if (error == 0) {
           window.location.href = "planes.php";
+          return true;
+        } else if (error == 2) {
+          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
+          return true;
+       } 
+      },
+      error: function(){
+      }
+    });
+  } else{
+    pase = $("#txtPase").val();
+    $.ajax({
+      url       : 'Acciones/registrarDocente.php',
+      type      : 'POST',
+      data      : cadenaUsuario+'&txtPase='+pase,
+      dataType  : 'text',
+      beforeSend: function(){
+        document.getElementById("cargar").innerHTML ='<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+      },
+      success   : function (response) {
+        error = response;
+        document.getElementById("cargar").innerHTML ='';
+        if (error == 0){
+          window.location.href = "perfil.php";
+          return true;
+        } else if (error == 1) {
+          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El pase virtual '+pase+' no existe.</p></div>';
           return true;
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 

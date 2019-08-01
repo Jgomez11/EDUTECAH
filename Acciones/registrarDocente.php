@@ -1,36 +1,49 @@
 <?php 
-	date_default_timezone_set('America/Tegucigalpa');
+	session_start();
+#	Importar clases
 	include("../Clases/Conexion.php");
-	$conexion = new Conexion();
-	$conexion->mysql_set_charset("utf8");
 	include("../Clases/Usuario.php");
 
-	$nombre= ucwords(strtolower($_POST["txtNombre"]));
-	$apellido=ucwords(strtolower($_POST["txtApellido"]));
-	$correo=$_POST["txtCorreo"];
-	$password=sha1($_POST["txtPassword"]);
-	
-	$reg = new registro(null,
+#	Utilidad de fecha
+	date_default_timezone_set('America/Tegucigalpa');
+
+#	Crear conexion
+	$conexion = new Conexion();
+	$conexion->mysql_set_charset("utf8");
+
+#	Obtener los datos POST desde JavaScript
+	$nombre = ucwords(strtolower($_POST["txtNombre"]));
+	$apellido =ucwords(strtolower($_POST["txtApellido"]));
+	$correo = $_POST["txtCorreo"];
+	$password = sha1($_POST["txtPassword"]);
+	$pase = $_POST["txtPase"];
+
+#	Creacion de objeto Usuario
+	$user = new Usuario(null,
 	$nombre,
 	$apellido,
 	$correo,
 	$password,
-	null);
+	'3');
 
-	
+#	Verificacion 1: Correo
+	$consulta = sprintf("SELECT count(*) FROM tblUsuario WHERE Correo = '%s'",
+		$conexion->antiInyeccion($correo));
 
-	$consulta = sprintf("SELECT count(*) FROM tbl_usuario WHERE Correo = '%s'",$conexion->antiInyeccion($correo));
+	$resultado = $conexion->ejecutarconsulta($consulta);
+
+	if ($resultado->fetch_assoc()['count(*)'] == '0') {		
+#	Verificacion 2: Codigo de Colegio
+		$consulta = sprintf("SELECT count(*) FROM tblInstituto WHERE Pase = '%s'",
+			$conexion->antiInyeccion($pase));
 		$resultado = $conexion->ejecutarconsulta($consulta);
 
-		//	Verificar que no se haya registrado el correo, insertar si no hay coincidencias
-		if ($resultado->fetch_assoc()['count(*)'] == '0') {		
-			//	Realizar insercion
-
-			$reg ->registrar($conexion);
+		if ($resultado->fetch_assoc()['count(*)'] == '1'){
+			$user->registrar($conexion);
 			
-			//	Crear sesion
-			session_start();
-			$consulta = sprintf("SELECT IDUsuario, TipoUsuario FROM tbl_usuario WHERE Correo = '%s'",$conexion->antiInyeccion($correo));
+#	Crear sesion
+	#	Datos Personales
+			$consulta = sprintf("SELECT IDUsuario, TipoUsuario FROM tblUsuario WHERE Correo = '%s'",$conexion->antiInyeccion($correo));
 			$_SESSION['ID'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['IDUsuario'];
 			$_SESSION['TipoUsuario'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['TipoUsuario'];
 			$_SESSION['Usuario'] = $nombre." ".$apellido;
@@ -38,33 +51,39 @@
 			$_SESSION['Apellido'] = $apellido;
 			$_SESSION['Correo'] = $correo;
 			$_SESSION['Imagen'] = NULL;
-			if (isset($_SESSION["Carrito"])) {
-				$consulta = sprintf("UPDATE tbl_carrito SET IDUsuario = '%S' WHERE IDCarrito = '%s'", $conexion->antiInyeccion($_SESSION["ID"]), $conexion->antiInyeccion($_SESSION["Carrito"]));
-				$conexion->ejecutarconsulta($consulta);
-			}
+			$_SESSION['Pase'] = $pase;
 			
-			// Redirigir
-			header('Location: ../index.php');
+#	Insercion en tblDocentesXInstituto
+	#	Datos Instituto
+			$consulta = sprintf("SELECT idinstituto FROM tblInstituto WHERE Pase = '%s'",
+				$conexion->antiInyeccion($_SESSION['Pase']));
+			$_SESSION['Instituto'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['idinstituto'];
 
-			//
-			$consulta =sprintf("INSERT INTO tbl_sesion(idusuario, estado) values('%s','%s')", $conexion->antiInyeccion($_SESSION['ID']), $conexion->antiInyeccion("1"));
+			$consulta = sprintf("INSERT INTO tblDocxInstituto(IDDocente, IDInstituto) values('%s','%s')",
+				$conexion->antiInyeccion($_SESSION['ID']),
+				$conexion->antiInyeccion($_SESSION['Instituto']));
 			$conexion->ejecutarconsulta($consulta);
-
+						
+#	Insercion en tblLOGS
 			$fecha=date("Y-m-d");
 			$hora=date("G:i:s");
-			$consultaB = sprintf("INSERT INTO tbl_log(evento, descripcion, fecha, hora,direccion_ip_usuario,usuarioid) values('%s','%s','%s','%s','%s','%s')",$conexion->antiInyeccion("Nuevo registro"),$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo:"." ".$correo),$conexion->antiInyeccion($fecha),$conexion->antiInyeccion($hora),$conexion->antiInyeccion($conexion->ip()) ,$conexion->antiInyeccion($_SESSION['ID']));
-			$conexion->ejecutarconsulta($consultaB);
+			$consultaLog = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IPusuario, IDUsuario) values('%s','%s','%s','%s','%s','%s')",
+				$conexion->antiInyeccion("Nuevo registro"),
+				$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo: ".$correo),
+				$conexion->antiInyeccion($fecha),
+				$conexion->antiInyeccion($hora),
+				$conexion->antiInyeccion($conexion->ip()),
+				$conexion->antiInyeccion($_SESSION['ID']));
+			$conexion->ejecutarconsulta($consultaLog);
 			
-			mysqli_close($conexion);
-		//	En caso de encontrarse un error, se retornara a la pagina de registro
+#	Retorno a JavaScript Exito
+			echo '0';
 		} else {
-			mysqli_close($conexion);
-			$var = "Este correo ya fue registrado previamente";		
-			echo "<script>
-					alert('".$var."'); 
-  					window.location='../registro.php';
-				  </script>";
+#	Retorno a JavaScript ERROR Colegio no registrado
+			echo '1';
 		}
-
-
- ?>
+	} else {
+# 	Retorno a JavaScript ERROR Correo registrado
+		echo '2';
+	}
+?>

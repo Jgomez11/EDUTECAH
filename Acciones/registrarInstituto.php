@@ -90,7 +90,7 @@
 			$hora=date("G:i:s");
 			$consultaLog = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IPusuario, IDUsuario) values('%s','%s','%s','%s','%s','%s')",
 				$conexion->antiInyeccion("Nuevo registro"),
-				$conexion->antiInyeccion("Se ha registrado un nuevo usuario con la direccion de correo: ".$correo),
+				$conexion->antiInyeccion("Nuevo usuario con la direccion de correo: ".$correo),
 				$conexion->antiInyeccion($fecha),
 				$conexion->antiInyeccion($hora),
 				$conexion->antiInyeccion($conexion->ip()),
