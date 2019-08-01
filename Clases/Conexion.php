@@ -4,7 +4,7 @@
 		private $host = "localhost";
 		private $usuario = "root";
 		private $password = "";
-		private $baseDatos = "emprendefacil";
+		private $baseDatos = "edutecah";
 		private $puerto = 3306;
 		private $link;
 

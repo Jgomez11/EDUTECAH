@@ -1,18 +1,19 @@
 <?php 
-
-	class registro{
+	class Usuario{
 		private $idusuario;
 		private $nombre;
 		private $apellido;
 		private $correo;
 		private $password;
+		private $tipo;
 
-		public function __construct($idusuario,$nombre,$apellido,$correo,$password){
+		public function __construct($idusuario,$nombre,$apellido,$correo,$password, $tipo){
 			$this->idusuario=$idusuario;
 			$this->nombre=$nombre;
 			$this->apellido=$apellido;
 			$this->correo=$correo;
 			$this->password=$password;
+			$this->tipo=$tipo;
 		}
 
 		public function getIduser(){
@@ -56,17 +57,13 @@
 		}
 
 		public function registrar($conexion){
-
-			$consulta = sprintf("INSERT INTO tbl_usuario(nombre,apellido,correo,password,tipousuario) VALUES ('%s','%s','%s','%s','%s')",
+			$consulta = sprintf("INSERT INTO tblUsuario(nombre,apellido,correo,password,tipousuario) VALUES ('%s','%s','%s','%s','%s')",
 				$conexion->antiInyeccion($this->nombre),
 				$conexion->antiInyeccion($this->apellido),
 				$conexion->antiInyeccion($this->correo),
 				$conexion->antiInyeccion($this->password),
-				$conexion->antiInyeccion("1")
-				);
+				$conexion->antiInyeccion($this->tipo));
 			$resultado=$conexion->ejecutarconsulta($consulta);
 		}
-
-
 	}
  ?>

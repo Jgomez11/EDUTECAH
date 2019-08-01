@@ -20,8 +20,8 @@
 </head>
 
 <body style="background-color: #eafbf1">
+  <div id="cargar"></div>
   <form class="form-signin" method="post" id="form">
-
     <div class="text-center mb-4">
       <img class="mb-4" src="Recursos/Imagenes/logoDark.png" alt="" width="200">
       <h1 class="h3 mb-3 font-weight-normal">Registrarse</h1>
@@ -37,21 +37,17 @@
     <div id="contenido" class="mt-3">
       <a href="index.php" class="btn btn-block ui red button">Cancelar</a>
     </div>
-
-
-    <div id="error"></div>
-
     <p class="mt-5 mb-3 text-muted text-center">&copy; 2018-2019</p>
 
-    <div id="cargar" class="form-signin"></div>
 
+  <div id="cargar"></div>
   </form>
   <script type="text/javascript">
     $(document).ready(function(){
       $('#form').on('submit', function(e){
         e.preventDefault();
         
-        if (validarLogin()) {
+        if (registrar($('#boton').val())) {
           this.submit();
         }
       });

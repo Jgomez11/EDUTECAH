@@ -31,12 +31,10 @@ function buscar() {
         content.push({title : myObj[i][0], url: 'detalle.php?id='+myObj[i][1], description: myObj[i][2], price: 'HNL. '+myObj[i][3]});  
       }
 
-      $('.ui.search')
-  .search({
-    source: content,
-    minCharacters : 3
-  })
-;
+      $('.ui.search').search({
+          source: content,
+          minCharacters : 3
+      });
     }
   });
 }
@@ -73,4 +71,49 @@ function validarLogin(){
     error: function(){
     }
   });
-}
+}
+
+// Funcion para validar registro
+function registrar(tipo){
+  nombre = $("#txtNombre").val();
+  apellido = $("#txtApellido").val();
+  correo = $("#txtCorreo").val();
+  pass = $("#txtPassword").val();
+  cadenaUsuario = 'txtNombre='+nombre+'&txtApellido='+apellido+'&txtCorreo='+correo+'&txtPassword='+pass;
+  
+  if (tipo == "0") {
+    codigoI = $("#txtCodInstituto").val();
+    nombreI = $("#txtNomInstituto").val();
+    depto = $("#txtDepartamento").val();
+    municipio = $("#txtMunicipio").val();
+    direccion = $("#txtDireccion").val();
+
+    cadenaIns = '&txtCodInstituto='+codigoI+'&txtNomInstituto='+nombreI+'&txtDepartamento='+depto+'&txtMunicipio='+municipio+'&txtDireccion='+direccion;
+
+    $.ajax({
+      url       : 'Acciones/registrarInstituto.php',
+      type      : 'POST',
+      data      : cadenaUsuario+cadenaIns,
+      dataType  : 'text',
+      beforeSend: function(){
+        document.getElementById("cargar").innerHTML ='<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+      },
+      success   : function (response) {
+        error = response;
+        document.getElementById("cargar").innerHTML ='';
+        if (error == 1){
+          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo '+codigoI+' ya fue utilizado anteriormente para registrar otro instituto. Si crees que se trata de fraude puede reportarlo siguiendo <a href="#">este enlace</a></p></div>';
+          return true;
+        } else if (error == 0) {
+          window.location.href = "index.php";
+          return true;
+        } else if (error == 2) {
+          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
+          return true;
+       } 
+      },
+      error: function(){
+      }
+    });
+  }
+}
