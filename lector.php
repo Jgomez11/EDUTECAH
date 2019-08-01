@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php  echo $_SESSION["Usuario"]; ?></title>
+	<title>Lector</title>
 	<link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.min.css">
   <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
