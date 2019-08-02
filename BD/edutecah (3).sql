@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-08-2019 a las 17:02:54
+-- Tiempo de generación: 02-08-2019 a las 18:42:19
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -41,25 +41,54 @@ DROP TABLE IF EXISTS `tblcursos`;
 CREATE TABLE IF NOT EXISTS `tblcursos` (
   `IDCurso` int(11) NOT NULL AUTO_INCREMENT,
   `NombreCurso` varchar(30) NOT NULL,
-  `Año` varchar(10) NOT NULL,
-  `IDJornada` int(11) NOT NULL,
-  `Seccion` varchar(11) NOT NULL,
-  `IDInstituto` int(10) NOT NULL,
-  PRIMARY KEY (`IDCurso`),
-  KEY `IDJornadaC` (`IDJornada`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  PRIMARY KEY (`IDCurso`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblcursos`
 --
 
-INSERT INTO `tblcursos` (`IDCurso`, `NombreCurso`, `Año`, `IDJornada`, `Seccion`, `IDInstituto`) VALUES
-(1, 'Bachillerato en humanidades', 'Primero', 1, '1', 1),
-(2, 'Bachillerato en Informatica', 'Primero', 1, '1', 1),
-(3, 'Finanzas', 'Primero', 1, '1', 1),
-(4, 'Bachillerato en humanidades', 'Primero', 1, '2', 1),
-(5, 'Bachillerato en Informatica', 'Primero', 1, '2', 1),
-(6, 'Finanzas', 'Primero', 1, '2', 1);
+INSERT INTO `tblcursos` (`IDCurso`, `NombreCurso`) VALUES
+(1, 'Ciclo Comun'),
+(2, 'Bachillerato En Humanidades'),
+(3, 'Bachillerato En Informatica'),
+(4, 'Finanzas');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblcursoxinstituto`
+--
+
+DROP TABLE IF EXISTS `tblcursoxinstituto`;
+CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
+  `IDInstituto` int(11) NOT NULL,
+  `IDCurso` int(11) NOT NULL,
+  `IDGrado` int(1) NOT NULL,
+  `IDSeccion` int(1) NOT NULL,
+  KEY `IDInstitutoCXIfk` (`IDInstituto`),
+  KEY `IDCursoCXIfk` (`IDCurso`),
+  KEY `IDGradoCXIfk` (`IDGrado`),
+  KEY `IDSeccionesCXIfk` (`IDSeccion`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tblcursoxinstituto`
+--
+
+INSERT INTO `tblcursoxinstituto` (`IDInstituto`, `IDCurso`, `IDGrado`, `IDSeccion`) VALUES
+(1, 1, 1, 1),
+(1, 2, 1, 1),
+(1, 3, 1, 1),
+(1, 4, 1, 1),
+(1, 1, 2, 1),
+(1, 2, 2, 1),
+(1, 3, 2, 1),
+(1, 4, 2, 1),
+(1, 1, 2, 1),
+(1, 2, 3, 1),
+(1, 3, 3, 1),
+(1, 4, 3, 1);
 
 -- --------------------------------------------------------
 
@@ -116,6 +145,28 @@ CREATE TABLE IF NOT EXISTS `tbldocxinstituto` (
 
 INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblgrado`
+--
+
+DROP TABLE IF EXISTS `tblgrado`;
+CREATE TABLE IF NOT EXISTS `tblgrado` (
+  `IDGrado` int(11) NOT NULL AUTO_INCREMENT,
+  `Grado` varchar(10) NOT NULL,
+  PRIMARY KEY (`IDGrado`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tblgrado`
+--
+
+INSERT INTO `tblgrado` (`IDGrado`, `Grado`) VALUES
+(1, 'Primero'),
+(2, 'Segundo'),
+(3, 'Tercero');
 
 -- --------------------------------------------------------
 
@@ -536,6 +587,28 @@ CREATE TABLE IF NOT EXISTS `tblplan` (
 
 INSERT INTO `tblplan` (`IDPlan`, `IDTipoPlan`, `IDInstituto`, `DiasPrueba`, `AulasDisponibles`) VALUES
 (1, 1, 1, 30, 10);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblsecciones`
+--
+
+DROP TABLE IF EXISTS `tblsecciones`;
+CREATE TABLE IF NOT EXISTS `tblsecciones` (
+  `IDSeccion` int(11) NOT NULL AUTO_INCREMENT,
+  `nombreSeccion` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`IDSeccion`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tblsecciones`
+--
+
+INSERT INTO `tblsecciones` (`IDSeccion`, `nombreSeccion`) VALUES
+(1, 'I'),
+(2, 'II'),
+(3, 'III');
 
 -- --------------------------------------------------------
 
