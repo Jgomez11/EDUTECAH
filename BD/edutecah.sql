@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 02-08-2019 a las 18:42:19
--- Versión del servidor: 5.7.23
--- Versión de PHP: 7.2.10
+-- Tiempo de generación: 03-08-2019 a las 03:00:00
+-- Versión del servidor: 5.7.26
+-- Versión de PHP: 7.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -66,6 +66,7 @@ CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
   `IDCurso` int(11) NOT NULL,
   `IDGrado` int(1) NOT NULL,
   `IDSeccion` int(1) NOT NULL,
+  `CodigoCurso` varchar(8) NOT NULL,
   KEY `IDInstitutoCXIfk` (`IDInstituto`),
   KEY `IDCursoCXIfk` (`IDCurso`),
   KEY `IDGradoCXIfk` (`IDGrado`),
@@ -76,19 +77,19 @@ CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
 -- Volcado de datos para la tabla `tblcursoxinstituto`
 --
 
-INSERT INTO `tblcursoxinstituto` (`IDInstituto`, `IDCurso`, `IDGrado`, `IDSeccion`) VALUES
-(1, 1, 1, 1),
-(1, 2, 1, 1),
-(1, 3, 1, 1),
-(1, 4, 1, 1),
-(1, 1, 2, 1),
-(1, 2, 2, 1),
-(1, 3, 2, 1),
-(1, 4, 2, 1),
-(1, 1, 2, 1),
-(1, 2, 3, 1),
-(1, 3, 3, 1),
-(1, 4, 3, 1);
+INSERT INTO `tblcursoxinstituto` (`IDInstituto`, `IDCurso`, `IDGrado`, `IDSeccion`, `CodigoCurso`) VALUES
+(1, 1, 1, 1, ''),
+(1, 2, 1, 1, ''),
+(1, 3, 1, 1, ''),
+(1, 4, 1, 1, ''),
+(1, 1, 2, 1, ''),
+(1, 2, 2, 1, ''),
+(1, 3, 2, 1, ''),
+(1, 4, 2, 1, ''),
+(1, 1, 2, 1, ''),
+(1, 2, 3, 1, ''),
+(1, 3, 3, 1, ''),
+(1, 4, 3, 1, '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `tbldocxinstituto` (
 --
 
 INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
-(1, 1);
+(1, 1),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -232,7 +234,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -244,7 +246,11 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (3, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-01', '13:33:45', '::1', 1),
 (4, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-01', '13:33:59', '::1', 1),
 (5, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-01', '13:34:27', '::1', 1),
-(6, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-01', '13:35:05', '::1', 1);
+(6, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-01', '13:35:05', '::1', 1),
+(7, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:21:47', '::1', 1),
+(8, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:25:29', '::1', 1),
+(9, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:55:51', '::1', 1),
+(10, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '20:49:52', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -671,14 +677,24 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   `TipoUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblusuario`
 --
 
 INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`) VALUES
-(1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2);
+(1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
+(2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
+
+DELIMITER $$
+--
+-- Eventos
+--
+DROP EVENT `jobDecDiasPrueba`$$
+CREATE DEFINER=`root`@`localhost` EVENT `jobDecDiasPrueba` ON SCHEDULE EVERY 1 DAY STARTS '2019-08-01 23:59:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL ActualizarDias()$$
+
+DELIMITER ;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

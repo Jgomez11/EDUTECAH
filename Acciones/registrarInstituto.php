@@ -22,6 +22,20 @@
 	$direccion = $_POST["txtDireccion"];
 	$pase = generarCodigo(8);
 
+	$existePase = 0;
+	
+	while ($existePase == 0) {
+		$consulta = sprintf("SELECT count(*) FROM tblInstituto WHERE Pase = '%s'",
+		$conexion->antiInyeccion($pase));
+		$resultado = $conexion->ejecutarconsulta($consulta);
+		
+		if ($resultado->fetch_assoc()['count(*)'] != '0') {
+			$pase = generarCodigo(8);
+		} else{
+			$existePase = 1;
+		}
+	}
+
 #	Creacion de objeto Usuario
 	$user = new Usuario(null,
 	$nombre,
@@ -56,6 +70,7 @@
 			$_SESSION['Correo'] = $correo;
 			$_SESSION['Imagen'] = NULL;
 			$_SESSION['Pase'] = $pase;
+			$_SESSION['Plan'] = '1';
 
 #	Insercion en tblINSTTUTO
 			$consulta = sprintf("INSERT INTO tblInstituto(CodigoIns, NombreIns, Pase, IDMunicipio, Direccion, Director) values('%s','%s','%s','%s','%s','%s')",

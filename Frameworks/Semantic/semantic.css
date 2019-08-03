@@ -16075,7 +16075,7 @@ a.ui.basic.label:hover {
   z-index: 100;
   top: -1em;
   left: 100%;
-  margin: 0em 0em 0em -1.5em !important;
+  margin: 0.5em 0em 0em -2em !important;
 }
 
 /*-------------------

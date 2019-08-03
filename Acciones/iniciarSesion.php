@@ -52,6 +52,9 @@
 				$conexion->antiInyeccion($_SESSION['Instituto']));
 			$_SESSION['Pase'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['pase'];
 			
+			$consulta = sprintf("SELECT idtipoplan FROM tblplan WHERE IDInstituto = '%s'",
+				$conexion->antiInyeccion($_SESSION['Instituto']));
+			$_SESSION['Plan'] = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['idtipoplan'];
 #	Insercion en tblLogs
 			$hora = date("G:i:s");
 			$consultaB = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IPusuario, IDUsuario) VALUES ('%s','%s','%s','%s','%s','%s')",

@@ -17,8 +17,15 @@
 		</p>
 		<div class="ui vertical fluid buttons">
   			<button class="ui basic button" onclick="cargarDiv()">Perfil</button>
+  			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/aulas.php')">Aulas</button>
+  			<?php
+  				if ($_SESSION["TipoUsuario"]=='2') {
+  					echo '
+  						<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\')">Cursos</button>
+  					';
+  				}
+  			?>
   			<button class="ui basic button">Recursos</button>
-  			<button class="ui basic button">Tus aulas</button>
   			<button class="ui basic button">Wiki</button>
 		</div>
 	</div>

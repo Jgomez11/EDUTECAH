@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>EDUTECAH</title>
-	<link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.min.css">
+	<link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.css">
   <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"
   		integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
