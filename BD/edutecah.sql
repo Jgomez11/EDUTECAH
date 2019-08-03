@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-08-2019 a las 03:00:00
+-- Tiempo de generación: 03-08-2019 a las 21:05:23
 -- Versión del servidor: 5.7.26
 -- Versión de PHP: 7.2.18
 
@@ -30,6 +30,22 @@ DROP PROCEDURE IF EXISTS `ActualizarDias`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDias` ()  UPDATE tblplan SET DiasPrueba = DiasPrueba - 1 WHERE tblplan.IDTipoPlan = 1 AND DiasPrueba != '0'$$
 
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblaula`
+--
+
+DROP TABLE IF EXISTS `tblaula`;
+CREATE TABLE IF NOT EXISTS `tblaula` (
+  `IDAula` int(11) NOT NULL AUTO_INCREMENT,
+  `IDDocente` int(11) NOT NULL,
+  `IDInstituto` int(11) NOT NULL,
+  `CodigoCurso` varchar(8) NOT NULL,
+  `Asignatura` varchar(30) NOT NULL,
+  PRIMARY KEY (`IDAula`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -62,34 +78,21 @@ INSERT INTO `tblcursos` (`IDCurso`, `NombreCurso`) VALUES
 
 DROP TABLE IF EXISTS `tblcursoxinstituto`;
 CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
-  `IDInstituto` int(11) NOT NULL,
   `IDCurso` int(11) NOT NULL,
-  `IDGrado` int(1) NOT NULL,
-  `IDSeccion` int(1) NOT NULL,
+  `IDGrado` int(11) NOT NULL,
   `CodigoCurso` varchar(8) NOT NULL,
-  KEY `IDInstitutoCXIfk` (`IDInstituto`),
-  KEY `IDCursoCXIfk` (`IDCurso`),
-  KEY `IDGradoCXIfk` (`IDGrado`),
-  KEY `IDSeccionesCXIfk` (`IDSeccion`)
+  `IDInstituto` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblcursoxinstituto`
 --
 
-INSERT INTO `tblcursoxinstituto` (`IDInstituto`, `IDCurso`, `IDGrado`, `IDSeccion`, `CodigoCurso`) VALUES
-(1, 1, 1, 1, ''),
-(1, 2, 1, 1, ''),
-(1, 3, 1, 1, ''),
-(1, 4, 1, 1, ''),
-(1, 1, 2, 1, ''),
-(1, 2, 2, 1, ''),
-(1, 3, 2, 1, ''),
-(1, 4, 2, 1, ''),
-(1, 1, 2, 1, ''),
-(1, 2, 3, 1, ''),
-(1, 3, 3, 1, ''),
-(1, 4, 3, 1, '');
+INSERT INTO `tblcursoxinstituto` (`IDCurso`, `IDGrado`, `CodigoCurso`, `IDInstituto`) VALUES
+(1, 1, 'NN3NHZ0W', 1),
+(1, 1, 'UI5A3B9V', 1),
+(1, 3, 'KNNFIPQ1', 1),
+(2, 2, 'WICWCNVT', 1);
 
 -- --------------------------------------------------------
 
@@ -146,7 +149,8 @@ CREATE TABLE IF NOT EXISTS `tbldocxinstituto` (
 
 INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (1, 1),
-(2, 1);
+(2, 1),
+(3, 2);
 
 -- --------------------------------------------------------
 
@@ -187,35 +191,15 @@ CREATE TABLE IF NOT EXISTS `tblinstituto` (
   `Director` int(10) NOT NULL,
   PRIMARY KEY (`IDInstituto`),
   KEY `Director` (`Director`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblinstituto`
 --
 
 INSERT INTO `tblinstituto` (`IDInstituto`, `CodigoIns`, `NombreIns`, `Pase`, `IDMunicipio`, `Direccion`, `Director`) VALUES
-(1, '080100001', 'Colegio 1', 'QKPN56OM', 1, 'Aqui', 1);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tbljornada`
---
-
-DROP TABLE IF EXISTS `tbljornada`;
-CREATE TABLE IF NOT EXISTS `tbljornada` (
-  `IDJornada` int(11) NOT NULL AUTO_INCREMENT,
-  `Jornada` varchar(10) NOT NULL,
-  PRIMARY KEY (`IDJornada`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tbljornada`
---
-
-INSERT INTO `tbljornada` (`IDJornada`, `Jornada`) VALUES
-(1, 'Matutina'),
-(2, 'Vespertina');
+(1, '080100001', 'Colegio 1', 'QKPN56OM', 1, 'Aqui', 1),
+(2, '080100004', 'Colegio Prueba', 'W6NB5JT7', 2, 'Alla', 3);
 
 -- --------------------------------------------------------
 
@@ -234,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -250,7 +234,91 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (7, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:21:47', '::1', 1),
 (8, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:25:29', '::1', 1),
 (9, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '19:55:51', '::1', 1),
-(10, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '20:49:52', '::1', 1);
+(10, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '20:49:52', '::1', 1),
+(11, 'Nuevo registro', 'Nuevo usuario con la direccion de correo: prueba@algo.hn', '2019-08-02', '21:55:18', '::1', 3),
+(12, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-08-02', '21:59:17', '::1', 2),
+(13, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '22:01:09', '::1', 1),
+(14, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '22:31:06', '::1', 1),
+(15, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '22:43:38', '::1', 1),
+(16, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '22:45:24', '::1', 1),
+(17, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '22:57:59', '::1', 1),
+(18, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '23:13:22', '::1', 1),
+(19, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '23:15:28', '::1', 1),
+(20, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '23:20:16', '::1', 1),
+(21, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '23:21:16', '::1', 1),
+(22, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-02', '23:49:38', '::1', 1),
+(23, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '01:03:14', '::1', 1),
+(24, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '01:05:57', '::1', 1),
+(25, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '01:07:51', '::1', 1),
+(26, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '10:18:52', '::1', 1),
+(27, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 5WXRGPN8', '2019-08-03', '10:29:44', '::1', 1),
+(28, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 5IHNO943', '2019-08-03', '10:31:31', '::1', 1),
+(29, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KYZXRJ7K', '2019-08-03', '10:34:24', '::1', 1),
+(30, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: LRWHNWAM', '2019-08-03', '10:37:39', '::1', 1),
+(31, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: JY5RJQRT', '2019-08-03', '10:39:15', '::1', 1),
+(32, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: OBD5AY3T', '2019-08-03', '10:39:44', '::1', 1),
+(33, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-08-03', '11:59:43', '::1', 2),
+(34, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '12:38:15', '::1', 1),
+(35, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ZW54WZK5', '2019-08-03', '12:53:37', '::1', 1),
+(36, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: D2MYDJUY', '2019-08-03', '12:53:46', '::1', 1),
+(37, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: C9DU8ZTG', '2019-08-03', '12:53:57', '::1', 1),
+(38, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: I4EDPQD1', '2019-08-03', '12:54:10', '::1', 1),
+(39, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 8Z85FZB7', '2019-08-03', '12:54:37', '::1', 1),
+(40, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: CQZ4UG6D', '2019-08-03', '12:57:42', '::1', 1),
+(41, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: D004LHNS', '2019-08-03', '12:57:53', '::1', 1),
+(42, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-08-03', '12:59:00', '::1', 2),
+(43, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '12:59:29', '::1', 1),
+(44, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 6M2HMOEW', '2019-08-03', '12:59:52', '::1', 1),
+(45, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KZ4MYVA8', '2019-08-03', '13:00:40', '::1', 1),
+(46, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '13:04:08', '::1', 1),
+(47, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 0R2W5J2O', '2019-08-03', '13:04:19', '::1', 1),
+(48, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: IIPCC9QI', '2019-08-03', '13:05:53', '::1', 1),
+(49, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 38KO89CK', '2019-08-03', '13:07:54', '::1', 1),
+(50, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: LW4ZA2G7', '2019-08-03', '13:08:05', '::1', 1),
+(51, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: IYTE0VTF', '2019-08-03', '13:09:55', '::1', 1),
+(52, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 4M0RAM68', '2019-08-03', '13:15:48', '::1', 1),
+(53, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 8I0ZD1PD', '2019-08-03', '13:15:57', '::1', 1),
+(54, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 490TP5A3', '2019-08-03', '13:17:07', '::1', 1),
+(55, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 4H6AM678', '2019-08-03', '13:17:48', '::1', 1),
+(56, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: BUX0JQC3', '2019-08-03', '13:17:57', '::1', 1),
+(57, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: O3MJBVKQ', '2019-08-03', '13:18:58', '::1', 1),
+(58, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KJOKUKOZ', '2019-08-03', '13:19:54', '::1', 1),
+(59, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: PDRXSUPH', '2019-08-03', '13:20:05', '::1', 1),
+(60, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 4TVTOJOU', '2019-08-03', '13:21:38', '::1', 1),
+(61, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 8U4DVL43', '2019-08-03', '13:21:47', '::1', 1),
+(62, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: YQWGF20M', '2019-08-03', '13:24:19', '::1', 1),
+(63, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: CV9F2BJY', '2019-08-03', '13:27:04', '::1', 1),
+(64, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: P4UPIL4H', '2019-08-03', '13:27:15', '::1', 1),
+(65, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '13:28:04', '::1', 1),
+(66, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: DEN5729G', '2019-08-03', '14:38:25', '::1', 1),
+(67, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: IS0I2PVZ', '2019-08-03', '14:38:33', '::1', 1),
+(68, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: UY6VCKTQ', '2019-08-03', '14:39:11', '::1', 1),
+(69, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 7FN2M19E', '2019-08-03', '14:39:19', '::1', 1),
+(70, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: WO15FI3A', '2019-08-03', '14:41:26', '::1', 1),
+(71, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 0CKTBFE4', '2019-08-03', '14:41:52', '::1', 1),
+(72, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: L7DMOB90', '2019-08-03', '14:43:20', '::1', 1),
+(73, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: T6QAG5XL', '2019-08-03', '14:43:27', '::1', 1),
+(74, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 1XFMZQQA', '2019-08-03', '14:45:27', '::1', 1),
+(75, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 3S6Y9V8O', '2019-08-03', '14:46:07', '::1', 1),
+(76, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: VXV3EGF9', '2019-08-03', '14:46:13', '::1', 1),
+(77, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: WKRXXHHU', '2019-08-03', '14:50:52', '::1', 1),
+(78, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: X8WI09RC', '2019-08-03', '14:50:59', '::1', 1),
+(79, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: 7PKL1LKJ', '2019-08-03', '14:51:38', '::1', 1),
+(80, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ZMV1UXIJ', '2019-08-03', '14:51:45', '::1', 1),
+(81, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: Y29UJJVB', '2019-08-03', '14:52:11', '::1', 1),
+(82, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: QR5WBO3O', '2019-08-03', '14:52:18', '::1', 1),
+(83, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KIJQ2N74', '2019-08-03', '14:52:58', '::1', 1),
+(84, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: BWGX3F08', '2019-08-03', '14:53:08', '::1', 1),
+(85, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: BT0VA018', '2019-08-03', '14:59:25', '::1', 1),
+(86, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: XQ3CGV1N', '2019-08-03', '14:59:27', '::1', 1),
+(87, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ZJMKOJ10', '2019-08-03', '14:59:28', '::1', 1),
+(88, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: HY9C47TD', '2019-08-03', '14:59:29', '::1', 1),
+(89, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: NN3NHZ0W', '2019-08-03', '15:00:57', '::1', 1),
+(90, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: UI5A3B9V', '2019-08-03', '15:02:48', '::1', 1),
+(91, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KNNFIPQ1', '2019-08-03', '15:03:26', '::1', 1),
+(92, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: WICWCNVT', '2019-08-03', '15:03:33', '::1', 1),
+(93, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-08-03', '15:03:54', '::1', 2),
+(94, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: HJ68HAE7', '2019-08-03', '15:04:05', '::1', 2);
 
 -- --------------------------------------------------------
 
@@ -585,36 +653,15 @@ CREATE TABLE IF NOT EXISTS `tblplan` (
   `DiasPrueba` int(2) DEFAULT NULL,
   `AulasDisponibles` int(3) NOT NULL,
   PRIMARY KEY (`IDPlan`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblplan`
 --
 
 INSERT INTO `tblplan` (`IDPlan`, `IDTipoPlan`, `IDInstituto`, `DiasPrueba`, `AulasDisponibles`) VALUES
-(1, 1, 1, 30, 10);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `tblsecciones`
---
-
-DROP TABLE IF EXISTS `tblsecciones`;
-CREATE TABLE IF NOT EXISTS `tblsecciones` (
-  `IDSeccion` int(11) NOT NULL AUTO_INCREMENT,
-  `nombreSeccion` varchar(15) DEFAULT NULL,
-  PRIMARY KEY (`IDSeccion`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `tblsecciones`
---
-
-INSERT INTO `tblsecciones` (`IDSeccion`, `nombreSeccion`) VALUES
-(1, 'I'),
-(2, 'II'),
-(3, 'III');
+(1, 1, 1, 4, 10),
+(2, 1, 2, 29, 10);
 
 -- --------------------------------------------------------
 
@@ -677,7 +724,7 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   `TipoUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblusuario`
@@ -685,7 +732,8 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
 
 INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`) VALUES
 (1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
-(2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
+(2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(3, 'Prueba', 'Prueba', 'prueba@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2);
 
 DELIMITER $$
 --

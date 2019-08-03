@@ -1,4 +1,5 @@
-//Funcion cargar contenido mediante ajax
+//  FUNCIONES DE CARGA DE DATOS
+//  1.  Funcion cargar divs de contenido
 function cargarDiv(divID, ruta) {
   $.ajax({
     url: ruta,
@@ -15,7 +16,7 @@ function cargarDiv(divID, ruta) {
   });
 }
 
-//Funcion para realizar busqueda mediante api custom
+//  2.  Funcion para realizar busqueda mediante api custom (PENDIENTE)
 function buscar() {
   query = $("#q").val();  
   $.ajax({
@@ -39,7 +40,22 @@ function buscar() {
   });
 }
 
-//Funcion para validar contraseña mediante ajax
+//  3.  Funcion para cargar municipios
+function cargarMun(){
+  idDepto = $('#txtIDDepto').val();
+  $.ajax({
+    url: 'Acciones/cargarMunicipios.php',
+    type: 'POST',
+    data: 'idd='+idDepto,
+    dataType: 'text',
+    success: function (response) {
+        document.getElementById('Municipio').innerHTML = response;
+    }
+  });
+}
+
+//  FUNCIONES DE VALIDACION
+//  1.  Funcion para validar login de docentes
 function validarLogin(){
   correo = $("#txtCorreo").val();  
   pass = $("#txtPassword").val();
@@ -73,7 +89,7 @@ function validarLogin(){
   });
 }
 
-// Funcion para validar registro
+//  2.  Funcion para validar registro de Institutos y Docentes
 function registrar(tipo){
   nombre = $("#txtNombre").val();
   apellido = $("#txtApellido").val();
@@ -142,4 +158,22 @@ function registrar(tipo){
       }
     });
   }
+}
+
+//  3.  Funcion para registrar cursos
+function registrarCurso(){
+  curso = $('#txtIDCurso').val();
+  grado = $('#txtIDGrado').val();
+  
+  $.ajax({
+    url       : 'Acciones/registrarCurso.php',
+    type      : 'POST',
+    data      : 'txtIDCurso='+curso+'&txtIDGrado='+grado,
+    dataType  : 'text',
+    success   : function (response) {
+      document.getElementById("contenido").innerHTML = 'Se ha creado un nuevo curso de '+grado+' de '+curso+' con el codigo: '+response;
+    },
+    error: function(){
+    }
+  });
 }

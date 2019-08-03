@@ -24,7 +24,7 @@
     								<div class="center aligned floated author">
      								<img class="ui medium image" width="450px" src="recursos/imagenes/Modulos/M_Casillero.jpg">
     								</div>
-    								<div class="ui center aligned header">Casillero</div>
+    								<div class="ui center aligned header">Aulas</div>
     								<div class="meta">
       									<span class="category">Resumen</span>
     								</div>
@@ -43,7 +43,7 @@
     								<div class="center aligned floated author">
      								<img class="ui medium image" src="recursos/imagenes/Modulos/M_Inventario.jpg">
     								</div>
-    								<div class="ui center aligned header">Inventario</div>
+    								<div class="ui center aligned header">Recursos</div>
     								<div class="meta">
       									<span class="category">Resumen</span>
     								</div>

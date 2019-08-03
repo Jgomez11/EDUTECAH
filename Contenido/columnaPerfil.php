@@ -21,7 +21,7 @@
   			<?php
   				if ($_SESSION["TipoUsuario"]=='2') {
   					echo '
-  						<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');">Cursos</button>
+  						<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');cargarDiv(\'modal\', \'Contenido/modalCursos.php\');">Cursos</button>
   					';
   				}
   			?>

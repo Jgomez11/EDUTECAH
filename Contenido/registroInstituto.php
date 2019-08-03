@@ -1,4 +1,11 @@
+<?php  
+#   Importar Clases
+    include("../Clases/Conexion.php");
 
+#   Crear conexion
+    $conexion = new Conexion();
+    $conexion->mysql_set_charset("utf8");
+ ?>
 <h4>Informacion Personal</h4>
 
 <div class="form-label-group">
@@ -35,15 +42,41 @@
     <label for="inputEmail">Nombre del colegio</label>
 </div>
 
+<h5>Ubicacion del Instituto</h5>
 <div class="form-label-group">
-    <input type="text" id="txtDepartamento" name="txtDepartamento" class="form-control" placeholder="Departamento" required>
-    <label for="inputEmail">Departamento</label>
+    <div class="field">
+        <label>Departamento</label>
+        <div class="ui search fluid selection dropdown" onmouseover="$('.dropdown').dropdown();">
+            <input type="hidden" name="txtIDDepto" id="txtIDDepto" onchange="cargarMun()">
+            <i class="dropdown icon"></i>
+            <div class="default text">Seleccionar departamento</div>
+            <div class="menu">
+                <?php
+                $consulta = sprintf("SELECT IDDepartamento, NombreDepartamento FROM tblDepartamentos ORDER BY IDDepartamento");
+                $resultado = $conexion->ejecutarconsulta($consulta);
+                $iter = $conexion->cantidadRegistros($resultado);
+                for ($i=0; $i < $iter; $i++) {
+                    $data = $conexion->obtenerFila($resultado);
+                    echo '<div class="item" data-value="'.$data["IDDepartamento"].'">'.$data["NombreDepartamento"].'</div>';
+                }
+                ?>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="form-label-group">
-    <input type="text" id="txtMunicipio" name="txtMunicipio" class="form-control" placeholder="Municipio" required>
-    <label for="inputEmail">Municipio</label>
-</div>  
+    <div class="field">
+        <label>Municipio</label>
+        <div class="ui search fluid selection dropdown" onmouseover="$('.dropdown').dropdown();">
+            <input type="hidden" class="form-control" name="txtMunicipio" id="txtMunicipio">
+            <i class="dropdown icon"></i>
+            <div class="default text">Seleccionar municipio</div>
+            <div class="menu" id="Municipio">
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="form-label-group">
     <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Direccion" required>

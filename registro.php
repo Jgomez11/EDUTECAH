@@ -31,7 +31,7 @@
     <div class="ui buttons btn-block">
       <button class="ui gray button" type="button" onclick="cargarDiv('contenido','Contenido/registroInstituto.php')">Instituto</button>
       <div class="or" data-text="O"></div>
-      <button class="ui teal button" type="button" onclick="cargarDiv('contenido','Contenido/registroDocente.php')">Docente</button>
+      <button class="ui teal button" type="button" onclick="cargarDiv('contenido','Contenido/registroDocente.php');">Docente</button>
     </div>
 
     <div id="contenido" class="mt-3">
