@@ -47,7 +47,7 @@
 	?>
 	<div class="row">
 		<div class="col-md-3">
-			<button class="ui green fluid button" onclick="$('.ui.modal').modal('show')"><br><i class="add icon"></i><br><br>Agregar nuevo curso<br><br></button>
+			<button class="ui green fluid button" onclick="$('.modal').modal('setting', 'transition', 'scale').modal('show')"><br><i class="add icon"></i><br><br>Agregar nuevo curso<br><br></button>
 		</div>
 	</div>
 	<div class="row mt-4">
@@ -108,16 +108,25 @@
 
   				$contador++;
 			
-				if ($contador == 3) {
+				if ($contador == 3 && $iter>3) {
 					echo '</div>';
 					$contador = 0;
 				}
 			}
+
+			echo '</div>';
 		}
 	?> 
 	</div>
-
-	<div class="ui modal">
-  		<div class="header">Header</div>
-	</div>
 </div>
+	<div class="ui small modal">
+  		<div class="header">Agregar nuevo curso</div>
+  		<div class="content fluid">
+    		<p>El error era por bootstrap.. Chinga</p>
+  		</div>
+  		<div class="actions">
+    		<div class="ui approve green button">Approve</div>
+    		<div class="ui cancel red button">Cancel</div>
+  		</div>
+	</div>
+
