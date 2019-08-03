@@ -16,7 +16,7 @@
 			</button></h5>
 		</p>
 		<div class="ui vertical fluid buttons">
-  			<button class="ui basic button" onclick="cargarDiv()">Perfil</button>
+  			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/contenidoPerfil.php')">Perfil</button>
   			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/aulas.php')">Aulas</button>
   			<?php
   				if ($_SESSION["TipoUsuario"]=='2') {

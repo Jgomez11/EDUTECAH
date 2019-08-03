@@ -57,7 +57,7 @@
         if ($_SESSION["TipoUsuario"] == '2') {
         	echo '
             <a class="item" href="planes.php"><i class="alternate list icon"></i> Actualizar plan</a>
-            <a class="item" href="#"><i class="edit icon"></i> Administración</a>';
+            <a class="item" href="#"><i class="tasks icon"></i> Administración</a>';
         }
     echo '
             <div class="divider"></div>

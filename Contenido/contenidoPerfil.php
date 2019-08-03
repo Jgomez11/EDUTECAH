@@ -11,9 +11,10 @@
  	$conexion = new Conexion();
  	$conexion->mysql_set_charset("utf8");
  ?>
+
 <div class="container"> 
 	<?php
-		if ($_SESSION['Plan'] == '1' && $_SESSION["TipoUsuario"]=='2') {
+		if ($_SESSION['Plan'] == '1' && $_SESSION['TipoUsuario'] == '2') {
 			$consulta = sprintf("SELECT DiasPrueba FROM tblplan WHERE IDInstituto = '%s'",
 				$conexion->antiInyeccion($_SESSION['Instituto']));
 			$dias = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['DiasPrueba'];
@@ -42,17 +43,6 @@
 						</div>
 					</div>';
 			}
-		}
-
-		if ($_SESSION["TipoUsuario"]=='3') {
-			echo '
-				<div class="row">
-				<div class="col-md-3">
-					<button class="ui green fluid button"><br><i class="add icon"></i><br><br>Agregar nueva aula<br><br></button>
-				</div>
-				</div>';
-
-
 		}
 	?>
 </div>
