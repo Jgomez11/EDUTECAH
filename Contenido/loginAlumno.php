@@ -1,6 +1,6 @@
     <div class="form-label-group">
       <input type="text" id="txtCodAula" name="txtCodAula" class="form-control" placeholder="Password" required autofocus>
-      <label for="inputPassword">Codigo de aula</label>
+      <label for="txtCodAula">Codigo de aula</label>
     </div>
 
     <!--<div class="checkbox mb-3">

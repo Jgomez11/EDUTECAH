@@ -12,7 +12,7 @@
 		?>">
 		<p class="fixed top">
 			<h5><?php echo $_SESSION['Usuario']; ?>
-			&nbsp;<button class="circular ui icon olive button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarPerfil.php')" title="Modifica tu perfil"><i class="edit icon"></i>
+			&nbsp;<button class="circular ui icon teal button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarPerfil.php')" title="Modifica tu perfil"><i class="edit icon"></i>
 			</button></h5>
 		</p>
 		<div class="ui vertical fluid buttons">
@@ -21,7 +21,7 @@
   			<?php
   				if ($_SESSION["TipoUsuario"]=='2') {
   					echo '
-  						<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\')">Cursos</button>
+  						<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');">Cursos</button>
   					';
   				}
   			?>

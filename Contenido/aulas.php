@@ -13,7 +13,7 @@
  ?>
 <div class="container"> 
 	<?php
-		if ($_SESSION['Plan'] == '1' && $_SESSION["TipoUsuario"]=='2') {
+		if ($_SESSION['Plan'] == '1' && $_SESSION["TipoUsuario"]=='') {
 			$consulta = sprintf("SELECT DiasPrueba FROM tblplan WHERE IDInstituto = '%s'",
 				$conexion->antiInyeccion($_SESSION['Instituto']));
 			$dias = $conexion->ejecutarconsulta($consulta)->fetch_assoc()['DiasPrueba'];

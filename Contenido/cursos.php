@@ -47,7 +47,11 @@
 	?>
 	<div class="row">
 		<div class="col-md-3">
-			<button class="ui green fluid button" onclick="$('.modal').modal('setting', 'transition', 'scale').modal('show')"><br><i class="add icon"></i><br><br>Agregar nuevo curso<br><br></button>
+			<button class="ui teal fluid button" onclick="$('.modal').modal({
+    onVisible: function () {
+      $('.dropdown').dropdown();
+    }
+  }).modal('setting', 'transition', 'scale').modal('show')"><br><i class="add icon"></i><br><br>Agregar nuevo curso<br><br></button>
 		</div>
 	</div>
 	<div class="row mt-4">
@@ -121,12 +125,54 @@
 </div>
 	<div class="ui small modal">
   		<div class="header">Agregar nuevo curso</div>
-  		<div class="content fluid">
-    		<p>El error era por bootstrap.. Chinga</p>
-  		</div>
+  		<div class="content">
+  			<form class="ui form">
+  				<div class="field">
+      				<label>Seleccionar curso</label>
+					<div class="ui search selection dropdown">
+  						<input type="hidden" name="gender">
+  						<i class="dropdown icon"></i>
+  						<div class="default text">Curso</div>
+  						<div class="menu">
+  							<?php
+								$consulta = sprintf("SELECT IDCurso, NombreCurso FROM tblcursos");
+								$resultado = $conexion->ejecutarconsulta($consulta);
+								$iter = $conexion->cantidadRegistros($resultado);
+
+								for ($i=0; $i < $iter; $i++) { 
+									$data = $conexion->obtenerFila($resultado);
+
+									echo '<div class="item" data-value="'.$data["IDCurso"].'">'.$data["NombreCurso"].'</div>';
+								}
+  							 ?>
+  						</div>
+					</div>
+      			</div>
+      			<div class="field">
+      				<label>Seleccionar grado</label>
+					<div class="ui search selection dropdown">
+  						<input type="hidden" name="gender">
+  						<i class="dropdown icon"></i>
+  						<div class="default text">Grado</div>
+  						<div class="menu">
+  							<?php
+								$consulta = sprintf("SELECT IDGrado, Grado FROM tblgrado");
+								$resultado = $conexion->ejecutarconsulta($consulta);
+								$iter = $conexion->cantidadRegistros($resultado);
+
+								for ($i=0; $i < $iter; $i++) { 
+									$data = $conexion->obtenerFila($resultado);
+
+									echo '<div class="item" data-value="'.$data["IDGrado"].'">'.$data["Grado"].'</div>';
+								}
+  							 ?>
+  						</div>
+					</div>
+      			</div>
+      		 </form>
+      	</div>
   		<div class="actions">
-    		<div class="ui approve green button">Approve</div>
-    		<div class="ui cancel red button">Cancel</div>
+    		<div class="ui approve teal button">Aceptar</div>
+    		<div class="ui cancel red button">Cancelar</div>
   		</div>
 	</div>
-
