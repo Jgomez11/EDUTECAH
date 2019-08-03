@@ -8,7 +8,7 @@ function cargarDiv(divID, ruta) {
     },
     success: function (respuesta) {
       document.getElementById("cargar").innerHTML = '';
-      document.getElementById(divID).innerHTML = respuesta;
+      document.getElementById(divID).innerHTML = respuesta;
     },
     error: function () {
     }
