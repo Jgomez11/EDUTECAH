@@ -25,9 +25,15 @@ session_start();
 				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarDocente.php\');">Gestionar Docentes</button>
 				';
 			}
-			?>
-			<button class="ui basic button">Recursos</button>
-			<button class="ui basic button">Wiki</button>
+
+			if ($_SESSION["TipoUsuario"]=='1') {
+				echo '
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarDocente.php\');">Gestionar Usuarios</button>';}
+				?>
+
+
+				<button class="ui basic button">Recursos</button>
+				<button class="ui basic button">Wiki</button>
+			</div>
 		</div>
 	</div>
-</div>
