@@ -19,7 +19,7 @@ $conexion->mysql_set_charset("utf8");
 		<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">
 			<br>
 			<h4 style="text-align: center;">
-				Gestión de Docentes
+				Gestión de Docentes 
 			</h4>
 
 			<hr>

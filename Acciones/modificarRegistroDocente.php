@@ -16,15 +16,19 @@ $conexion->mysql_set_charset("utf8");
 $identificador= $_POST['txtIdentificador'];
 $Nombre=$_POST['txtNombre'];
 $Apellido=$_POST['txtApellido'];
+$Cedula=$_POST['txtCedula'];
+$Telefono=$_POST['txtTelefono'];
 $Correo=$_POST['txtCorreo'];
 
 
 
 	#	Insercion en tblCursoXInstituto
 
-$consultaB = sprintf("UPDATE tblusuario SET Nombre='%s', Apellido='%s', Correo='%s' WHERE IDUsuario='%s'",
+$consultaB = sprintf("UPDATE tblusuario SET Nombre='%s', Apellido='%s', Cedula='%s', Telefono='%s', Correo='%s' WHERE IDUsuario='%s'",
 	$conexion->antiInyeccion($Nombre),
 	$conexion->antiInyeccion($Apellido),
+	$conexion->antiInyeccion($Cedula),
+	$conexion->antiInyeccion($Telefono),
 	$conexion->antiInyeccion($Correo),
 	$conexion->antiInyeccion($identificador));
 

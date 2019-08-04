@@ -21,8 +21,9 @@ $salida="<div class='col-md-12 table-responsive'>
 <tr id='titulo'>
 <th>Cargo</th>
 <th>Nombre</th>
+<th>Cedula</th>
+<th>Telefono</th>
 <th>Correo</th>
-<th>Instituto</th>
 <th></th>
 </tr>
 
@@ -31,7 +32,7 @@ $salida="<div class='col-md-12 table-responsive'>
 
 
 if(isset($_POST['consulta'])){
-    $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblinstituto.NombreIns from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE tblinstituto.IDInstituto = ".$_SESSION['Instituto']." AND tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs and tbltipousuario.Tipo='Docente' and tblusuario.Nombre like '%".$_POST['consulta']."%'";
+    $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblusuario.Telefono, tblusuario.Cedula from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE tblinstituto.IDInstituto = ".$_SESSION['Instituto']." AND tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs and tbltipousuario.Tipo='Docente' and tblusuario.Nombre like '%".$_POST['consulta']."%'";
 
 }
 $resultado=$conexion->ejecutarconsulta($sql);
@@ -42,8 +43,9 @@ if ($conexion->cantidadregistros($resultado)>0) {
         $salida.='<tr>
         <td>'.$arreglo['Tipo'].'</td>
         <td>'.$arreglo['Nombre'].'</td>
+        <td>'.$arreglo['Cedula'].'</td>
+        <td>'.$arreglo['Telefono'].'</td>
         <td>'.$arreglo['Correo'].'</td>
-        <td>'.$arreglo['NombreIns'].'</td>
         <td><a role="button"'.'class='.'"ui blue button"'.'href="#"'.' onclick="modificar('.$arreglo["IDUsuario"].')"><i class='.'"pencil alternate icon"'.'></i>&nbsp;Modificar</a><a role="button" class='.'"ui red button"'.' href="#" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class='.'"trash icon"'.'></i>&nbsp;Eliminar</a></td></tr>';
     }
     $salida.="</tbody> </table>";

@@ -14,7 +14,7 @@ $conexion->mysql_set_charset("utf8");
 
 
 <?php
-$consulta="SELECT tblusuario.IDUsuario, tblusuario.Nombre ,tblusuario.Apellido, tblusuario.Correo from  tbldocxinstituto, tblinstituto, tblusuario WHERE  tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario  and tblusuario.IDUsuario=".$_POST['IDUsuario'];
+$consulta="SELECT tblusuario.IDUsuario, tblusuario.Nombre ,tblusuario.Apellido, tblusuario.Cedula, tblusuario.Telefono ,tblusuario.Correo from  tbldocxinstituto, tblinstituto, tblusuario WHERE  tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario  and tblusuario.IDUsuario=".$_POST['IDUsuario'];
 $resultado=$conexion->ejecutarconsulta($consulta);
 $data=$conexion->obtenerfila($resultado);
 ?>
@@ -52,6 +52,26 @@ $data=$conexion->obtenerfila($resultado);
 			</div>
 			
 			
+			<div class="row mb-4" >
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<label>Ingresa nuevo Cedula:</label>
+					<input type="text" name="txtCedula" value="<?php echo $data['Cedula']; ?>" class="form-control">
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+
+
+			<div class="row mb-4" >
+				<div class="col-lg-4"></div>
+				<div class="col-lg-4">
+					<label>Ingresa nuevo Telefono:</label>
+					<input type="text" name="txtTelefono" value="<?php echo $data['Telefono']; ?>" class="form-control">
+				</div>
+				<div class="col-lg-4"></div>
+			</div>
+
+
 			<div class="row mb-4" >
 				<div class="col-lg-4"></div>
 				<div class="col-lg-4">	
