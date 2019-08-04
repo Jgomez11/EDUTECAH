@@ -56,6 +56,21 @@ function cargarMun(){
   });
 }
 
+
+
+//  4.  Funcion para listar (cargar) docentes en tablas y gestionar
+function listar(consulta){
+  $.ajax({
+    url:'Acciones/BusquedaDocentes.php',
+    type:'POST',
+    dataType:'html',
+    data:{consulta: consulta}
+  }).done(function(respuesta){
+    $("#Docente").html(respuesta);
+  });
+}
+
+
 //  FUNCIONES DE VALIDACION
 //  1.  Funcion para validar login de docentes
 function validarLogin(){
@@ -182,3 +197,16 @@ function registrarCurso(){
 
 
 
+
+//  FUNCIONES DE MODIFICACION DE DATOS
+//  1.  Funcion para modificar datos de docentes visualizados en tablas
+function modificar(IDUsuario){
+  $.ajax({
+    url:'Contenido/modificarDatosDocente.php',
+    type: 'POST',
+    dataType:'text',
+    data:'IDUsuario='+IDUsuario
+  }).done(function(res){
+    $('#zonaContenido').html(res);
+  });
+}
