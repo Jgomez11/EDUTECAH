@@ -16,6 +16,8 @@ function cargarDiv(divID, ruta) {
   });
 }
 
+
+
 //  2.  Funcion para realizar busqueda mediante api custom (PENDIENTE)
 function buscar() {
   query = $("#q").val();  
@@ -33,8 +35,8 @@ function buscar() {
       }
 
       $('.ui.search').search({
-          source: content,
-          minCharacters : 3
+        source: content,
+        minCharacters : 3
       });
     }
   });
@@ -49,7 +51,7 @@ function cargarMun(){
     data: 'idd='+idDepto,
     dataType: 'text',
     success: function (response) {
-        document.getElementById('Municipio').innerHTML = response;
+      document.getElementById('Municipio').innerHTML = response;
     }
   });
 }
@@ -66,7 +68,7 @@ function validarLogin(){
     data      : 'correo='+correo+'&password='+pass,
     dataType  : 'text',
     beforeSend: function(){
-        document.getElementById("cargar").innerHTML ='<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+      document.getElementById("cargar").innerHTML ='<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
     },
     success   : function (response) {
       error = response;
@@ -80,7 +82,7 @@ function validarLogin(){
       } else if (error == 2) {
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' no está registrado en el sistema, puedes registrarlo siguiendo <a href="registro.php">este enlace</a>.</p></div>'; 
         return true;
-       } else{
+      } else{
 
       }
     },
@@ -125,7 +127,7 @@ function registrar(tipo){
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
           return true;
-       } 
+        } 
       },
       error: function(){
       }
@@ -152,7 +154,7 @@ function registrar(tipo){
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
           return true;
-       } 
+        } 
       },
       error: function(){
       }
@@ -177,3 +179,6 @@ function registrarCurso(){
     }
   });
 }
+
+
+

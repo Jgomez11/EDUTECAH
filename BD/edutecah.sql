@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 03-08-2019 a las 21:05:23
--- Versión del servidor: 5.7.26
--- Versión de PHP: 7.2.18
+-- Tiempo de generación: 04-08-2019 a las 11:45:52
+-- Versión del servidor: 5.7.23
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -150,7 +150,19 @@ CREATE TABLE IF NOT EXISTS `tbldocxinstituto` (
 INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (1, 1),
 (2, 1),
-(3, 2);
+(3, 2),
+(4, 2),
+(5, 2),
+(6, 1),
+(7, 1),
+(8, 1),
+(9, 1),
+(10, 1),
+(11, 1),
+(12, 1),
+(13, 1),
+(14, 1),
+(15, 1);
 
 -- --------------------------------------------------------
 
@@ -218,7 +230,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -318,7 +330,28 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (91, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KNNFIPQ1', '2019-08-03', '15:03:26', '::1', 1),
 (92, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: WICWCNVT', '2019-08-03', '15:03:33', '::1', 1),
 (93, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-08-03', '15:03:54', '::1', 2),
-(94, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: HJ68HAE7', '2019-08-03', '15:04:05', '::1', 2);
+(94, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: HJ68HAE7', '2019-08-03', '15:04:05', '::1', 2),
+(95, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '19:52:33', '::1', 1),
+(96, 'Inicio de sesion', 'El usuario con correo: guevara@algo.hn ha iniciado sesion', '2019-08-03', '19:57:33', '::1', 4),
+(97, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '20:35:04', '::1', 1),
+(98, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-03', '20:37:51', '::1', 1),
+(99, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '01:15:29', '::1', 1),
+(100, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '02:49:47', '::1', 1),
+(101, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '03:12:50', '::1', 1),
+(102, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '03:16:20', '::1', 1),
+(103, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '03:34:52', '::1', 1),
+(104, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '04:57:55', '::1', 1),
+(105, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ', '2019-08-04', '05:17:12', '::1', 1),
+(106, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ', '2019-08-04', '05:17:36', '::1', 1),
+(107, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: ', '2019-08-04', '05:18:03', '::1', 1),
+(108, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario con id: ', '2019-08-04', '05:19:45', '::1', 1),
+(109, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario con id: ', '2019-08-04', '05:21:42', '::1', 1),
+(110, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:24:26', '::1', 1),
+(111, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:24:34', '::1', 1),
+(112, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:35:13', '::1', 1),
+(113, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:35:53', '::1', 1),
+(114, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:38:55', '::1', 1),
+(115, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:39:06', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -724,7 +757,7 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   `TipoUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblusuario`
@@ -733,7 +766,13 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
 INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`) VALUES
 (1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
 (2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(3, 'Prueba', 'Prueba', 'prueba@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2);
+(3, 'Prueba', 'Prueba', 'prueba@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
+(4, 'Amado', 'Guevara', 'guevara@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(6, 'Jose', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(8, 'David', 'Garcia', 'davidg@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(9, 'Carolina', 'Medina', 'carol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(10, 'Jeny', 'Estrada', 'jeny@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
 
 DELIMITER $$
 --
