@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 04-08-2019 a las 17:23:34
+-- Tiempo de generación: 04-08-2019 a las 17:43:48
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=128 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -369,7 +369,8 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (123, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:04:02', '::1', 1),
 (124, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:07:52', '::1', 1),
 (125, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:08:40', '::1', 1),
-(126, 'Nuevo registro', 'Nuevo usuario con la direccion de correo: jairo@algo.hn', '2019-08-04', '07:46:46', '::1', 17);
+(126, 'Nuevo registro', 'Nuevo usuario con la direccion de correo: jairo@algo.hn', '2019-08-04', '07:46:46', '::1', 17),
+(127, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '11:25:00', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -774,6 +775,8 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   `Correo` varchar(30) NOT NULL,
   `Password` varchar(50) NOT NULL,
   `TipoUsuario` int(10) NOT NULL,
+  `Cedula` varchar(13) DEFAULT NULL,
+  `Telefono` varchar(8) DEFAULT NULL,
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoUsuario` (`TipoUsuario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
@@ -782,22 +785,22 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
 -- Volcado de datos para la tabla `tblusuario`
 --
 
-INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`) VALUES
-(1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
-(2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(3, 'Prueba', 'Prueba', 'prueba@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
-(4, 'Amado', 'Guevara', 'guevara@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(6, 'Jose', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(16, 'Tomasa', 'Padilla', 'tomasa@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(8, 'David', 'Garcia', 'davidg@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(9, 'Carolina', 'Medina', 'carol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(10, 'Jeny', 'Estrada', 'jeny@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(20, 'Pedro', 'Picapiedra', 'yabadabadu@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(17, 'Jairo', 'Gomez', 'jairo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
-(18, 'Pedro ', 'Picapiedra', 'pedro@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(19, 'Pablo', 'Marmol', 'Pablo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(21, 'Pablo', 'Marmol', 'marmol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
+INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`, `Cedula`, `Telefono`) VALUES
+(1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0801199022222', '96989852'),
+(2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801198085422', '99584052'),
+(3, 'Prueba', 'Prueba', 'prueba@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0801198754185', '97854252'),
+(4, 'Amado', 'Guevara', 'guevara@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801198545784', '98547584'),
+(5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0808199658472', '96325481'),
+(6, 'Jose', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0804196945875', '98548756'),
+(16, 'Tomasa', 'Padilla', 'tomasa@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0814199036525', '97412352'),
+(8, 'David', 'Garcia', 'davidg@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0816198736524', '96321458'),
+(9, 'Carolina', 'Medina', 'carol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0810197536597', '95874232'),
+(10, 'Jeny', 'Estrada', 'jeny@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801195788774', '98552146'),
+(20, 'Pedro', 'Picapiedra', 'yabadabadu@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0809198766881', '96587452'),
+(17, 'Jairo', 'Gomez', 'jairo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0810199022443', '96584587'),
+(18, 'Doris', 'Garcia', 'doris@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199322764', '98548511'),
+(19, 'Henry', 'Palacios', 'henry@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199388555', '97115522'),
+(21, 'Pablo', 'Marmol', 'marmol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199945645', '98656541');
 
 DELIMITER $$
 --
