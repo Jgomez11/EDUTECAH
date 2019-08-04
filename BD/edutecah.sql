@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 04-08-2019 a las 11:45:52
+-- Tiempo de generación: 04-08-2019 a las 17:23:34
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -162,7 +162,13 @@ INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (12, 1),
 (13, 1),
 (14, 1),
-(15, 1);
+(15, 1),
+(16, 1),
+(17, 3),
+(18, 3),
+(19, 3),
+(20, 3),
+(21, 3);
 
 -- --------------------------------------------------------
 
@@ -203,7 +209,7 @@ CREATE TABLE IF NOT EXISTS `tblinstituto` (
   `Director` int(10) NOT NULL,
   PRIMARY KEY (`IDInstituto`),
   KEY `Director` (`Director`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblinstituto`
@@ -211,7 +217,8 @@ CREATE TABLE IF NOT EXISTS `tblinstituto` (
 
 INSERT INTO `tblinstituto` (`IDInstituto`, `CodigoIns`, `NombreIns`, `Pase`, `IDMunicipio`, `Direccion`, `Director`) VALUES
 (1, '080100001', 'Colegio 1', 'QKPN56OM', 1, 'Aqui', 1),
-(2, '080100004', 'Colegio Prueba', 'W6NB5JT7', 2, 'Alla', 3);
+(2, '080100004', 'Colegio Prueba', 'W6NB5JT7', 2, 'Alla', 3),
+(3, '000123451', 'Instituto Gomez', 'OP4D59XM', 110, 'col. miraflores', 17);
 
 -- --------------------------------------------------------
 
@@ -230,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=116 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=127 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -351,7 +358,18 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (112, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:35:13', '::1', 1),
 (113, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:35:53', '::1', 1),
 (114, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:38:55', '::1', 1),
-(115, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:39:06', '::1', 1);
+(115, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:39:06', '::1', 1),
+(116, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:54:18', '::1', 1),
+(117, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-08-04', '05:57:58', '::1', 1),
+(118, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:58:10', '::1', 1),
+(119, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:58:18', '::1', 1),
+(120, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '05:58:32', '::1', 1),
+(121, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:00:36', '::1', 1),
+(122, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:03:54', '::1', 1),
+(123, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:04:02', '::1', 1),
+(124, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:07:52', '::1', 1),
+(125, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-08-04', '06:08:40', '::1', 1),
+(126, 'Nuevo registro', 'Nuevo usuario con la direccion de correo: jairo@algo.hn', '2019-08-04', '07:46:46', '::1', 17);
 
 -- --------------------------------------------------------
 
@@ -686,7 +704,7 @@ CREATE TABLE IF NOT EXISTS `tblplan` (
   `DiasPrueba` int(2) DEFAULT NULL,
   `AulasDisponibles` int(3) NOT NULL,
   PRIMARY KEY (`IDPlan`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblplan`
@@ -694,7 +712,8 @@ CREATE TABLE IF NOT EXISTS `tblplan` (
 
 INSERT INTO `tblplan` (`IDPlan`, `IDTipoPlan`, `IDInstituto`, `DiasPrueba`, `AulasDisponibles`) VALUES
 (1, 1, 1, 4, 10),
-(2, 1, 2, 29, 10);
+(2, 1, 2, 29, 10),
+(3, 1, 3, 30, 10);
 
 -- --------------------------------------------------------
 
@@ -757,7 +776,7 @@ CREATE TABLE IF NOT EXISTS `tblusuario` (
   `TipoUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDUsuario`),
   KEY `TipoUsuario` (`TipoUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblusuario`
@@ -770,9 +789,15 @@ INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password
 (4, 'Amado', 'Guevara', 'guevara@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
 (5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
 (6, 'Jose', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(16, 'Tomasa', 'Padilla', 'tomasa@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
 (8, 'David', 'Garcia', 'davidg@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
 (9, 'Carolina', 'Medina', 'carol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
-(10, 'Jeny', 'Estrada', 'jeny@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
+(10, 'Jeny', 'Estrada', 'jeny@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(20, 'Pedro', 'Picapiedra', 'yabadabadu@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(17, 'Jairo', 'Gomez', 'jairo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2),
+(18, 'Pedro ', 'Picapiedra', 'pedro@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(19, 'Pablo', 'Marmol', 'Pablo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3),
+(21, 'Pablo', 'Marmol', 'marmol@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3);
 
 DELIMITER $$
 --
