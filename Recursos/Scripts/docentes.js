@@ -13,4 +13,3 @@ function cargarDiv(divID, ruta) {
     },
   });
 }
-

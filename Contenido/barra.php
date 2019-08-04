@@ -47,7 +47,7 @@
         <a class="item" href="#"><i class="envelope icon"></i><div class="floating ui red circular label">2</div></a>
         <a class="item" href="#"><i class="bell icon"></i><div class="floating ui red circular label">2</div></a>
         
-        <div class="ui top pointing dropdown item"onmouseover="$(\'.dropdown\').dropdown();" >
+        <div class="ui top pointing dropdown item">
           <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>
           <div class="menu">
               <div class="item"><i class="envelope icon"></i><div class="ui empty red circular label"></div> Mensajes </div>

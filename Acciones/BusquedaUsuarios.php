@@ -18,16 +18,16 @@ $conexion->mysql_set_charset("utf8");
 if ($_SESSION["TipoUsuario"]=='1') {
 
     $salida="<div class='col-md-12 table-responsive'>
-    <table class='ui celled padded table'>
+    <table class='ui striped teal table'>
     <thead>
     <tr id='titulo'>
-    <th>Instituto</th>
-    <th>Cargo</th>
-    <th>Nombre</th>
-    <th>Cedula</th>
-    <th>Telefono</th>
-    <th>Correo</th>
-    <th></th>
+    <th class='center aligned'>Instituto</th>
+    <th class='center aligned'>Cargo</th>
+    <th class='center aligned'>Nombre</th>
+    <th class='center aligned'>Cedula</th>
+    <th class='center aligned'>Telefono</th>
+    <th class='center aligned'>Correo</th>
+    <th class='center aligned'>Opciones</th>
     </tr>
 
     </thead>
@@ -44,18 +44,27 @@ if ($_SESSION["TipoUsuario"]=='1') {
 
         while ($arreglo = $resultado->fetch_assoc()) {
             $salida.='<tr>
-            <td>'.$arreglo['NombreIns'].'</td>
-            <td>'.$arreglo['Tipo'].'</td>
-            <td>'.$arreglo['Nombre'].'</td>
-            <td>'.$arreglo['Cedula'].'</td>
-            <td>'.$arreglo['Telefono'].'</td>
-            <td>'.$arreglo['Correo'].'</td>
-            
-            <td><a role="button"'.'class='.'"ui blue button"'.'href="#"'.' onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class='.'"pencil alternate icon"'.'></i>&nbsp;Modificar</a><a role="button" class='.'"ui red button"'.' href="#" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class='.'"trash icon"'.'></i>&nbsp;Eliminar</a></td></tr>';
+            <td class="center aligned">'.$arreglo['NombreIns'].'</td>
+            <td class="center aligned">'.$arreglo['Tipo'].'</td>
+            <td class="center aligned">'.$arreglo['Nombre'].'</td>
+            <td class="center aligned">'.$arreglo['Cedula'].'</td>
+            <td class="center aligned">'.$arreglo['Telefono'].'</td>
+            <td class="center aligned">'.$arreglo['Correo'].'</td>
+            <td class="center aligned">
+                <div class="mini ui fluid buttons">
+                    <button class="ui blue button" onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
+                    <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+                </div></td></tr>';
         }
         $salida.="</tbody> </table>";
     }else{
-        $salida.="<tr><td colspan='5' style='text-align:center'>Aun no hay docentes registrados</td></tr></div>";
+        $salida.="<tr><td colspan='7' style='text-align:center'>
+                        <div class='ui red icon message'>
+                            <i class='info circle icon'></i>
+                            <div class='content'>
+                                    <p>No hay resultados</p>
+                            </div>
+                        </div></td></tr></div>";
     }
 
 
@@ -67,15 +76,15 @@ if ($_SESSION["TipoUsuario"]=='1') {
 if ($_SESSION["TipoUsuario"]=='2') {
 
     $salida="<div class='col-md-12 table-responsive'>
-    <table class='ui celled padded table'>
+    <table class='ui striped teal table'>
     <thead>
     <tr id='titulo'>
-    <th>Cargo</th>
-    <th>Nombre</th>
-    <th>Cedula</th>
-    <th>Telefono</th>
-    <th>Correo</th>
-    <th></th>
+    <th class='center aligned'>Cargo</th>
+    <th class='center aligned'>Nombre</th>
+    <th class='center aligned'>Cedula</th>
+    <th class='center aligned'>Telefono</th>
+    <th class='center aligned'>Correo</th>
+    <th class='center aligned'>Opciones</th>
     </tr>
 
     </thead>
@@ -92,17 +101,27 @@ if ($_SESSION["TipoUsuario"]=='2') {
 
         while ($arreglo = $resultado->fetch_assoc()) {
             $salida.='<tr>
-            <td>'.$arreglo['Tipo'].'</td>
-            <td>'.$arreglo['Nombre'].'</td>
-            <td>'.$arreglo['Cedula'].'</td>
-            <td>'.$arreglo['Telefono'].'</td>
-            <td>'.$arreglo['Correo'].'</td>
-            <td><a role="button"'.'class='.'"ui blue button"'.'href="#"'.' onclick="modificar('.$arreglo["IDUsuario"].')"><i class='.'"pencil alternate icon"'.'></i>&nbsp;Modificar</a><a role="button" class='.'"ui red button"'.' href="#" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class='.'"trash icon"'.'></i>&nbsp;Eliminar</a></td></tr>';
+            <td class="center aligned">'.$arreglo['Tipo'].'</td>
+            <td class="center aligned">'.$arreglo['Nombre'].'</td>
+            <td class="center aligned">'.$arreglo['Cedula'].'</td>
+            <td class="center aligned">'.$arreglo['Telefono'].'</td>
+            <td class="center aligned">'.$arreglo['Correo'].'</td>
+            <td class="center aligned">
+                <div class="mini ui fluid buttons">
+                    <button class="ui blue button" onclick="modificar('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
+                    <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+                </div></td></tr>';
         }
         $salida.="</tbody> </table>";
     }else{
-        $salida.="<tr><td colspan='5' style='text-align:center'>Aun no hay docentes registrados</td></tr></div>";
-    }
+          $salida.="<tr><td colspan='7' style='text-align:center'>
+                        <div class='ui red icon message'>
+                            <i class='info circle icon'></i>
+                            <div class='content'>
+                                    <p>No hay resultados</p>
+                            </div>
+                        </div></td></tr></div>";
+  }
 
 
     echo $salida;

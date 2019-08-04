@@ -22,10 +22,10 @@ $data=$conexion->obtenerfila($resultado);
 
 
 <div class="col-md-12">
-	<div class="col-md-12" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: lightgray;">	<br>
-		<h5 style="text-align: center;">
+	<div class="col-md-12">	<br>
+		<h1 style="text-align: center;">
 			Gestión de Docentes
-		</h5>
+		</h1>
 		<br>
 		<div class="ui inverter divider">
 			
@@ -86,10 +86,10 @@ $data=$conexion->obtenerfila($resultado);
 			<div class="row mb-3 ml-2">
 				<div class="col-lg-4"></div>
 				<button type="submit" class="ui blue button ">Modificar Docente</button>
-				<a href="#" class="ui red button" onclick="cargarDiv('zonaContenido', 'Contenido/modificarUsuarios.php')">Cancelar</a>
+				<a href="#" class="ui red button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php')">Cancelar</a>
 			</div>
 			<div class="col-lg-4"></div>
 		</form>
 
 	</div>
-</div>	
+</div>
