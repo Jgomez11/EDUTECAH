@@ -86,7 +86,7 @@ $data=$conexion->obtenerfila($resultado);
 			<div class="row mb-3 ml-2">
 				<div class="col-lg-4"></div>
 				<button type="submit" class="ui blue button ">Modificar Docente</button>
-				<a href="#" class="ui red button" onclick="cargarDiv('zonaContenido', 'Contenido/modificarDocente.php')">Cancelar</a>
+				<a href="#" class="ui red button" onclick="cargarDiv('zonaContenido', 'Contenido/modificarUsuarios.php')">Cancelar</a>
 			</div>
 			<div class="col-lg-4"></div>
 		</form>

@@ -61,12 +61,12 @@ function cargarMun(){
 //  4.  Funcion para listar (cargar) docentes en tablas y gestionar
 function listar(consulta){
   $.ajax({
-    url:'Acciones/BusquedaDocentes.php',
+    url:'Acciones/BusquedaUsuarios.php',
     type:'POST',
     dataType:'html',
     data:{consulta: consulta}
   }).done(function(respuesta){
-    $("#Docente").html(respuesta);
+    $("#ListarUsuarios").html(respuesta);
   });
 }
 
@@ -203,6 +203,18 @@ function registrarCurso(){
 function modificar(IDUsuario){
   $.ajax({
     url:'Contenido/modificarDatosDocente.php',
+    type: 'POST',
+    dataType:'text',
+    data:'IDUsuario='+IDUsuario
+  }).done(function(res){
+    $('#zonaContenido').html(res);
+  });
+}
+
+//  1.  Funcion para modificar datos de usuarios en el modo SU
+function modificarSU(IDUsuario){
+  $.ajax({
+    url:'Contenido/modificarDatosSU.php',
     type: 'POST',
     dataType:'text',
     data:'IDUsuario='+IDUsuario

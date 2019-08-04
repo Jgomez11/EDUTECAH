@@ -22,13 +22,13 @@ session_start();
 			if ($_SESSION["TipoUsuario"]=='2') {
 				echo '
 				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');cargarDiv(\'modal\', \'Contenido/modalCursos.php\');">Cursos</button>
-				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarDocente.php\');">Gestionar Docentes</button>
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarUsuarios.php\');">Gestionar Docentes</button>
 				';
 			}
 
 			if ($_SESSION["TipoUsuario"]=='1') {
 				echo '
-				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarDocente.php\');">Gestionar Usuarios</button>';}
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarUsuarios.php\');">Gestionar Usuarios</button>';}
 				?>
 
 
