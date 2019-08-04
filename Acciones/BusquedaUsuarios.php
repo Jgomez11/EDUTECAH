@@ -35,7 +35,7 @@ if ($_SESSION["TipoUsuario"]=='1') {
 
 
     if(isset($_POST['consulta'])){
-        $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblusuario.Telefono, tblusuario.Cedula, tblinstituto.NombreIns from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE  tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs  and tblusuario.Nombre like '%".$_POST['consulta']."%' order by NombreIns ";
+        $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblusuario.Telefono, tblusuario.Cedula, tblinstituto.NombreIns from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE  tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs  AND tbltipousuario.IDTipoUs!=1 AND (Nombre like '%".$_POST['consulta']."%' OR (CONCAT(Nombre,' ',Apellido)) like '%".$_POST['consulta']."%' OR  (CONCAT(Apellido,' ',Nombre)) like '%".$_POST['consulta']."%' OR NombreIns like '%".$_POST['consulta']."%' or Cedula like '%".$_POST['consulta']."%' or Correo like '%".$_POST['consulta']."%' or Tipo like '%".$_POST['consulta']."%')  order by NombreIns ";
 
     }
     $resultado=$conexion->ejecutarconsulta($sql);
@@ -51,20 +51,20 @@ if ($_SESSION["TipoUsuario"]=='1') {
             <td class="center aligned">'.$arreglo['Telefono'].'</td>
             <td class="center aligned">'.$arreglo['Correo'].'</td>
             <td class="center aligned">
-                <div class="mini ui fluid buttons">
-                    <button class="ui blue button" onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
-                    <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
-                </div></td></tr>';
+            <div class="mini ui fluid buttons">
+            <button class="ui blue button" onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
+            <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+            </div></td></tr>';
         }
         $salida.="</tbody> </table>";
     }else{
         $salida.="<tr><td colspan='7' style='text-align:center'>
-                        <div class='ui red icon message'>
-                            <i class='info circle icon'></i>
-                            <div class='content'>
-                                    <p>No hay resultados</p>
-                            </div>
-                        </div></td></tr></div>";
+        <div class='ui red icon message'>
+        <i class='info circle icon'></i>
+        <div class='content'>
+        <p>No hay resultados</p>
+        </div>
+        </div></td></tr></div>";
     }
 
 
@@ -92,7 +92,7 @@ if ($_SESSION["TipoUsuario"]=='2') {
 
 
     if(isset($_POST['consulta'])){
-        $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblusuario.Telefono, tblusuario.Cedula from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE tblinstituto.IDInstituto = ".$_SESSION['Instituto']." AND tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs and tbltipousuario.Tipo='Docente' and tblusuario.Nombre like '%".$_POST['consulta']."%'";
+        $sql = "SELECT tblusuario.IDUsuario, tbltipousuario.Tipo, CONCAT(tblusuario.Nombre,' ',tblusuario.Apellido) AS Nombre,tblusuario.Correo, tblusuario.Telefono, tblusuario.Cedula from tbldocxinstituto, tblinstituto, tblusuario, tbltipousuario WHERE tblinstituto.IDInstituto = ".$_SESSION['Instituto']." AND tblinstituto.IDInstituto=tbldocxinstituto.IDInstituto and tbldocxinstituto.IDDocente=tblusuario.IDUsuario and tblusuario.TipoUsuario=tbltipousuario.IDTipoUs and tbltipousuario.Tipo='Docente' AND (Nombre like '%".$_POST['consulta']."%' OR (CONCAT(Nombre,' ',Apellido)) like '%".$_POST['consulta']."%' OR  (CONCAT(Apellido,' ',Nombre)) like '%".$_POST['consulta']."%' OR NombreIns like '%".$_POST['consulta']."%' or Cedula like '%".$_POST['consulta']."%' or Correo like '%".$_POST['consulta']."%' or Tipo like '%".$_POST['consulta']."%' )";
 
     }
     $resultado=$conexion->ejecutarconsulta($sql);
@@ -107,26 +107,26 @@ if ($_SESSION["TipoUsuario"]=='2') {
             <td class="center aligned">'.$arreglo['Telefono'].'</td>
             <td class="center aligned">'.$arreglo['Correo'].'</td>
             <td class="center aligned">
-                <div class="mini ui fluid buttons">
-                    <button class="ui blue button" onclick="modificar('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
-                    <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
-                </div></td></tr>';
+            <div class="mini ui fluid buttons">
+            <button class="ui blue button" onclick="modificar('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
+            <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+            </div></td></tr>';
         }
         $salida.="</tbody> </table>";
     }else{
-          $salida.="<tr><td colspan='7' style='text-align:center'>
-                        <div class='ui red icon message'>
-                            <i class='info circle icon'></i>
-                            <div class='content'>
-                                    <p>No hay resultados</p>
-                            </div>
-                        </div></td></tr></div>";
+      $salida.="<tr><td colspan='7' style='text-align:center'>
+      <div class='ui red icon message'>
+      <i class='info circle icon'></i>
+      <div class='content'>
+      <p>No hay resultados</p>
+      </div>
+      </div></td></tr></div>";
   }
 
 
-    echo $salida;
+  echo $salida;
 
-    mysqli_close($conexion->getLink());
+  mysqli_close($conexion->getLink());
 }
 
 ?>
