@@ -1,11 +1,11 @@
 <?php  
 #   Importar Clases
-    include("../Clases/Conexion.php");
+include("../Clases/Conexion.php");
 
 #   Crear conexion
-    $conexion = new Conexion();
-    $conexion->mysql_set_charset("utf8");
- ?>
+$conexion = new Conexion();
+$conexion->mysql_set_charset("utf8");
+?>
 <h4>Informacion Personal</h4>
 
 <div class="form-label-group">
@@ -81,6 +81,12 @@
 <div class="form-label-group">
     <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" placeholder="Direccion" required>
     <label for="inputEmail">Direccion</label>
+</div>
+
+
+<div class="ui toggle checkbox">
+    <input type="checkbox" required>
+    <label><a href="Contenido/politicas_usuario.php" target="_blank"> He leído los términos y condiciones </a></label><br>
 </div>
 
 <div id="error"></div>
