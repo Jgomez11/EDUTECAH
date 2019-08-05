@@ -8,9 +8,7 @@ date_default_timezone_set('America/Tegucigalpa');
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 ?>
-<div id="zonaContenido">
 	<div class="col-md-12">
-		<br>
 		<?php
 		if ($_SESSION["TipoUsuario"]=='2') {
 			if ($_SESSION['Plan'] == '1') {
@@ -44,6 +42,7 @@ $conexion->mysql_set_charset("utf8");
 				}
 			}
 			echo '
+			<br>
 			<h1 style="text-align: center;">
 			Gestión de Docentes
 			</h1>
@@ -66,6 +65,7 @@ $conexion->mysql_set_charset("utf8");
 		}
 		?>
 
+		<div id="error"></div>
 		<div class="row">
 			<div class="col-md-12">
 				<input type="text" name="srcDocente" id="srcDocente" class="form-control" placeholder="Buscar" onkeyup="listar(this.value);">
@@ -74,5 +74,4 @@ $conexion->mysql_set_charset("utf8");
 	</div>
 	<div id="ListarUsuarios" class="row mt-4"></div>
 	<br><br>
-</div>
 <br><br><br>

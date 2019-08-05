@@ -19,7 +19,6 @@ if (empty($_SESSION)) {
   <script src="Frameworks/Flipbook/js/jquery.min.js"></script>
   <script src="Frameworks/Semantic/semantic.min.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
-  <script type="text/javascript" src="Recursos/Scripts/docentes.js"></script>
 
   <style type="text/css">
     #myiframe {width:600px; height:100%;} 

@@ -60,8 +60,7 @@
 							},
 
 							onApprove: function(){
-								registrarCurso();
-								cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');
+								cargarDiv(\'columnaContenido\', \'Contenido/aulas.php\');
 							}
 						})
 					.modal(\'setting\', \'transition\', \'scale\')
@@ -164,48 +163,3 @@
 	?> 
 	</div>
 </div>
-	<div class="ui first small modal">
-  		<div class="header">Agregar nuevo curso</div>
-  		<div class="content">
-  			<form class="ui form">
-  				<div class="field">
-      				<label>Seleccionar curso</label>
-					<div class="ui search selection dropdown">
-  						<input type="hidden" name="txtIDCurso" id="txtIDCurso">
-  						<i class="dropdown icon"></i>
-  						<div class="default text">Curso</div>
-  						<div class="menu">
-  							<?php
-								$consulta = sprintf("SELECT tblcursoxinstituto.CodigoCurso, tblcursos.NombreCurso, tblgrado.Grado FROM tblcursoxinstituto, tblgrado, tblcursos WHERE IDInstituto = '%s' AND tblcursos.IDCurso = tblcursoxinstituto.IDCurso AND  tblgrado.IDGrado = tblcursoxinstituto.IDGrado", 
-									$conexion->antiInyeccion($_SESSION['Instituto']));
-
-								$resultado = $conexion->ejecutarconsulta($consulta);
-								$iter = $conexion->cantidadRegistros($resultado);
-
-								for ($i=0; $i < $iter; $i++) { 
-									$data = $conexion->obtenerFila($resultado);
-
-									echo '<div class="item" data-value="'.$data["CodigoCurso"].'">'.$data["CodigoCurso"].': '.$data["Grado"].' '.$data["NombreCurso"].'</div>';
-								}
-  							 ?>
-  						</div>
-					</div>
-      			</div>
-      			<div class="field">
-      				<label>Establecer Asignatura</label>
-      				<input type="text" placeholder="Matematica, Ciencias, etc...">
-      			</div>
-      		 </form>
-      	</div>
-  		<div class="actions">
-    		<div class="ui approve teal button">Aceptar</div>
-    		<div class="ui cancel red button">Cancelar</div>
-  		</div>
-	</div>
-		<div class="ui second small modal">
-  		<div class="header">Agregar nuevo curso</div>
-  		<div class="content" id="contenido"></div>
-  		<div class="actions">
-    		<div class="ui approve button">Aceptar</div>
-  		</div>
-	</div>

@@ -53,7 +53,18 @@ if ($_SESSION["TipoUsuario"]=='1') {
             <td class="center aligned">
             <div class="mini ui fluid buttons">
             <button class="ui blue button" onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
-            <button class="ui red button" onclick="eliminarSU('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+            <button class="ui red button" onclick="$(\'.modal\')
+                    .modal(
+                        {
+                            onVisible: function () {
+                            },
+
+                            onApprove: function(){
+                                eliminar('.$arreglo["IDUsuario"].')
+                            }
+                        })
+                    .modal(\'setting\', \'transition\', \'scale\')
+                    .modal(\'show\');"><i class="trash icon"></i>Borrar</button>
             </div></td></tr>';
         }
         $salida.="</tbody> </table>";
@@ -109,7 +120,18 @@ if ($_SESSION["TipoUsuario"]=='2') {
             <td class="center aligned">
             <div class="mini ui fluid buttons">
             <button class="ui blue button" onclick="modificar('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
-            <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+            <button class="ui red button" onclick="$(\'#modalBorrar\')
+                    .modal(
+                        {
+                            onVisible: function () {
+                            },
+
+                            onApprove: function(){
+                                eliminar('.$arreglo["IDUsuario"].')
+                            }
+                        })
+                    .modal(\'setting\', \'transition\', \'scale\')
+                    .modal(\'show\');"><i class="trash icon"></i>Borrar</button>
             </div></td></tr>';
         }
         $salida.="</tbody> </table>";

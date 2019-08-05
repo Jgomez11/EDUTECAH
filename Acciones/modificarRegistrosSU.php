@@ -19,8 +19,6 @@ $Apellido=$_POST['txtApellido'];
 $TipoUsuario=$_POST['slcCargo'];
 $Cedula=$_POST['txtCedula'];
 $Telefono=$_POST['txtTelefono'];
-$Cedula=$_POST['txtCedula'];
-$Telefono=$_POST['txtTelefono'];
 $Correo=$_POST['txtCorreo'];
 
 
@@ -52,14 +50,6 @@ $consultaLog = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IP
 	$conexion->antiInyeccion($conexion->ip()),
 	$conexion->antiInyeccion($_SESSION['ID']));
 $conexion->ejecutarconsulta($consultaLog);
-
-
-
-$var = "Datos modificados con exito";		
-echo "<script>
-alert('".$var."');
-window.location='../perfil.php'; 
-</script>";
 
 mysqli_close($conexion->getLink());
 ?>

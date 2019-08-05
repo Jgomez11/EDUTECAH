@@ -49,13 +49,5 @@ $consultaLog = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IP
 	$conexion->antiInyeccion($_SESSION['ID']));
 $conexion->ejecutarconsulta($consultaLog);
 
-
-
-$var = "Datos modificados con exito";		
-echo "<script>
-alert('".$var."');
-window.location='../perfil.php'; 
-</script>";
-
 mysqli_close($conexion->getLink());
 ?>

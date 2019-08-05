@@ -4,7 +4,8 @@ $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 date_default_timezone_set('America/Tegucigalpa');
 session_start();
-$consulta = "DELETE FROM tblusuario WHERE tblusuario.IDUsuario=".$_GET['IDUsuario'];
+
+$consulta = "DELETE FROM tblusuario WHERE tblusuario.IDUsuario=".$_POST['IDUsuario'];
 $conexion->ejecutarconsulta($consulta);
 
 #	Insercion en tblLogs
@@ -17,7 +18,4 @@ $consultaB = sprintf("INSERT INTO tbllogs(Evento, Descripcion, Fecha, Hora, IPus
 	$conexion->antiInyeccion($conexion->ip()),
 	$conexion->antiInyeccion($_SESSION['ID']));
 $conexion->ejecutarconsulta($consultaB);
-
-echo '<script>alert("Usuario Eliminado")</script>';
-header("Location: ../perfil.php");
 ?>

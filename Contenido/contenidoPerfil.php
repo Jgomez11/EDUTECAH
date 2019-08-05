@@ -45,4 +45,5 @@
 			}
 		}
 	?>
+	<a class="ui blue button" href="lector.php?q=1">Probar lector</a>
 </div>

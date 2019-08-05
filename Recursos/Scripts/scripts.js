@@ -16,7 +16,10 @@ function cargarDiv(divID, ruta) {
   });
 }
 
-
+//  1.1 Funcion para vaciar div
+function vaciarDiv(div){
+  document.getElementById(div).innerHTML = '';
+}
 
 //  2.  Funcion para realizar busqueda mediante api custom (PENDIENTE)
 function buscar() {
@@ -195,6 +198,23 @@ function registrarCurso(){
   });
 }
 
+//  3.  Funcion para registrar aulas
+function registrarAula(){
+  curso = $('#txtIDCurso').val();
+  aula = $('#txtAsignatura').val();
+
+  $.ajax({
+    url       : 'Acciones/registrarAula.php',
+    type      : 'POST',
+    data      : 'txtIDCurso='+curso+'&txtAsignatura='+aula,
+    dataType  : 'text',
+    success   : function (response) {
+      document.getElementById("contenido").innerHTML = 'Se ha creado un nuevo aula de '+aula+' para el curso con el codigo: '+curso+' por favor provea el codigo a sus alumnos para que puedan acceder al aula.';
+    },
+    error: function(){
+    }
+  });
+}
 
 
 
@@ -207,11 +227,11 @@ function modificar(IDUsuario){
     dataType:'text',
     data:'IDUsuario='+IDUsuario
   }).done(function(res){
-    $('#zonaContenido').html(res);
+    $('#columnaContenido').html(res);
   });
 }
 
-//  2.  Funcion para modificar datos de usuarios en el modo SU
+//  1.  Funcion para modificar datos de usuarios en el modo SU
 function modificarSU(IDUsuario){
   $.ajax({
     url:'Contenido/modificarDatosSU.php',
@@ -219,22 +239,75 @@ function modificarSU(IDUsuario){
     dataType:'text',
     data:'IDUsuario='+IDUsuario
   }).done(function(res){
-    $('#zonaContenido').html(res);
+    $('#columnaContenido').html(res);
   });
 }
 
+function actualizarDocente(){
+  id=$('#txtIdentificador').val();
+  nom=$('#txtNombre').val();
+  ap=$('#txtApellido').val();
+  ce=$('#txtCedula').val();
+  tel=$('#txtTelefono').val();
+  corr=$('#txtCorreo').val();
 
+  cadena = 'txtIdentificador='+id+'&txtNombre='+nom+'&txtApellido='+ap+'&txtCedula='+ce+'&txtTelefono='+tel+'&txtCorreo='+corr;
+
+  $.ajax({
+    url       : 'Acciones/modificarRegistroDocente.php',
+    type      : 'POST',
+    data      : cadena,
+    dataType  : 'text',
+    success   : function (response) {
+      document.getElementById("error").innerHTML =    '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actulizo exitosamente.</p></div></div></div></div>';
+      setTimeout ("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
+    },
+    error: function(){
+    }
+  });
+
+}
+
+function actualizarUsuario(){
+  id=$('#txtIdentificador').val();
+  nom=$('#txtNombre').val();
+  ap=$('#txtApellido').val();
+  ce=$('#txtCedula').val();
+  tel=$('#txtTelefono').val();
+  corr=$('#txtCorreo').val();
+  car=$('#slcCargo').val();
+
+  cadena = 'txtIdentificador='+id+'&txtNombre='+nom+'&txtApellido='+ap+'&txtCedula='+ce+'&txtTelefono='+tel+'&txtCorreo='+corr+'&slcCargo='+car;
+
+  $.ajax({
+    url       : 'Acciones/modificarRegistrosSU.php',
+    type      : 'POST',
+    data      : cadena,
+    dataType  : 'text',
+    success   : function (response) {
+      document.getElementById("error").innerHTML =    '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actulizo exitosamente.</p></div></div></div></div>';
+      setTimeout ("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
+
+    },
+    error: function(){
+    }
+  });
+}
 
 //  FUNCIONES DE ELIMINACION DE DATOS
 //  1.  Funcion para ELIMINAR datos de USUARIOS
 function eliminar(IDUsuario){
-  if (confirm("Realmente desea eliminar el preducto?")) {
-    window.location.href= "Acciones/eliminarDatosUsuarios.php?IDUsuario="+IDUsuario;
-  }
+  $.ajax({
+    url       : 'Acciones/eliminarDatosUsuarios.php',
+    type      : 'POST',
+    data      : 'IDUsuario='+IDUsuario,
+    dataType  : 'text',
+    success   : function (response) {
+      document.getElementById("error").innerHTML =    '<div class="row mt-4"><div class="col-md-12"><div class="ui red icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div><br>';
+      setTimeout ("vaciarDiv('error'); listar('')", 2000);
+    },
+    error: function(){
+    }
+  });
 }
 
-function eliminarSU(IDUsuario){
-  if (confirm("Realmente desea eliminar el preducto?")) {
-    window.location.href= "Acciones/eliminarDatosUsuarios.php?IDUsuario="+IDUsuario;
-  }
-}

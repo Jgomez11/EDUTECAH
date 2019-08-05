@@ -1,4 +1,3 @@
-
 function cargarDiv(divID, ruta) {
   $.ajax({
     url: ruta,
@@ -7,7 +6,6 @@ function cargarDiv(divID, ruta) {
       document.getElementById(divID).innerHTML = respuesta;
       listar('');
       $.getScript('Estilos/js/script.js');
-      mostrarResultados();
     },
     error: function () {
     },
