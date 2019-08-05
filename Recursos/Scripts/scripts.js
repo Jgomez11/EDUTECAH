@@ -92,10 +92,12 @@ function validarLogin(){
       error = response;
       document.getElementById("cargar").innerHTML ='';
       if (error == 0){
-        window.location.href = "index.php";
+        window.location.href = "perfil.php";
         return true;
       } else if (error == 1) {
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>La contraseña ingresada es incorrecta, por favor intente de nuevo.</p></div>';
+        setTimeout ("$('.message').transition('fade out');listar('')", 2000);
+        setTimeout ("vaciarDiv('error')", 2300);
         return true;
       } else if (error == 2) {
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' no está registrado en el sistema, puedes registrarlo siguiendo <a href="registro.php">este enlace</a>.</p></div>'; 
@@ -137,13 +139,15 @@ function registrar(tipo){
         error = response;
         document.getElementById("cargar").innerHTML ='';
         if (error == 1){
-          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo '+codigoI+' ya fue utilizado anteriormente para registrar otro instituto. Si crees que se trata de fraude puede reportarlo siguiendo <a href="#">este enlace</a></p></div>';
+          document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo '+codigoI+' ya fue utilizado anteriormente para registrar otro instituto. Si crees que se trata de fraude puede reportarlo siguiendo <a href="#">este enlace</a></p></div>';         
           return true;
         } else if (error == 0) {
           window.location.href = "planes.php";
           return true;
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
+          setTimeout ("$('.message').transition('fade out');listar('')", 2000);
+          setTimeout ("vaciarDiv('error')", 2300);
           return true;
         } 
       },
@@ -168,9 +172,13 @@ function registrar(tipo){
           return true;
         } else if (error == 1) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El pase virtual '+pase+' no existe.</p></div>';
+          setTimeout ("$('.message').transition('fade out');listar('')", 2000);
+          setTimeout ("vaciarDiv('error')", 2300);
           return true;
         } else if (error == 2) {
           document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El correo '+correo+' ya está registrado en el sistema.</p></div>'; 
+          setTimeout ("$('.message').transition('fade out');listar('')", 2000);
+          setTimeout ("vaciarDiv('error')", 2300);
           return true;
         } 
       },
@@ -303,8 +311,9 @@ function eliminar(IDUsuario){
     data      : 'IDUsuario='+IDUsuario,
     dataType  : 'text',
     success   : function (response) {
-      document.getElementById("error").innerHTML =    '<div class="row mt-4"><div class="col-md-12"><div class="ui red icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div><br>';
-      setTimeout ("vaciarDiv('error'); listar('')", 2000);
+      document.getElementById("error").innerHTML =    '<div class="row mt-4"><div class="col-md-12"><div class="ui red icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';
+      setTimeout ("$('.message').transition('fade out');listar('')", 2000);
+      setTimeout ("vaciarDiv('error')", 2300);
     },
     error: function(){
     }
