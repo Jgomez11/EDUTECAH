@@ -211,7 +211,7 @@ function modificar(IDUsuario){
   });
 }
 
-//  1.  Funcion para modificar datos de usuarios en el modo SU
+//  2.  Funcion para modificar datos de usuarios en el modo SU
 function modificarSU(IDUsuario){
   $.ajax({
     url:'Contenido/modificarDatosSU.php',
@@ -221,4 +221,20 @@ function modificarSU(IDUsuario){
   }).done(function(res){
     $('#zonaContenido').html(res);
   });
+}
+
+
+
+//  FUNCIONES DE ELIMINACION DE DATOS
+//  1.  Funcion para ELIMINAR datos de USUARIOS
+function eliminar(IDUsuario){
+  if (confirm("Realmente desea eliminar el preducto?")) {
+    window.location.href= "Acciones/eliminarDatosUsuarios.php?IDUsuario="+IDUsuario;
+  }
+}
+
+function eliminarSU(IDUsuario){
+  if (confirm("Realmente desea eliminar el preducto?")) {
+    window.location.href= "Acciones/eliminarDatosUsuarios.php?IDUsuario="+IDUsuario;
+  }
 }

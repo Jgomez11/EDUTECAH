@@ -53,7 +53,7 @@ if ($_SESSION["TipoUsuario"]=='1') {
             <td class="center aligned">
             <div class="mini ui fluid buttons">
             <button class="ui blue button" onclick="modificarSU('.$arreglo["IDUsuario"].')"><i class="pencil alternate icon"></i>Editar</button>
-            <button class="ui red button" onclick="eliminar('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
+            <button class="ui red button" onclick="eliminarSU('.$arreglo["IDUsuario"].')"><i class="trash icon"></i>Borrar</button>
             </div></td></tr>';
         }
         $salida.="</tbody> </table>";
