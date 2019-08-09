@@ -73,7 +73,7 @@ $data=$conexion->obtenerfila($resultado);
 			<div class="row mb-3 ml-2">
 							<div class="col-lg-4"></div>
 				<div class="col-lg-4">
-				<a href="#" class="ui fluid red button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')">Cancelar</a>
+				<a href="#" class="ui fluid red button" onclick="cargarDiv('columnaContenido', 'Contenido/moduloModificar.php'); listar('')">Cancelar</a>
 				</div>
 			</div>
 

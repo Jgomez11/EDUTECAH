@@ -46,13 +46,19 @@
 		}
 	?>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-12"> 
+			<h1 align="center">Aulas creadas:</h1>
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
 			<?php 
 				if ($_SESSION["TipoUsuario"] == '3') {
 					echo '
 					<button class="ui teal fluid button" 
 				onclick="
-				$(\'.first.modal\')
+				$(\'#modalAulas\')
 					.modal(
 						{
 							onVisible: function () {
@@ -74,11 +80,7 @@
 			 ?>
 		</div>
 	</div>
-	<div class="row mt-4">
-		<div class="col-md-12"> 
-			<h1 align="center">Aulas creadas:</h1>
-		</div>
-	</div>
+
 	<?php
 		if ($_SESSION["TipoUsuario"] == '3') {
 			$consulta = sprintf("SELECT tblaula.IDAula, tblaula.CodigoCurso, tblaula.Asignatura, tblcursos.NombreCurso, tblgrado.Grado FROM tblaula, tblcursos, tblcursoxinstituto, tblgrado WHERE tblaula.IDInstituto = '%s' AND tblaula.IDDocente = '%s' AND tblaula.CodigoCurso = tblcursoxinstituto.CodigoCurso AND tblcursos.IDCurso = tblcursoxinstituto.IDCurso AND tblgrado.IDGrado = tblcursoxinstituto.IDGrado",
@@ -132,13 +134,15 @@
   							<div class="content">
     							<h4 class="ui sub header">Curso: </h4><h6>'.$data["NombreCurso"].'</h6>
     							<h4 class="ui sub header">Grado: </h4><h6>'.$data["Grado"].'</h6>
-    							<h4 class="ui sub header">Codigo de curso: </h4><h6>'.$data["CodigoCurso"].'</h6>';
+    							<h4 class="ui sub header">Codigo de curso: </h4><h6>'.$data["CodigoCurso"].'</h6>
+    							<h4 class="ui sub header">Estado: </h4>';
+
     			if ($_SESSION["TipoUsuario"] == '2') {
     				echo '
     							<h4 class="ui sub header">Docente: </h4><h6>'.$data["Nombre"].'</h6>';
     			}
 					echo
-								'<button class="ui fluid teal button mt-4" onclick="window.location.href = \'aula.php?id='.$data["IDAula"].'\';"><i class="eye icon"></i>Ver Aula</button>
+								'<button class="ui fluid teal button mt-4" onclick="cargarAula('.$data["IDAula"].');"><i class="eye icon"></i>Ver Aula</button>
   							</div>
   							<div class="extra content">
   								<div class="ui fluid buttons">

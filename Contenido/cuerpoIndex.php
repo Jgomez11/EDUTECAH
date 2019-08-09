@@ -2,7 +2,7 @@
 <div class="ui container mt-4">
   <div class="row mt-12">
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <div class="ui link card">
         <div class="content">
           <div class="center aligned floated author">
@@ -19,7 +19,7 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <div class="ui link card">
         <div class="content">
           <div class="center aligned floated author">
@@ -38,7 +38,7 @@
 
 
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <div class="ui link card">
         <div class="content">
           <div class="center aligned floated author">
@@ -55,7 +55,7 @@
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-3 mb-3">
       <div class="ui link card">
         <div class="content">
           <div class="center aligned floated author">

@@ -42,10 +42,16 @@ $conexion->mysql_set_charset("utf8");
 	}
 	?>
 	<div class="row">
-		<div class="col-md-3">
+		<div class="col-md-12">
+			<h1 align="center">Cursos creados:</h1>
+		</div>
+	</div>
+	<div class="row mt-4">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
 			<button class="ui teal fluid button"
 			onclick="
-			$('.first.modal')
+			$('#modalCursos')
 			.modal(
 			{
 			onVisible: function () {
@@ -63,11 +69,7 @@ $conexion->mysql_set_charset("utf8");
 			</button>
 		</div>
 	</div>
-	<div class="row mt-4">
-		<div class="col-md-12">
-			<h1 align="center">Cursos creados:</h1>
-		</div>
-	</div>
+
 	<?php
 	$consulta = sprintf("SELECT tblcursos.NombreCurso, tblcursoxinstituto.CodigoCurso, tblgrado.Grado FROM tblcursoxinstituto, tblcursos, tblgrado WHERE tblcursoxinstituto.IDInstituto = '%s' AND tblcursoxinstituto.IDCurso = tblcursos.IDCurso AND tblgrado.IDGrado = tblcursoxinstituto.IDGrado",
 		$conexion->antiInyeccion($_SESSION['Instituto']));
@@ -92,7 +94,7 @@ $conexion->mysql_set_charset("utf8");
 		$contador = 0;
 		for ($i=0; $i < $iter ; $i++) {
 			if ($contador == 0) {
-				echo '<div class="row mt-4">';
+				echo '<div class="row mt-4 mb-4">';
 				}
 				$data = $conexion->obtenerFila($resultado);
 				echo '

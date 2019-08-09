@@ -1,2 +1,0 @@
-# EDUTECAH
-Proyecto educacion

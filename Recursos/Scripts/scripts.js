@@ -230,7 +230,7 @@ function registrarAula(){
 //  1.  Funcion para modificar datos de docentes visualizados en tablas
 function modificar(IDUsuario){
   $.ajax({
-    url:'Contenido/modificarDatosDocente.php',
+    url:'Contenido/modificarDirector.php',
     type: 'POST',
     dataType:'text',
     data:'IDUsuario='+IDUsuario
@@ -242,12 +242,13 @@ function modificar(IDUsuario){
 //  1.  Funcion para modificar datos de usuarios en el modo SU
 function modificarSU(IDUsuario){
   $.ajax({
-    url:'Contenido/modificarDatosSU.php',
+    url:'Contenido/modificarSU.php',
     type: 'POST',
     dataType:'text',
     data:'IDUsuario='+IDUsuario
   }).done(function(res){
     $('#columnaContenido').html(res);
+    $('#ddCargo').dropdown().dropdown('set value', $('#txtTipo').val());
   });
 }
 
@@ -320,3 +321,17 @@ function eliminar(IDUsuario){
   });
 }
 
+// OTRAS FUNCIONES
+function cargarAula(id){
+  $.ajax({
+    url       : 'Acciones/establecerAula.php',
+    type      : 'POST',
+    data      : 'ID='+id,
+    dataType  : 'text',
+    success   : function (response) {
+        window.location.href = "aula.php";
+    },
+    error: function(){
+    }
+  }); 
+}

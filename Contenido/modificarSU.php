@@ -1,10 +1,10 @@
 <?php
 session_start();
-		#	Importar Clases
+					#	Importar Clases
 include("../Clases/Conexion.php");
-		#	Utilidad de fecha
+					#	Utilidad de fecha
 date_default_timezone_set('America/Tegucigalpa');
-		#	Crear conexion
+					#	Crear conexion
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 ?>
@@ -26,22 +26,31 @@ $dataW=$conexion->obtenerfila($resultadoW);
 			
 			<div class="col-lg-6">
 				<label>Selecciona un nuevo Cargo:</label>
-				<select class="custom-select" name="slcCargo" id="slcCargo" class="form-control">
-					<option value="<?php echo $dataW['IDTipoUs']; ?>" selected> <?php echo $dataW['Tipo']  ?></option>
-					<?php
-					$consulta="SELECT IDTipoUs, Tipo FROM tbltipousuario";
-					$resultado=$conexion->ejecutarconsulta($consulta);
-					while ($arreglo=$resultado->fetch_array()) {
-						echo '<option value="'.$arreglo[IDTipoUs].'">'.$arreglo[Tipo]."</option>";
-					}
-					?>
-				</select>
+				<div class="ui fluid selection dropdown" id="ddCargo">
+					<input type="hidden" name="slcCargo" id="slcCargo">
+					<div class="text">
+						<?php echo $dataW["Tipo"]; ?>
+					</div>
+					<i class="dropdown icon"></i>
+					<div class="menu">
+						<?php
+						$consulta="SELECT IDTipoUs, Tipo FROM tbltipousuario";
+						$resultado=$conexion->ejecutarconsulta($consulta);
+						$iter = $conexion->cantidadRegistros($resultado);
+						for ($i=0; $i < $iter; $i++) {
+							$data = $conexion->obtenerFila($resultado);
+							echo '<div class="item" data-value="'.$data["IDTipoUs"].'">'.$data["Tipo"].'</div>';
+						}
+						?>
+					</div>
+				</div>
 			</div>
 			
 			<div class="col-lg-6">
 				<label>Ingresa nuevo correo:</label>
 				<input type="email" name="txtCorreo" id="txtCorreo" value="<?php echo $dataW['Correo']; ?>" class="form-control">
 				<input type="number" name="txtIdentificador" id="txtIdentificador" value="<?php echo $_POST['IDUsuario'];?>" style="display: none;">
+				<input type="number" name="txtTipo" id="txtTipo" value="<?php echo $dataW['IDTipoUs'];?>" style="display: none;">
 			</div>
 			
 		</div>
@@ -80,7 +89,7 @@ $dataW=$conexion->obtenerfila($resultadoW);
 		<div class="row mb-3 ml-2">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-				<a href="#" class="ui fluid red button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')">Cancelar</a>
+				<a href="#" class="ui fluid red button" onclick="cargarDiv('columnaContenido', 'Contenido/moduloModificar.php'); listar('')">Cancelar</a>
 			</div>
 		</div>
 		<div class="col-lg-4"></div>

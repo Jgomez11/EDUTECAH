@@ -17,18 +17,18 @@ session_start();
 		</p>
 		<div class="ui vertical fluid buttons">
 			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/contenidoPerfil.php')">Perfil</button>
-			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/aulas.php');cargarDiv('modal', 'Contenido/modalAulas.php');">Aulas</button>
+			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/moduloAulas.php');vaciarDiv('modal');cargarDiv('modal', 'Contenido/modalAulas.php');">Aulas</button>
 			<?php
 			if ($_SESSION["TipoUsuario"]=='2') {
 				echo '
-				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/cursos.php\');cargarDiv(\'modal\', \'Contenido/modalCursos.php\');">Cursos</button>
-				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarUsuarios.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\');">Gestionar Docentes</button>
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloCursos.php\');vaciarDiv(\'modal\');cargarDiv(\'modal\', \'Contenido/modalCursos.php\');">Cursos</button>
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloModificar.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\');">Gestionar Docentes</button>
 				';
 			}
 
 			if ($_SESSION["TipoUsuario"]=='1') {
 				echo '
-				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/modificarUsuarios.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\')">Gestionar Usuarios</button>';}
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloModificar.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\')">Gestionar Usuarios</button>';}
 				?>
 
 

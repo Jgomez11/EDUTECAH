@@ -35,7 +35,6 @@
         <script type="text/javascript">
       $(document).ready(function() {
           cargarDiv("barra","Contenido/barra.php");
-          cargarDiv("columnaOpciones","Contenido/columnaPerfil.php");
       });
     </script>
     <script src="Frameworks/Flipbook/js/html2canvas.min.js"></script>

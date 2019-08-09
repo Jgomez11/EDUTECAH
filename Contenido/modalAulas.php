@@ -12,7 +12,7 @@
   $conexion->mysql_set_charset("utf8");
  ?>
 
-<div class="ui first small modal">
+<div class="ui first small modal" id="modalAulas">
   <div class="header">Agregar nueva aula</div>
   <div class="content">
       <div class="field">

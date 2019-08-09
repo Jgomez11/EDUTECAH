@@ -10,10 +10,6 @@ date_default_timezone_set('America/Tegucigalpa');
 #   Crear conexion
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
-?>
-
-
-<?php
 
 if ($_SESSION["TipoUsuario"]=='1') {
 
