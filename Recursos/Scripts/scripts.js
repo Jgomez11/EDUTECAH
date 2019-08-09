@@ -227,7 +227,7 @@ function registrarAula(){
 
 
 //  FUNCIONES DE MODIFICACION DE DATOS
-//  1.  Funcion para modificar datos de docentes visualizados en tablas
+//  1.  Funcion para mostrar datos previos a modificar
 function modificar(IDUsuario){
   $.ajax({
     url:'Contenido/modificarDirector.php',
@@ -239,7 +239,7 @@ function modificar(IDUsuario){
   });
 }
 
-//  1.  Funcion para modificar datos de usuarios en el modo SU
+//  2.  Funcion para modificar datos previos a modificar en modo SU
 function modificarSU(IDUsuario){
   $.ajax({
     url:'Contenido/modificarSU.php',
@@ -252,6 +252,8 @@ function modificarSU(IDUsuario){
   });
 }
 
+
+//  3.  Funcion para guardar cambios
 function actualizarDocente(){
   id=$('#txtIdentificador').val();
   nom=$('#txtNombre').val();
@@ -277,6 +279,7 @@ function actualizarDocente(){
 
 }
 
+//  4.  Funcion para guardar cambios modo SU
 function actualizarUsuario(){
   id=$('#txtIdentificador').val();
   nom=$('#txtNombre').val();
@@ -303,6 +306,33 @@ function actualizarUsuario(){
   });
 }
 
+function modificarAula(IDAula){
+  $.ajax({
+    url:'Contenido/modificarAula.php',
+    type: 'POST',
+    dataType:'text',
+    data:'IDAula='+IDAula,
+    success: function(response){
+    $('#columnaContenido').html(response);
+    $('#ddCurso').dropdown().dropdown('set value', $('#txtIDCurso').val());
+    $('#ddEstado').dropdown().dropdown('set value', $('#txtIDEstado').val());
+    $('#ddDocente').dropdown().dropdown('set value', $('#txtIDDocente').val());
+    }
+  });
+}
+
+function actualizarAula(){
+  id=$('#txtIdentificador').val();
+  curso=$('#txtNuevoCurso').val();
+  asignatura=$('#txtAsignatura').val();
+  estado=$('#txtEstado').val();
+  docente=$('#txtDocente').val();
+
+  cadena = 'IDAula='+id+'&IDCurso='+curso+'&Asignatura='+asignatura+'&IDDocente='+docente+'&IDEstado='+estado;
+
+  alert(cadena);
+}
+
 //  FUNCIONES DE ELIMINACION DE DATOS
 //  1.  Funcion para ELIMINAR datos de USUARIOS
 function eliminar(IDUsuario){
@@ -322,6 +352,7 @@ function eliminar(IDUsuario){
 }
 
 // OTRAS FUNCIONES
+//  1.  Funcion de carga de aulas
 function cargarAula(id){
   $.ajax({
     url       : 'Acciones/establecerAula.php',

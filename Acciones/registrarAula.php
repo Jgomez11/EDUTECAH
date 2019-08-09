@@ -19,7 +19,7 @@
 	$idDocente = $_SESSION["ID"];
 			
 	#	Insercion en tblAula
-		$consulta = sprintf("INSERT INTO tblAula(IDInstituto, CodigoCurso, IDDocente, Asignatura) values('%s', '%s','%s','%s')",
+		$consulta = sprintf("INSERT INTO tblAula(IDInstituto, CodigoCurso, IDDocente, Asignatura, IDEstado) values('%s', '%s','%s','%s', 1)",
 			$conexion->antiInyeccion($idInstituto),
 			$conexion->antiInyeccion($idCurso),
 			$conexion->antiInyeccion($idDocente),
