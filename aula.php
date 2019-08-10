@@ -1,13 +1,11 @@
-<?php 
-  session_start();
-
-  if (empty($_SESSION)) {
-    header('Location: index.php');
-  } elseif (!isset($_SESSION['IDAula'])) {
-    header('Location: index.php');
-  }
- ?>
-
+<?php
+session_start();
+if (empty($_SESSION)) {
+header('Location: index.php');
+} elseif (!isset($_SESSION['IDAula'])) {
+header('Location: index.php');
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -25,13 +23,15 @@
     <!--Fin de Barra Principal-->
     <div id="cargar"></div>
     <div class="row" style="margin-top: 80px;">
-      <div id="columnaContenido" class="col-md-12">
-
+      <div id="columnaContenido" class="col-md-12"></div>
+      <div id="modal" class="col-md-12"></div>
+    </div>
     <script type="text/javascript">
-	    $(document).ready(function() {
-    		cargarDiv("barra","Contenido/barra.php");
-    		cargarDiv("columnaContenido","Contenido/cuerpoAula.php");
-    	});
+      $(document).ready(function() {
+        cargarDiv("barra","Contenido/barra.php");
+        cargarDiv("columnaContenido","Contenido/cuerpoAula.php");
+        cargarDiv("modal","Contenido/modalAgregarRecurso.php");
+      });
     </script>
   </body>
 </html>

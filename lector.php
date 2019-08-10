@@ -1,3 +1,20 @@
+<?php
+session_start();
+if (empty($_SESSION)) {
+header('Location: index.php');
+} elseif (!isset($_SESSION['IDLibro'])) {
+header('Location: index.php');
+}
+
+
+#    Importar Clases
+include("Clases/Conexion.php");
+
+#    Crear conexion
+$conexion = new Conexion();
+$conexion->mysql_set_charset("utf8");
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,10 +40,16 @@
     <div id="cargar"></div>
     <div class="row" style="margin-top: 80px;">
     	<div id="columnaContenido" class="col-md-12">
-    		<h1 align="center">LIBRO X</h1>
     		<?php 
-    			if (isset($_GET["q"])) {
-    				echo '<div id="lector" class="flip-book-container solid-container container" style="height: 85vh" src="'.$_GET["q"].'.pdf"></div>';
+    			if (isset($_SESSION["IDLibro"])) {
+    				$consulta  = sprintf("SELECT Titulo FROM tblRecurso WHERE IDRecurso = '%s'",
+              $conexion->antiInyeccion($_SESSION['IDLibro']));
+            $resultado = $conexion->ejecutarconsulta($consulta);
+            $data      = $conexion->obtenerFila($resultado);
+
+    		    echo '<h1 align="center">'.$data["Titulo"].'</h1>';
+
+            echo '<div id="lector" class="flip-book-container solid-container container" style="height: 85vh" src="Recursos/Data/'.$_SESSION["IDLibro"].'.pdf"></div>';
     			}
     		 ?>
     	</div>

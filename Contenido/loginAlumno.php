@@ -9,6 +9,6 @@
         <label>Recuérdame</label>
       </div>
     </div>-->
-
-    <button class="btn btn-block ui primary button" type="submit">Iniciar Sesión</button>
+    <div id="error"></div>
+    <button class="btn btn-block ui primary button" onclick="validarCodigo()">Iniciar Sesión</button>
     <a href="index.php" class="btn btn-block ui red button">Cancelar</a>

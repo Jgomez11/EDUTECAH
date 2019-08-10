@@ -11,16 +11,20 @@
   <a class="navbar-brand" href="index.php"><img height="40px" src="Recursos/Imagenes/logo.png"></a>
   <a class="item" href="index.php">Inicio</a>
     <?php
-    if (empty($_SESSION) || !isset($_SESSION["ID"])){
+    if (empty($_SESSION) && !isset($_SESSION["ID"]) && !isset($_SESSION["CodigoCurso"]))
+    {
       	echo '
         	<a class="item" href="login.php">Iniciar Sesión</a>
         	<a class="item" href="registro.php">Registrarse</a>';
-    } else {
-    	if ($_SESSION['TipoUsuario'] == '2') {
+    }elseif (isset($_SESSION["CodigoCurso"])) {
+        echo '
+          <a class="item">Curso: '.$_SESSION["CodigoCurso"].'</a>
+        ';  
+
+    }else if ($_SESSION['TipoUsuario'] == '2') {
     		echo '
     			<a class="item" href="planes.php">Planes</a>
     		';
-    	}
     }
   ?>
   <!--Barra de busqueda-->
@@ -67,6 +71,14 @@
           </div>
         </div>
   ';
+    } else {
+          echo '          
+          <div class="ui top pointing dropdown item">
+            <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>
+            <div class="menu">
+              <a class="item" href="Acciones/cerrarSesion.php"><i class="sign out icon"></i>Cerrar sesion</a>
+            </div>
+          </div>';
     }
    ?>
 <!--$('.ui.dropdown').dropdown();

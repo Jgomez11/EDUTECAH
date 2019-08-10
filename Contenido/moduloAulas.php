@@ -60,7 +60,7 @@
 							.modal(
 								{
 									onVisible: function () {
-										$('.dropdown').dropdown();
+										$('#ddCategorias').dropdown();
 									},
 
 									onApprove: function(){

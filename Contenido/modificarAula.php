@@ -1,10 +1,10 @@
 <?php
 session_start();
-	#	Importar Clases
+#	Importar Clases
 include("../Clases/Conexion.php");
-	#	Utilidad de fecha
+#	Utilidad de fecha
 date_default_timezone_set('America/Tegucigalpa');
-	#	Crear conexion
+#	Crear conexion
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 ?>
