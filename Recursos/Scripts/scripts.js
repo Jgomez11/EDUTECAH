@@ -446,8 +446,6 @@ function subirRecurso() {
     const inputFile = document.querySelector("#archivoAdjunto");
     if (inputFile.files.length > 0) {
 
-        alert($("#archivoAdjunto").val());
-
         if (navigator.appVersion.indexOf("MSIE") != -1) { // IE
             var label = $("#archivoAdjunto").val();
         } else {
@@ -469,6 +467,8 @@ function subirRecurso() {
             .then(decodificado => {
                 console.log(decodificado);
             });
+
+        
     } else {
         // El usuario no ha seleccionado archivos
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor seleccione un archivo.</p></div>';

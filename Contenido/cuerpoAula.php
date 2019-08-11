@@ -38,6 +38,7 @@ $conexion->mysql_set_charset("utf8");
 												},
 
 												onApprove: function(){
+													cargarDiv('columnaContenido','Contenido/cuerpoAula.php');
 												}
 											})
 										.modal('setting', 'transition', 'scale')

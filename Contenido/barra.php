@@ -71,7 +71,7 @@
           </div>
         </div>
   ';
-    } else {
+    } else if (isset($_SESSION['CodigoCurso '])) {
           echo '          
           <div class="ui top pointing dropdown item">
             <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>

@@ -58,7 +58,7 @@ $conexion->mysql_set_charset("utf8");
 				$('.dropdown').dropdown();
 			},
 			onApprove: function(){
-				cargarDiv('columnaContenido', 'Contenido/cursos.php');
+				cargarDiv('columnaContenido', 'Contenido/moduloCursos.php');
 			}
 			})
 			.modal('setting', 'transition', 'scale')
