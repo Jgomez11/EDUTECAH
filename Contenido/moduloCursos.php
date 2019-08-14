@@ -56,14 +56,16 @@ $conexion->mysql_set_charset("utf8");
 			{
 			onVisible: function () {
 				$('.dropdown').dropdown();
-			},
-			onApprove: function(){
-				cargarDiv('columnaContenido', 'Contenido/moduloCursos.php');
 			}
 			})
 			.modal('setting', 'transition', 'scale')
 			.modal('show');
 			$('.second.modal')
+				.modal({
+					onApprove: function(){
+						cargarDiv('columnaContenido', 'Contenido/moduloCursos.php');
+					}
+				})
 			.modal('attach events', '.first.modal .approve.button');"><br>
 			<i class="add icon"></i><br><br>Agregar nuevo curso<br><br>
 			</button>

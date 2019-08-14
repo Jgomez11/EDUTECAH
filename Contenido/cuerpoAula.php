@@ -35,16 +35,17 @@ $conexion->mysql_set_charset("utf8");
 											{
 												onVisible: function () {
 													$('.dropdown').dropdown();
-												},
-
-												onApprove: function(){
-													cargarDiv('columnaContenido','Contenido/cuerpoAula.php');
 												}
 											})
 										.modal('setting', 'transition', 'scale')
 										.modal('show');
 									$('.second.modal')
-			  							.modal('attach events', '.first.modal .approve.button');"><br>
+			  							.modal({
+			  								onApprove: function(){
+            									cargarDiv('columnaContenido','Contenido/cuerpoAula.php');
+			  								}
+			  							}
+			  							);"><br>
 			<i class="add icon"></i><br><br>Agregar un recurso<br><br>
 			</button>
 		</div>
@@ -71,14 +72,18 @@ $conexion->mysql_set_charset("utf8");
 						</div>
 				</div>';
 		} else {
-			echo '<div class="col-md-12 mt-4 table-responsive">
+			echo '<div class="col-md-12 mt-4 mb-4 table-responsive">
 					<table class="ui striped table">
 					<thead>
 						<tr id="titulo">
 							<th class="center aligned">Titulo</th>
 							<th class="center aligned">Tipo de archivo</th>
 							<th class="center aligned">Etiquetas</th>
-							<th class="center aligned">Enlaces</th>
+							<th class="center aligned">Enlaces</th>';
+			if (isset($_SESSION['TipoUsuario']) && $_SESSION['TipoUsuario']=='3') {
+				echo '<th class="center aligned">Opciones</th>';
+			}
+			echo '
 						</tr>
 					</thead>
 					<tbody>
@@ -136,27 +141,42 @@ $conexion->mysql_set_charset("utf8");
 						break;
 
 					case '.doc':
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.doc" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
+						break;
+
 					case '.docx':
-						echo'<button class="mini ui green button"><i class="save icon"></i>Descargar</button>';
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.docx" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
 						break;
 
 					case '.ppt':
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.ppt" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
+						break;
+
 					case '.pptx':
-						echo'<button class="mini ui green button"><i class="save icon"></i>Descargar</button>';
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.pptx" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
 						break;
 
 					case '.xls':
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.xls" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
+						break;
+
 					case '.xlsx':
-						echo'<button class="mini ui green button"><i class="save icon"></i>Descargar</button>';
+						echo'<a class="mini ui green button" href="Recursos/Data/'.$data['IDRecurso'].'.xlsx" download ="'.$data["Titulo"].'"><i class="save icon"></i>Descargar</a>';
 						break;
 
 					default:
-						echo '<td class="center aligned">Sin Opciones</td>';
+						echo 'Sin Opciones';
 						break;
 				}
 
 								
-				echo '</td></tr>';
+				echo '</td>';
+
+				if (isset($_SESSION['TipoUsuario']) && $_SESSION['TipoUsuario']=='3') {
+					echo'<td class="center aligned"><button class="mini ui red button"><i class="trash icon"></i>Eliminar recurso</button>';
+				}
+
+				echo '</tr>';
 			}
 			echo '
 					</tbody>

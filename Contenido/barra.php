@@ -18,7 +18,7 @@
         	<a class="item" href="registro.php">Registrarse</a>';
     }elseif (isset($_SESSION["CodigoCurso"])) {
         echo '
-          <a class="item">Curso: '.$_SESSION["CodigoCurso"].'</a>
+          <a class="item" href="cursos.php">Curso: '.$_SESSION["CodigoCurso"].'</a>
         ';  
 
     }else if ($_SESSION['TipoUsuario'] == '2') {
@@ -71,7 +71,7 @@
           </div>
         </div>
   ';
-    } else if (isset($_SESSION['CodigoCurso '])) {
+    } else if (isset($_SESSION['CodigoCurso'])) {
           echo '          
           <div class="ui top pointing dropdown item">
             <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>

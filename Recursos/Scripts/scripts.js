@@ -129,11 +129,10 @@ function validarCodigo() {
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
         },
         success: function(response) {
-            error = response;
-            alert(error);
+            error = response;   
             document.getElementById("cargar").innerHTML = '';
             if (error == 0) {
-                window.location.href = "index.php";
+                window.location.href = "cursos.php";
                 return true;
             } else if (error == 1) {
                 document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo ingresado no es valido.</p></div>';
@@ -445,7 +444,6 @@ function cargarElemento() {
 function subirRecurso() {
     const inputFile = document.querySelector("#archivoAdjunto");
     if (inputFile.files.length > 0) {
-
         if (navigator.appVersion.indexOf("MSIE") != -1) { // IE
             var label = $("#archivoAdjunto").val();
         } else {
@@ -454,6 +452,11 @@ function subirRecurso() {
 
         var postfix = label.substr(label.lastIndexOf('.'));
 
+        if ($("#txtTitulo").val() == '' || $("#txtCat").val() == '') {
+            document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor llene todos los campos.</p></div>';
+            setTimeout("$('.message').transition('fade out');listar('')", 2000);
+            setTimeout("vaciarDiv('error')", 2300);    
+        } else {
         let formData = new FormData();
         formData.append("Archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento
         formData.append("Extension", postfix);
@@ -468,6 +471,9 @@ function subirRecurso() {
                 console.log(decodificado);
             });
 
+            $('#modalRecursos').modal('hide');
+            $('.second.modal').modal('show');
+        }
         
     } else {
         // El usuario no ha seleccionado archivos

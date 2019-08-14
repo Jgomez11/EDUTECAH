@@ -53,3 +53,10 @@ $conexion->mysql_set_charset("utf8");
 	  <div class="ui cancel red button">Cancelar</div>
 	</div>
 </div>
+<div class="ui second small modal">
+  <div class="header">Agregar nueva aula</div>
+  <div class="content" id="contenido">Se agrego el recurso con exito.</div>
+  <div class="actions">
+    <div class="ui approve button">Aceptar</div>
+  </div>
+</div>
