@@ -51,6 +51,7 @@ $conexion->mysql_set_charset("utf8");
 		</div>
 	</div>
 <?php endif ?>
+<div id="error"></div>
 <?php
 $consulta  = sprintf("SELECT IDRecurso, Titulo, Categorias, Tipo FROM tblRecurso WHERE IDAula = '%s'",
 	$conexion->antiInyeccion($_SESSION['IDAula']));
@@ -99,26 +100,26 @@ if ($iter == 0) {
 
 		switch ($data['Tipo']) {
 			case '.pdf':
-			echo '<td class="center aligned"><i class="large red file pdf outline icon"></i></td>';
+			echo '<td class="center aligned"><i class="large red file pdf  icon"></i></td>';
 			break;
 
 			case '.doc':
 			case '.docx':
-			echo '<td class="center aligned"><i class="large blue file word outline icon"></i></td>';
+			echo '<td class="center aligned"><i class="large blue file word  icon"></i></td>';
 			break;
 
 			case '.ppt':
 			case '.pptx':
-			echo '<td class="center aligned"><i class="large orange file powerpoint outline icon"></i></td>';
+			echo '<td class="center aligned"><i class="large orange file powerpoint  icon"></i></td>';
 			break;
 
 			case '.xls':
 			case '.xlsx':
-			echo '<td class="center aligned"><i class="large green file excel outline icon"></i></td>';
+			echo '<td class="center aligned"><i class="large green file excel  icon"></i></td>';
 			break;
 
 			default:
-			echo '<td class="center aligned"><i class="large file alternate outline icon"></i></td>';
+			echo '<td class="center aligned"><i class="large file alternate  icon"></i></td>';
 			break;
 		}
 
@@ -182,7 +183,7 @@ if ($iter == 0) {
 					},
 
 					onApprove: function(){
-						eliminarRecurso('.$data["IDRecurso"].')
+						eliminarRecurso('.$data["IDRecurso"].');
 					}
 					})
 					.modal(\'setting\', \'transition\', \'scale\')
