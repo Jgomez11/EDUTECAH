@@ -9,7 +9,7 @@ $conexion->mysql_set_charset("utf8");
 
 ?>
 <div><div class="ui first small modal" id="modalRecursos">
-	<div class="header">Agregar nueva aulaBBBB</div>
+	<div class="header">Agregar nueva aula</div>
 	<div class="content">
 		<div class="field">
 			<label>Titulo</label>
@@ -49,7 +49,7 @@ $conexion->mysql_set_charset("utf8");
 		</div>
 	</div>
 	<div class="actions">
-		<div class="ui teal button" onclick="subirRecurso()">AceptarCCC</div>
+		<div class="ui teal button" onclick="subirRecurso()">Aceptar</div>
 		<div class="ui cancel red button">Cancelar</div>
 	</div>
 </div>
