@@ -80,6 +80,20 @@ function listar(consulta) {
 }
 
 
+//  4.  Funcion para listar (cargar) Recursos en tablas y gestionar
+function listarRecur(consulta) {
+    $.ajax({
+        url: 'Acciones/BusquedaRecursos.php',
+        type: 'POST',
+        dataType: 'html',
+        data: {
+            consulta: consulta
+        }
+    }).done(function(respuesta) {
+        $("#ListarRecursos").html(respuesta);
+    });
+}
+
 //  FUNCIONES DE VALIDACION
 //  1.  Funcion para validar login de docentes
 function validarLogin() {
@@ -382,6 +396,23 @@ function eliminar(IDUsuario) {
     });
 }
 
+
+//  1.  Funcion para ELIMINAR Recursos
+function eliminarRecurso(IDRecurso) {
+    $.ajax({
+        url: 'Acciones/eliminarRecursos.php',
+        type: 'POST',
+        data: 'IDRecurso=' + IDRecurso,
+        dataType: 'text',
+        success: function(response) {
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui red icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';
+            setTimeout("$('.message').transition('fade out');cargarAula('IDAula')", 2000);
+            setTimeout("vaciarDiv('error')", 2300);
+        },
+        error: function() {}
+    });
+}
+
 // OTRAS FUNCIONES
 //  1.  Funcion de carga de aulas
 function cargarAula(id) {
@@ -457,25 +488,25 @@ function subirRecurso() {
             setTimeout("$('.message').transition('fade out');listar('')", 2000);
             setTimeout("vaciarDiv('error')", 2300);    
         } else {
-        let formData = new FormData();
+            let formData = new FormData();
         formData.append("Archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento
         formData.append("Extension", postfix);
         formData.append("Titulo", $("#txtTitulo").val());
         formData.append("Categorias", $("#txtCat").val());
         fetch("Acciones/subirRecurso.php", {
-                method: 'POST',
-                body: formData,
-            })
-            .then(respuesta => respuesta.text())
-            .then(decodificado => {
-                console.log(decodificado);
-            });
+            method: 'POST',
+            body: formData,
+        })
+        .then(respuesta => respuesta.text())
+        .then(decodificado => {
+            console.log(decodificado);
+        });
 
-            $('#modalRecursos').modal('hide');
-            $('.second.modal').modal('show');
-        }
-        
-    } else {
+        $('#modalRecursos').modal('hide');
+        $('.second.modal').modal('show');
+    }
+
+} else {
         // El usuario no ha seleccionado archivos
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor seleccione un archivo.</p></div>';
         setTimeout("$('.message').transition('fade out');listar('')", 2000);

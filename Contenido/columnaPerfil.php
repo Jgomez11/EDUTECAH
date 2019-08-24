@@ -23,6 +23,7 @@ session_start();
 				echo '
 				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloCursos.php\');vaciarDiv(\'modal\');cargarDiv(\'modal\', \'Contenido/modalCursos.php\');">Cursos</button>
 				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloModificar.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\');">Gestionar Docentes</button>
+				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloGestionarRecursos.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listarRecur(\'\');">Gestionar Recursos</button>
 				';
 			}
 
@@ -32,7 +33,7 @@ session_start();
 				?>
 
 
-				<button class="ui basic button">Recursos</button>
+				
 				<button class="ui basic button">Wiki</button>
 			</div>
 		</div>

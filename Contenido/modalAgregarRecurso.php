@@ -8,13 +8,13 @@ $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 
 ?>
-<div class="ui first small modal" id="modalRecursos">
-	<div class="header">Agregar nueva aula</div>
+<div><div class="ui first small modal" id="modalRecursos">
+	<div class="header">Agregar nueva aulaBBBB</div>
 	<div class="content">
 		<div class="field">
 			<label>Titulo</label>
 			<div class="ui fluid input">
-			  <input id="txtTitulo" type="text" placeholder="Escribe un titulo">
+				<input id="txtTitulo" type="text" placeholder="Escribe un titulo">
 			</div>
 		</div>
 		<div class="field mt-4">
@@ -49,14 +49,36 @@ $conexion->mysql_set_charset("utf8");
 		</div>
 	</div>
 	<div class="actions">
-	  <div class="ui teal button" onclick="subirRecurso()">Aceptar</div>
-	  <div class="ui cancel red button">Cancelar</div>
+		<div class="ui teal button" onclick="subirRecurso()">AceptarCCC</div>
+		<div class="ui cancel red button">Cancelar</div>
 	</div>
 </div>
 <div class="ui second small modal">
-  <div class="header">Agregar nueva aula</div>
-  <div class="content" id="contenido">Se agrego el recurso con exito.</div>
-  <div class="actions">
-    <div class="ui approve button">Aceptar</div>
-  </div>
+	<div class="header">Agregar nueva aula</div>
+	<div class="content" id="contenido">Se agrego el recurso con exito.</div>
+	<div class="actions">
+		<div class="ui approve button">Aceptar</div>
+	</div>
+</div>
+</div>
+
+
+<div class="ui basic modal" id="modalBorrarRecurso">
+	<div class="ui icon header">
+		<i class="trash icon"></i>
+		Eliminar Recurso
+	</div>
+	<div class="content" align="center">
+		<p>¿Realmente desea eliminar Este Recurso? No hay vuelta atras despues de esto.</p>
+	</div>
+	<div class="actions" align="center">
+		<div class="ui red basic cancel inverted button">
+			<i class="remove icon"></i>
+			No
+		</div>
+		<div class="ui green approve inverted button">
+			<i class="checkmark icon"></i>
+			Si
+		</div>
+	</div>
 </div>
