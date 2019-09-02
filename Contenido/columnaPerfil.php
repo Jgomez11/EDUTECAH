@@ -32,8 +32,7 @@ session_start();
 				<button class="ui basic button" onclick="cargarDiv(\'columnaContenido\', \'Contenido/moduloModificar.php\');cargarDiv(\'modal\', \'Contenido/modalConfirmarEliminar.php\');listar(\'\')">Gestionar Usuarios</button>';}
 				?>
 
-
-				
+				<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'soporte.php');cargarDiv('modal', 'Contenido/modalVideos.php');">Soporte</button>
 				<button class="ui basic button">Wiki</button>
 			</div>
 		</div>
