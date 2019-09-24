@@ -60,8 +60,10 @@ $conexion->mysql_set_charset("utf8");
 			<button class="ui basic green button" type="button"onclick="$(\'#modalComoCrearUnaNuevaAula\')
 
 			.modal(
-			{
-				onVisible: function () {
+			{	
+
+				onDeny: function () {
+					$(\'video\').trigger(\'pause\'); 
 				} 			
 				})
 				.modal(\'setting\', \'transition\', \'scale\')
@@ -83,8 +85,9 @@ $conexion->mysql_set_charset("utf8");
 
 				.modal(
 				{
-					onVisible: function () {
-					} 			
+					onDeny: function () {
+						$(\'video\').trigger(\'pause\'); 
+					}
 					})
 					.modal(\'setting\', \'transition\', \'scale\')
 					.modal(\'show\');"> 
@@ -132,8 +135,9 @@ $conexion->mysql_set_charset("utf8");
 
  			.modal(
  			{
- 				onVisible: function () {
- 				} 			
+ 				onDeny: function () {
+ 					$(\'video\').trigger(\'pause\'); 
+ 				}
  				})
  				.modal(\'setting\', \'transition\', \'scale\')
  				.modal(\'show\');"> 
@@ -154,8 +158,9 @@ $conexion->mysql_set_charset("utf8");
 
  				.modal(
  				{
- 					onVisible: function () {
- 					} 			
+ 					onDeny: function () {
+ 						$(\'video\').trigger(\'pause\'); 
+ 					}
  					})
  					.modal(\'setting\', \'transition\', \'scale\')
  					.modal(\'show\');"> 
@@ -201,9 +206,10 @@ $conexion->mysql_set_charset("utf8");
 
  			.modal(
  			{
- 				onVisible: function () {
- 				} 			
- 				})
+ 				onDeny: function () {
+ 					$(\'video\').trigger(\'pause\'); 
+ 				}		
+ 			})
  				.modal(\'setting\', \'transition\', \'scale\')
  				.modal(\'show\');"> 
  				<i class="play icon"></i>Ver </button>
@@ -225,7 +231,9 @@ $conexion->mysql_set_charset("utf8");
 
  				.modal(
  				{
- 					onVisible: function () {
+
+ 					onDeny: function () {
+ 						$(\'video\').trigger(\'pause\'); 
  					} 			
  					})
  					.modal(\'setting\', \'transition\', \'scale\')
@@ -249,7 +257,8 @@ $conexion->mysql_set_charset("utf8");
 
  					.modal(
  					{
- 						onVisible: function () {
+ 						onDeny: function () {
+ 							$(\'video\').trigger(\'pause\'); 
  						} 			
  						})
  						.modal(\'setting\', \'transition\', \'scale\')

@@ -14,26 +14,30 @@ $conexion->mysql_set_charset("utf8");
 
 <?php
 if(isset($_POST['consulta'])){
-    $sql  = sprintf("SELECT IDRecurso, Titulo, Categorias, Tipo, Asignatura, NombreCurso, Grado FROM tblrecurso, tblaula, tblcursoxinstituto, tblcursos, tblgrado where tblaula.IDAula=tblrecurso.IDAula and tblaula.CodigoCurso=tblcursoxinstituto.CodigoCurso and tblcursoxinstituto.IDCurso=tblcursos.IDCurso and tblcursoxinstituto.IDGrado=tblgrado.IDGrado order by NombreCurso", $conexion->antiInyeccion($_SESSION['Instituto']));}
+    $sql  = "SELECT IDRecurso, Titulo, Categorias, Tipo, Asignatura, NombreCurso, Grado FROM tblrecurso, tblaula, tblcursoxinstituto, tblcursos, tblgrado where tblaula.IDAula=tblrecurso.IDAula and tblaula.CodigoCurso=tblcursoxinstituto.CodigoCurso and tblcursoxinstituto.IDCurso=tblcursos.IDCurso and tblcursoxinstituto.IDGrado=tblgrado.IDGrado and (titulo like '%".$_POST['consulta']."%' or tipo like '%".$_POST['consulta']."%' or NombreCurso like '%".$_POST['consulta']."%')  order by NombreCurso";
 
 
     $resultado = $conexion->ejecutarconsulta($sql);
     $iter = $conexion->cantidadRegistros($resultado);
     if ($iter == 0) {
-        echo '
-        <div class="row mt-4">
-        <div class="col-md-12">
-        <div class="ui yellow icon message">
-        <i class="info circle icon"></i>
-        <div class="content">
-        <div class="header">
-        No hay nada aqui
-        </div>
-        <p>El maestro no ha subido ningun recurso</p>
-        </div>
-        </div>
-        </div>
-        </div>';
+        echo '<div class="col-md-12 mt-4 mb-4 table-responsive">
+        <table class="ui striped table">
+        <thead>
+        <tr id="titulo">
+        <th class="center aligned">Curso</th>
+        <th class="center aligned">Grado</th>
+        <th class="center aligned">Aula</th>
+        <th class="center aligned">Titulo</th>
+        <th class="center aligned">Tipo</th>
+        <th class="center aligned">Etiquetas</th>
+        </tr>
+        <tr><td colspan=\'7\' style=\'text-align:center\'>
+      <div class=\'ui red icon message\'>
+      <i class=\'info circle icon\'></i>
+      <div class=\'content\'>
+      <p>No hay resultados</p>
+      </div>
+      </div></td></tr></div>';
     } else {
         echo '<div class="col-md-12 mt-4 mb-4 table-responsive">
         <table class="ui striped table">
@@ -125,14 +129,14 @@ if(isset($_POST['consulta'])){
 
 
                 echo'<td class="center aligned">
-                <button class="mini ui red button" onclick="$(\'#modalBorrarRecurso\')
+                <button class="mini ui red button" onclick="$(\'#modalBorrarRecursoMOD\')
                 .modal(
                 {
                     onVisible: function () {
                         },
 
                         onApprove: function(){
-                            eliminarRecurso('.$data["IDRecurso"].')
+                            eliminarRecurso('.$data["IDRecurso"].', 2)
                         }
                         })
                         .modal(\'setting\', \'transition\', \'scale\')
@@ -148,5 +152,5 @@ if(isset($_POST['consulta'])){
 
             }
 
-
+}
             ?>  

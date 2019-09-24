@@ -39,7 +39,7 @@ if (empty($_SESSION)) {
     $(document).ready(function() {
       cargarDiv("barra","Contenido/barra.php");
       cargarDiv("columnaOpciones","Contenido/columnaPerfil.php");
-      cargarDiv("columnaContenido","Contenido/contenidoPerfil.php");
+      cargarDiv("columnaContenido","Contenido/moduloAulas.php");
     });
   </script>
   <script src="Frameworks/Flipbook/js/html2canvas.min.js"></script>

@@ -66,6 +66,7 @@ $conexion->mysql_set_charset("utf8");
 		?>
 
 		<div id="error"></div>
+		<br>
 		<div class="row">
 			<div class="col-md-12">
 				<input type="text" name="srcDocente" id="srcDocente" class="form-control" placeholder="Buscar" onkeyup="listar(this.value);">

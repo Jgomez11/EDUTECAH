@@ -316,7 +316,7 @@ function actualizarDocente() {
         data: cadena,
         dataType: 'text',
         success: function(response) {
-            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actulizo exitosamente.</p></div></div></div></div>';
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
             setTimeout("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
         },
         error: function() {}
@@ -342,8 +342,8 @@ function actualizarUsuario() {
         data: cadena,
         dataType: 'text',
         success: function(response) {
-            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actulizo exitosamente.</p></div></div></div></div>';
-            setTimeout("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloModificar.php'); listar('')", 2000);
 
         },
         error: function() {}
@@ -398,17 +398,27 @@ function eliminar(IDUsuario) {
 
 
 //  1.  Funcion para ELIMINAR Recursos
-function eliminarRecurso(IDRecurso) {
+function eliminarRecurso(IDRecurso, Identificador) {
     $.ajax({
         url: 'Acciones/eliminarRecursos.php',
         type: 'POST',
         data: 'IDRecurso=' + IDRecurso,
         dataType: 'text',
         success: function(response) {
-            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui blue icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';
-            setTimeout("$('.message').transition('fade out');cargarDiv('columnaContenido','Contenido/cuerpoAula.php');", 2000);
-            setTimeout("vaciarDiv('error')", 2300);
-        },
+            if (Identificador == 1) {
+                cargarDiv('columnaContenido','Contenido/cuerpoAula.php');
+                setTimeout("document.getElementById(\"info\").innerHTML = '<div class=\"row mt-4\"><div class=\"col-md-12\"><div class=\"ui blue icon message\"><i class=\"info circle icon\"></i><div class=\"content\"><div class=\"header\">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';", 200)
+                setTimeout("$('.blue.icon.message').transition('fade out');", 3000);
+
+                setTimeout("vaciarDiv('info')", 3300);
+            } else {
+                listarRecur('');
+                setTimeout("document.getElementById(\"error\").innerHTML = '<div class=\"row mt-4\"><div class=\"col-md-12\"><div class=\"ui blue icon message\"><i class=\"info circle icon\"></i><div class=\"content\"><div class=\"header\">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';", 200)
+                setTimeout("$('.blue.icon.message').transition('fade out');", 3000);
+
+                setTimeout("vaciarDiv('error')", 3300);
+            }
+        }, 
         error: function() {}
     });
 }

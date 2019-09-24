@@ -49,8 +49,8 @@ if (!empty($_SESSION) && isset($_SESSION["ID"])) {
   }
   echo '
   <a class="item" href="perfil.php"><img class="ui avatar image" src="'.$img.'">'.$_SESSION['Nombre'].'</a>
-  <a class="item" href="#"><i class="envelope icon"></i><div class="floating ui red circular label">2</div></a>
-  <a class="item" href="#"><i class="bell icon"></i><div class="floating ui red circular label">2</div></a>
+  <!--<a class="item" href="#"><i class="envelope icon"></i><div class="floating ui red circular label">2</div></a>
+  <a class="item" href="#"><i class="bell icon"></i><div class="floating ui red circular label">2</div></a>-->
 
   <div class="ui top pointing dropdown item">
   <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>

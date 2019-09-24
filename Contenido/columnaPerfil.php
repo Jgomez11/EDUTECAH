@@ -12,11 +12,11 @@ session_start();
 		?>">
 		<p class="fixed top">
 			<h5><?php echo $_SESSION['Usuario']; ?>
-			&nbsp;<button class="circular ui icon teal button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarPerfil.php')" title="Modifica tu perfil"><i class="edit icon"></i>
+			<!-- &nbsp;<button class="circular ui icon teal button" onclick="cargarDiv('columnaContenido', 'Contenido/modificarPerfil.php')" title="Modifica tu perfil"><i class="edit icon"></i> -->
 			</button></h5>
 		</p>
 		<div class="ui vertical fluid buttons">
-			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/contenidoPerfil.php')">Perfil</button>
+
 			<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'Contenido/moduloAulas.php');vaciarDiv('modal');cargarDiv('modal', 'Contenido/modalAulas.php');">Aulas</button>
 			<?php
 			if ($_SESSION["TipoUsuario"]=='2') {
@@ -33,7 +33,7 @@ session_start();
 				?>
 
 				<button class="ui basic button" onclick="cargarDiv('columnaContenido', 'soporte.php');cargarDiv('modal', 'Contenido/modalVideos.php');">Soporte</button>
-				<button class="ui basic button">Wiki</button>
+				<!-- <button class="ui basic button">Wiki</button> -->
 			</div>
 		</div>
 	</div>

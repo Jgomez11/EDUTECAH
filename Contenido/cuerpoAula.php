@@ -51,7 +51,7 @@ $conexion->mysql_set_charset("utf8");
 		</div>
 	</div>
 <?php endif ?>
-<div id="error"></div>
+<div id="info"></div>
 <?php
 $consulta  = sprintf("SELECT IDRecurso, Titulo, Categorias, Tipo FROM tblRecurso WHERE IDAula = '%s'",
 	$conexion->antiInyeccion($_SESSION['IDAula']));
@@ -183,7 +183,7 @@ if ($iter == 0) {
 					},
 
 					onApprove: function(){
-						eliminarRecurso('.$data["IDRecurso"].');
+						eliminarRecurso('.$data["IDRecurso"].', 1);
 					}
 					})
 					.modal(\'setting\', \'transition\', \'scale\')

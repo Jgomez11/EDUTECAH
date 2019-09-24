@@ -44,28 +44,20 @@ $conexion->mysql_set_charset("utf8");
 		echo '
 		<br>
 		<h1 style="text-align: center;">
-		Gestión de Docentes
+		Gestión de Recursos
 		</h1>
 		<div class="container">
+		<div id="error"></div>
+	<br>
+		
 		<label>
-		Buscar un Docente
-		</label>
-		';
-	}
-	if ($_SESSION["TipoUsuario"]=='1') {
-		echo '
-		<h1 style="text-align: center;">
-		Gestión de Usuarios
-		</h1>
-		<div class="container">
-		<label>
-		Buscar un Usuario
+		Buscar un documento
 		</label>
 		';
 	}
 	?>
 
-	<div id="error"></div>
+
 	<div class="row">
 		<div class="col-md-12">
 			<input type="text" name="srcRecurso" id="srcRecurso" class="form-control" placeholder="Buscar" onkeyup="listarRecur(this.value);">

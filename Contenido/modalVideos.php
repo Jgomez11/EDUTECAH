@@ -6,7 +6,7 @@
   <div class="ui icon header">
 
     <div style="width: 85%; max-width: 720px; margin: 0 auto">
-      <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_CrearCUR.png">
+      <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_CrearCUR.png">
         <source src="Recursos/Videos/ComoCrearUnNuevoCurso.mp4" type="video/mp4">
 
         </video>
@@ -27,7 +27,7 @@
     <div class="ui icon header">
 
       <div style="width: 85%; max-width: 720px; margin: 0 auto">
-        <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_GestionarDOC.png">
+        <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_GestionarDOC.png">
           <source src="Recursos/Videos/ComoGestionarDocentes.mp4" type="video/mp4">
 
           </video>
@@ -53,7 +53,7 @@
       <div class="ui icon header">
 
         <div style="width: 85%; max-width: 720px; margin: 0 auto">
-          <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_CrearAUL.png">
+          <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_CrearAUL.png">
             <source src="Recursos/Videos/ComoCrearUnaNuevaAula.mp4" type="video/mp4">
 
             </video>
@@ -74,7 +74,7 @@
         <div class="ui icon header">
 
           <div style="width: 85%; max-width: 720px; margin: 0 auto">
-            <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_SubirRECUR.png">
+            <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_SubirRECUR.png">
               <source src="Recursos/Videos/ComoSubirUnNuevoRecurso.mp4" type="video/mp4">
 
               </video>
@@ -97,7 +97,7 @@
           <div class="ui icon header">
 
             <div style="width: 85%; max-width: 720px; margin: 0 auto">
-              <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroUs.png">
+              <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroUs.png">
                 <source src="Recursos/Videos/ComoIniciarSesionComoEstudiante.mp4" type="video/mp4">
 
                 </video>
@@ -119,7 +119,7 @@
             <div class="ui icon header">
 
               <div style="width: 85%; max-width: 720px; margin: 0 auto">
-                <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroDOC.png">
+                <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroDOC.png">
                   <source src="Recursos/Videos/ComoRegistrarmeComoDocente.mp4" type="video/mp4">
 
                   </video>
@@ -141,7 +141,7 @@
               <div class="ui icon header">
 
                 <div style="width: 85%; max-width: 720px; margin: 0 auto">
-                  <video controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroINS.png">
+                  <video id="video" controls style="width: 100%;height: 100%;" poster="Recursos/Imagenes/Portadas Videos/PV_RegistroINS.png">
                     <source src="Recursos/Videos/ComoRegistrarmeComoInstituto.mp4" type="video/mp4">
 
                     </video>
