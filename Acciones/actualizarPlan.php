@@ -16,6 +16,6 @@ $consulta = "UPDATE tblplan SET IDTipoPlan=".$planID.", AulasDisponibles=".$Aula
 $conexion->ejecutarconsulta($consulta);
 
 
-header("Location:../Perfil.php");
+header("Location:../Index.php");
 
 ?>
