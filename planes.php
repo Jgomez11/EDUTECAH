@@ -1,6 +1,16 @@
-<?php 
-  session_start();
- ?>
+<?php
+#    Session
+session_start();
+
+#    Importar Clases
+include("Clases/Conexion.php");
+
+#    Crear conexion
+$conexion = new Conexion();
+$conexion->mysql_set_charset("utf8");
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,10 +23,10 @@
   <link rel="stylesheet" type="text/css" href="Recursos/Estilos/floating-labels.css">
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
-    integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-    crossorigin="anonymous"></script>
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
 
-    <script src="Frameworks/Flipbook/js/jquery.min.js"></script>
+  <script src="Frameworks/Flipbook/js/jquery.min.js"></script>
   <script src="Frameworks/Bootstrap/js/bootstrap.min.js"></script>
   <script src="Frameworks/Semantic/semantic.min.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
@@ -28,7 +38,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="text-center form-signin">
-          <img src="Recursos/Imagenes/logoDark.png" alt="" width="200">
+          <img src="Recursos/Imagenes/logoDark.png" alt="" width="200" >
           <h1 class="h3 font-weight-normal">Pase virtual: <?php echo $_SESSION['Pase']; ?></h1>
           <p>Por favor provea este pase virtual a los docentes que se registraran en el sistema. 
           Podra revisar su pase en la pagina de perfil</p>
@@ -40,109 +50,78 @@
         <div class="text-center mb-4">
           <div class="form-signin">
             <h1 class="h3 font-weight-normal">Selecciona un plan</h1>
-            <p>Por favor seleccione uno de los siguientes planes para utilizar la plataforma</p>
+            <p>Por favor seleccione uno de los siguientes planes para utilizar la plataforma <br> <br></p>
           </div>  
-            <div class="row">
-            <div class="col-md-3">
-              <a class="ui card">
-                <div class="content">
-                  <div class="ui center aligned header">Prueba (Defecto)</div>
-                  <div class="meta">
-                    <span class="category">Detalles del paquete</span>
-                  </div>
-                  <div class="description">
-                    <p>
-                      <div class="ui left aligned bulleted list">
-                        <div class="item">30 dias de acceso</div>
-                        <div class="item">10 aulas</div>
-                        <br>
-                        <br>
-                      </div>
-                    </p>
-                  </div>
-                </div>
-              </a>
+
+          
+          <div class="row">
+
+            <?php
+            $consulta="select tbltipoplan.IDTipoPlan, tbltipoplan.TipoPlan , tbltipoplan.Precio, tbltipoplan.Soporte, tbltipoplan.AulasDisponibles from tbltipoplan";
+
+            $resultado=$conexion->ejecutarconsulta($consulta);
+
+            while ($arreglo=$resultado->fetch_array()) {
+              echo'
+
+
+              <div class="col-md-3">
+              
+              <div class="ui card">
+              
+              <div class="content">
+              
+              <div class="ui center aligned header"> <br> '.$arreglo['TipoPlan'].'<br> $  '   .$arreglo['Precio']. ' </div>
+              <div class="meta">
+              <span class="category"> <br>  <hr>  Detalles del paquete <hr> <br> </span>
+              </div>
+
+              <div class="description">
+
+              <div class="item"> <strong>Cantidad de Aulas: </strong> &emsp;&emsp;&emsp;&emsp; <em>'.$arreglo['AulasDisponibles'].'</em>  <br> <br></div>
+              
+              <div class="item"><strong> Soporte Guiado por Video: </strong> &nbsp; &nbsp; <em>  '.$arreglo['Soporte'].'</em>  <br><br></div>
+
+              <div class="item"> <strong>Contenido Disponible 24/7: </strong> &nbsp;  <em>SI</em> <br> <br> </div>
+
+              <div class="item"> <strong>Lector PDF Integrado:</strong> &emsp;&emsp;&emsp;  <em>SI</em> <br> <br> </div>
+
+              <div class="item"> <strong> Gestion de Docentes:</strong>  &nbsp;&emsp;&emsp;&emsp;  <em>SI</em> <br> <br> </div>
+
+
+              <br>
+              <br>
+              </div>
+              
+              
+              <a class="ui basic green button"  href="Acciones/actualizarPlan.php?planID='.$arreglo['IDTipoPlan'].'&Aulas='.$arreglo['AulasDisponibles'].'">Seleccionar</a>
+
+              </div>
+              
+              </div>
+              </div>
+              ';     }  ?>  
+
             </div>
-            <div class="col-md-3">
-              <a class="ui card">
-                <div class="content">
-                  <div class="ui center aligned header">Basico ($5.00)</div>
-                  <div class="meta">
-                    <span class="category">Detalles del paquete</span>
-                  </div>
-                  <div class="description">
-                    <p>
-                      <div class="ui left aligned bulleted list">
-                        <div class="item">Acceso ilimitado</div>
-                        <div class="item">20 aulas</div>
-                        <div class="item">Ediciones de wiki</div>
-                        <br>
-                      </div>
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-md-3">
-              <a class="ui card">
-                <div class="content">
-                  <div class="ui center aligned header">Estandar ($7.00)</div>
-                  <div class="meta">
-                    <span class="category">Detalles del paquete</span>
-                  </div>
-                  <div class="description">
-                    <p>
-                      <div class="ui left aligned bulleted list">
-                        <div class="item">Acceso ilimitado</div>
-                        <div class="item">40 aulas</div>
-                        <div class="item">Ediciones de wiki</div>
-                        <div class="item">Soporte personalizado</div>
-                      </div>
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            <div class="col-md-3">
-              <a class="ui card">
-                <div class="content">
-                  <div class="ui center aligned header">Completo ($10.00)</div>
-                  <div class="meta">
-                    <span class="category">Detalles del paquete</span>
-                  </div>
-                  <div class="description">
-                    <p>
-                      <div class="ui left aligned bulleted list">
-                        <div class="item">Acceso ilimitado</div>
-                        <div class="item">100 aulas</div>
-                        <div class="item">Ediciones de wiki</div>
-                        <div class="item">Soporte personalizado</div>
-                      </div>
-                    </p>
-                  </div>
-                </div>
-              </a>
-            </div>
-            </div>
-          <a href="index.php" class="form-signin btn btn-block ui red button mt-5">Seleccionar mas tarde</a>
+            <a href="index.php" class="form-signin btn btn-block ui red button mt-5">Seleccionar mas tarde</a>
+          </div>
         </div>
       </div>
+      <p class="text-muted text-center mb-4">&copy; 2018-2019</p>   
     </div>
-    <p class="text-muted text-center mb-4">&copy; 2018-2019</p>   
-  </div>
-<script type="text/javascript">
-    $(document).ready(function(){
-      $('#form').on('submit', function(e){
-        e.preventDefault();
-        
-        if (registrar($('#boton').val())) {
-          this.submit();
-        }
+    <script type="text/javascript">
+      $(document).ready(function(){
+        $('#form').on('submit', function(e){
+          e.preventDefault();
+
+          if (registrar($('#boton').val())) {
+            this.submit();
+          }
+        });
       });
-    });
-    
-    $('.ui.checkbox')
+
+      $('.ui.checkbox')
       .checkbox();
-  </script>
-</body>
-</html>
+    </script>
+  </body>
+  </html>
