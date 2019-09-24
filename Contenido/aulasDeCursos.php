@@ -35,7 +35,7 @@ $conexion->mysql_set_charset("utf8");
 		<div class="header">
 		No hay nada aqui
 		</div>
-		<p>Ningun docente a abierto aulas todavia.</p>
+		<p>Ningun docente ha abierto aulas todavia.</p>
 		</div>
 		</div>
 		</div>

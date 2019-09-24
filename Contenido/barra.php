@@ -55,14 +55,11 @@ if (!empty($_SESSION) && isset($_SESSION["ID"])) {
   <div class="ui top pointing dropdown item">
   <a onclick="$(\'.ui.dropdown\').dropdown();"><i class="dropdown  icon"></i></a>
   <div class="menu">
-  <div class="item"><i class="envelope icon"></i><div class="ui empty red circular label"></div> Mensajes </div>
-  <div class="item"><i class="bell icon"></i><div class="ui empty red circular label"></div> Notificaciones </div>
-  <div class="item"><i class="cog icon"></i> Configuraciones</div>
+
   '; 
   if ($_SESSION["TipoUsuario"] == '2') {
    echo '
-   <a class="item" href="planes.php"><i class="alternate list icon"></i> Actualizar plan</a>
-   <a class="item" href="#"><i class="tasks icon"></i> Administración</a>';
+   <a class="item" href="planes.php"><i class="alternate list icon"></i> Actualizar plan</a>';
  }
  echo '
  <div class="divider"></div>

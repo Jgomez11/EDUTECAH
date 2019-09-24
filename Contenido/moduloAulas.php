@@ -127,7 +127,7 @@
   							<div class="content">
     							<div class="header">
     								<p class="mt-1 ui left floated">Aula de '.$data["Asignatura"].'</p>
-	  								<button class="circular ui right floated icon red button" title="Eliminar"><i class="trash icon"></i></button>
+	  								<!--<button class="circular ui right floated icon red button" title="Eliminar"><i class="trash icon"></i></button>-->
 	  								<button class="circular ui right floated icon blue button" onclick="modificarAula('.$data["IDAula"].');" title="Modificar"><i class="pencil alternate icon"></i></button>
 	  								</div>
   							</div>	

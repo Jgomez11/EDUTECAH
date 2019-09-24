@@ -376,7 +376,17 @@ function actualizarAula() {
 
     cadena = 'IDAula=' + id + '&IDCurso=' + curso + '&Asignatura=' + asignatura + '&IDDocente=' + docente + '&IDEstado=' + estado;
 
-    alert(cadena);
+    $.ajax({
+        url: 'Acciones/modificarAula.php',
+        type: 'POST',
+        data: cadena,
+        dataType: 'text',
+        success: function(response) {
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloAulas.php');", 2000);
+        },
+        error: function() {}
+    });
 }
 
 //  FUNCIONES DE ELIMINACION DE DATOS
