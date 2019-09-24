@@ -139,7 +139,7 @@
 
     			if ($_SESSION["TipoUsuario"] == '2') {
     				echo '
-    							<h4 class="ui sub header">Docente: </h4><h6>'.$data["Nombre"].'</h6>';
+    							<h4 class="ui sub header">Docente: </h4><h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.png">'.$data["Nombre"].'</h6>';
     			}
 					echo
 								'<button class="ui fluid teal button mt-4" onclick="cargarAula('.$data["IDAula"].');"><i class="eye icon"></i>Ver Aula</button>
