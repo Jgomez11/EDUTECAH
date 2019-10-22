@@ -1,0 +1,12 @@
+body {
+    background-color: rgb(243, 242, 242);
+}
+
+#myiframe {
+    width:600px; 
+    height:100%;
+} 
+
+#menu {
+    margin-top: 62px;
+}

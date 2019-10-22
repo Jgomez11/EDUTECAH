@@ -4,14 +4,13 @@ function cargarDiv(divID, ruta) {
     $.ajax({
         url: ruta,
         dataType: 'text',
-        beforeSend: function() {
-            document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+        success: function (respuesta) {
+            setTimeout(() => {
+                document.getElementById("cargar").innerHTML = '';
+                document.getElementById(divID).innerHTML = respuesta;
+            }, 100);
         },
-        success: function(respuesta) {
-            document.getElementById("cargar").innerHTML = '';
-            document.getElementById(divID).innerHTML = respuesta;
-        },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -28,7 +27,7 @@ function buscar() {
         dataType: 'text',
         type: 'GET',
         data: 'q=' + query,
-        success: function(respuesta) {
+        success: function (respuesta) {
             var myObj = JSON.parse(respuesta);
             var content = [];
 
@@ -57,7 +56,7 @@ function cargarMun() {
         type: 'POST',
         data: 'idd=' + idDepto,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById('Municipio').innerHTML = response;
         }
     });
@@ -66,31 +65,53 @@ function cargarMun() {
 
 
 //  4.  Funcion para listar (cargar) docentes en tablas y gestionar
-function listar(consulta) {
+function cargarUsuarios(consulta) {
     $.ajax({
-        url: 'Acciones/BusquedaUsuarios.php',
+        url: 'Acciones/busquedaUsuarios.php',
         type: 'POST',
         dataType: 'html',
         data: {
             consulta: consulta
         }
-    }).done(function(respuesta) {
-        $("#ListarUsuarios").html(respuesta);
+    }).done(function (respuesta) {
+        $("#usuarios").html(respuesta);
     });
 }
 
 
 //  4.  Funcion para listar (cargar) Recursos en tablas y gestionar
-function listarRecur(consulta) {
+function cargarRecursos(consulta) {
     $.ajax({
-        url: 'Acciones/BusquedaRecursos.php',
+        url: 'Acciones/busquedaRecursos.php',
         type: 'POST',
         dataType: 'html',
         data: {
             consulta: consulta
         }
-    }).done(function(respuesta) {
+    }).done(function (respuesta) {
         $("#ListarRecursos").html(respuesta);
+    });
+}
+
+//  5.  Funcion para listar (cargar) Aulas
+function cargarAulas() {
+    $.ajax({
+        url: 'Acciones/busquedaAulas.php',
+        type: 'POST',
+        dataType: 'html'
+    }).done(function (respuesta) {
+        $("#listaAulas").html(respuesta);
+    });
+}
+
+//  5.  Funcion para listar (cargar) Aulas
+function cargarCursos() {
+    $.ajax({
+        url: 'Acciones/busquedaCursos.php',
+        type: 'POST',
+        dataType: 'html'
+    }).done(function (respuesta) {
+        $("#listaCursos").html(respuesta);
     });
 }
 
@@ -105,10 +126,10 @@ function validarLogin() {
         type: 'POST',
         data: 'correo=' + correo + '&password=' + pass,
         dataType: 'text',
-        beforeSend: function() {
+        beforeSend: function () {
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
         },
-        success: function(response) {
+        success: function (response) {
             error = response;
             document.getElementById("cargar").innerHTML = '';
             if (error == 0) {
@@ -126,7 +147,7 @@ function validarLogin() {
 
             }
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -139,11 +160,11 @@ function validarCodigo() {
         type: 'POST',
         data: 'password=' + pass,
         dataType: 'text',
-        beforeSend: function() {
+        beforeSend: function () {
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
         },
-        success: function(response) {
-            error = response;   
+        success: function (response) {
+            error = response;
             document.getElementById("cargar").innerHTML = '';
             if (error == 0) {
                 window.location.href = "cursos.php";
@@ -157,7 +178,7 @@ function validarCodigo() {
 
             }
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -182,10 +203,10 @@ function registrar(tipo) {
             type: 'POST',
             data: cadenaUsuario + cadenaIns,
             dataType: 'text',
-            beforeSend: function() {
+            beforeSend: function () {
                 document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
             },
-            success: function(response) {
+            success: function (response) {
                 error = response;
                 document.getElementById("cargar").innerHTML = '';
                 if (error == 1) {
@@ -201,7 +222,7 @@ function registrar(tipo) {
                     return true;
                 }
             },
-            error: function() {}
+            error: function () { }
         });
     } else {
         pase = $("#txtPase").val();
@@ -210,10 +231,10 @@ function registrar(tipo) {
             type: 'POST',
             data: cadenaUsuario + '&txtPase=' + pase,
             dataType: 'text',
-            beforeSend: function() {
+            beforeSend: function () {
                 document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
             },
-            success: function(response) {
+            success: function (response) {
                 error = response;
                 document.getElementById("cargar").innerHTML = '';
                 if (error == 0) {
@@ -231,7 +252,7 @@ function registrar(tipo) {
                     return true;
                 }
             },
-            error: function() {}
+            error: function () { }
         });
     }
 }
@@ -246,10 +267,10 @@ function registrarCurso() {
         type: 'POST',
         data: 'txtIDCurso=' + curso + '&txtIDGrado=' + grado,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("contenido").innerHTML = 'Se ha creado un nuevo curso de ' + grado + ' de ' + curso + ' con el codigo: ' + response;
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -263,10 +284,10 @@ function registrarAula() {
         type: 'POST',
         data: 'txtIDCurso=' + curso + '&txtAsignatura=' + aula,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("contenido").innerHTML = 'Se ha creado un nuevo aula de ' + aula + ' para el curso con el codigo: ' + curso + ' por favor provea el codigo a sus alumnos para que puedan acceder al aula.';
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -280,7 +301,7 @@ function modificar(IDUsuario) {
         type: 'POST',
         dataType: 'text',
         data: 'IDUsuario=' + IDUsuario
-    }).done(function(res) {
+    }).done(function (res) {
         $('#columnaContenido').html(res);
     });
 }
@@ -292,7 +313,7 @@ function modificarSU(IDUsuario) {
         type: 'POST',
         dataType: 'text',
         data: 'IDUsuario=' + IDUsuario
-    }).done(function(res) {
+    }).done(function (res) {
         $('#columnaContenido').html(res);
         $('#ddCargo').dropdown().dropdown('set value', $('#txtTipo').val());
     });
@@ -315,11 +336,11 @@ function actualizarDocente() {
         type: 'POST',
         data: cadena,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
             setTimeout("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
         },
-        error: function() {}
+        error: function () { }
     });
 
 }
@@ -341,12 +362,12 @@ function actualizarUsuario() {
         type: 'POST',
         data: cadena,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
             setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloModificar.php'); listar('')", 2000);
 
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -357,7 +378,7 @@ function modificarAula(IDAula) {
         type: 'POST',
         dataType: 'text',
         data: 'IDAula=' + IDAula,
-        success: function(response) {
+        success: function (response) {
             $('#columnaContenido').html(response);
             $('#ddCurso').dropdown().dropdown('set value', $('#txtIDCurso').val());
             $('#ddEstado').dropdown().dropdown('set value', $('#txtIDEstado').val());
@@ -381,11 +402,11 @@ function actualizarAula() {
         type: 'POST',
         data: cadena,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
             setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloAulas.php');", 2000);
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -397,12 +418,12 @@ function eliminar(IDUsuario) {
         type: 'POST',
         data: 'IDUsuario=' + IDUsuario,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui blue icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';
             setTimeout("$('.message').transition('fade out');listar('')", 2000);
             setTimeout("vaciarDiv('error')", 2300);
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -414,9 +435,9 @@ function eliminarRecurso(IDRecurso, Identificador) {
         type: 'POST',
         data: 'IDRecurso=' + IDRecurso,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             if (Identificador == 1) {
-                cargarDiv('columnaContenido','Contenido/cuerpoAula.php');
+                cargarDiv('columnaContenido', 'Contenido/cuerpoAula.php');
                 setTimeout("document.getElementById(\"info\").innerHTML = '<div class=\"row mt-4\"><div class=\"col-md-12\"><div class=\"ui blue icon message\"><i class=\"info circle icon\"></i><div class=\"content\"><div class=\"header\">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';", 200)
                 setTimeout("$('.blue.icon.message').transition('fade out');", 3000);
 
@@ -428,8 +449,8 @@ function eliminarRecurso(IDRecurso, Identificador) {
 
                 setTimeout("vaciarDiv('error')", 3300);
             }
-        }, 
-        error: function() {}
+        },
+        error: function () { }
     });
 }
 
@@ -441,10 +462,10 @@ function cargarAula(id) {
         type: 'POST',
         data: 'ID=' + id,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             window.location.href = "aula.php";
         },
-        error: function() {}
+        error: function () { }
     });
 }
 
@@ -453,7 +474,7 @@ function cargarElemento() {
     var fileExtentionRange = '.pdf .doc .docx .xls .xlsx .ppt .pptx';
     var MAX_SIZE = 30; // MB
 
-    $(document).on('change', '.btn-file :file', function() {
+    $(document).on('change', '.btn-file :file', function () {
         var input = $(this);
 
         if (navigator.appVersion.indexOf("MSIE") != -1) { // IE
@@ -469,7 +490,7 @@ function cargarElemento() {
         }
     });
 
-    $('.btn-file :file').on('fileselect', function(event, numFiles, label, size) {
+    $('.btn-file :file').on('fileselect', function (event, numFiles, label, size) {
         $('#archivoAdjunto').attr('name', 'archivoAdjunto'); // allow upload.
 
         var postfix = label.substr(label.lastIndexOf('.'));
@@ -506,27 +527,27 @@ function subirRecurso() {
         if ($("#txtTitulo").val() == '' || $("#txtCat").val() == '') {
             document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor llene todos los campos.</p></div>';
             setTimeout("$('.message').transition('fade out');listar('')", 2000);
-            setTimeout("vaciarDiv('error')", 2300);    
+            setTimeout("vaciarDiv('error')", 2300);
         } else {
             let formData = new FormData();
-        formData.append("Archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento
-        formData.append("Extension", postfix);
-        formData.append("Titulo", $("#txtTitulo").val());
-        formData.append("Categorias", $("#txtCat").val());
-        fetch("Acciones/subirRecurso.php", {
-            method: 'POST',
-            body: formData,
-        })
-        .then(respuesta => respuesta.text())
-        .then(decodificado => {
-            console.log(decodificado);
-        });
+            formData.append("Archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento
+            formData.append("Extension", postfix);
+            formData.append("Titulo", $("#txtTitulo").val());
+            formData.append("Categorias", $("#txtCat").val());
+            fetch("Acciones/subirRecurso.php", {
+                method: 'POST',
+                body: formData,
+            })
+                .then(respuesta => respuesta.text())
+                .then(decodificado => {
+                    console.log(decodificado);
+                });
 
-        $('#modalRecursos').modal('hide');
-        $('.second.modal').modal('show');
-    }
+            $('#modalRecursos').modal('hide');
+            $('.second.modal').modal('show');
+        }
 
-} else {
+    } else {
         // El usuario no ha seleccionado archivos
         document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor seleccione un archivo.</p></div>';
         setTimeout("$('.message').transition('fade out');listar('')", 2000);
@@ -541,9 +562,9 @@ function leerPDF(id) {
         type: 'POST',
         data: 'ID=' + id,
         dataType: 'text',
-        success: function(response) {
+        success: function (response) {
             window.location.href = "lector.php";
         },
-        error: function() {}
+        error: function () { }
     });
 }

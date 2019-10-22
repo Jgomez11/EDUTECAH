@@ -2,7 +2,7 @@
   session_start();
 
 # Importar Clases
-  include("../Clases/Conexion.php");
+  include("../../Clases/Conexion.php");
 
 # Utilidad de fecha
   date_default_timezone_set('America/Tegucigalpa');
