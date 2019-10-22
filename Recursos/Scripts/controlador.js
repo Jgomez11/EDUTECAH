@@ -43,6 +43,22 @@ $(document).ready(function () {
             console.log(pagina);
             break;
 
+        case "aula.php":
+            document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+            vaciarDiv('modal');
+            cargarDiv("barra", "Contenido/Parciales/barra.php");
+            cargarDiv("columnaContenido", "Contenido/cuerpoAula.php");
+            cargarDiv("modal", "Contenido/modalAgregarRecurso.php");
+            console.log(pagina);
+            break;
+        case "curso.php":
+            document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+            cargarDiv("barra", "Contenido/Parciales/barra.php");
+            cargarDiv("cuerpo","Contenido/aulasDeCursos.php");		
+		
+            console.log(pagina);
+            break;
+
         default:
             break;
     }

@@ -49,7 +49,7 @@ $conexion->mysql_set_charset("utf8");
 		</div>
 	</div>
 	<div class="actions">
-		<div class="ui teal button" onclick="subirRecurso()">Aceptar</div>
+		<div class="ui blue button" onclick="subirRecurso()">Aceptar</div>
 		<div class="ui cancel red button">Cancelar</div>
 	</div>
 </div>

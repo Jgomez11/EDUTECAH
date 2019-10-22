@@ -167,7 +167,7 @@ function validarCodigo() {
             error = response;
             document.getElementById("cargar").innerHTML = '';
             if (error == 0) {
-                window.location.href = "cursos.php";
+                window.location.href = "curso.php";
                 return true;
             } else if (error == 1) {
                 document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo ingresado no es valido.</p></div>';

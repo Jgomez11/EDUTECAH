@@ -34,7 +34,7 @@ $conexion->mysql_set_charset("utf8");
 				.modal(
 				{
 					onVisible: function () {
-						$('.dropdown').dropdown();
+						$('.dropdown').dropdown({maxSelections : 3});
 					}
 				})
 				.modal('setting', 'transition', 'scale')

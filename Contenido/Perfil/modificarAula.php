@@ -108,6 +108,8 @@ $dataW = $conexion->obtenerfila($resultadoW);
 						</div>
 					</div>
 				</div>
+			<?php else: ?>
+				<input type="hidden" name="txtDocente" id="txtDocente" value="<?php echo $_SESSION['ID']?>">
 			<?php endif ?>
 
 		</div>
