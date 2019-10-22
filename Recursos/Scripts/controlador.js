@@ -5,16 +5,25 @@ $(document).ready(function () {
 
     switch (pagina) {
         case "index.php":
-            document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
-            cargarDiv("barra", "Contenido/Parciales/barra.php");
-            cargarDiv("cuerpo", "Contenido/cuerpoIndex.php");
-            console.log(pagina);
-            break;
-
         case "":
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
             cargarDiv("barra", "Contenido/Parciales/barra.php");
             cargarDiv("cuerpo", "Contenido/cuerpoIndex.php");
+            setTimeout(() => {
+                $('.carrusel').slick(
+                    {
+                        infinite: true,
+                        slidesToShow: 4,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        autoplaySpeed: 3000,
+                        prevArrow: '<button class="circular ui mini teal icon carrusel left button" data-content="Anterior" data-position="right center"><i class="chevron left icon"></i></button>',
+                        nextArrow: '<button class="circular ui mini teal icon carrusel right button" data-content="Siguiente" data-position="left center"><i class="chevron right icon"></i></button>'
+                    }
+                );
+                $('.icon.button').popup();
+            }, 300);
+
             console.log(pagina);
             break;
 
@@ -37,7 +46,6 @@ $(document).ready(function () {
         default:
             break;
     }
-
     // Inicializador de elementos de Semantic
     setTimeout("$('.ui.dropdown').dropdown();", 300);
     setTimeout("activadorColumna();", 300);
@@ -104,7 +112,7 @@ function activadorColumna() {
     var classname = document.getElementsByClassName("opcion");
     var activador = function () {
         var elements = document.getElementsByClassName("active");
-        
+
         for (let index = 0; index < elements.length; index++) {
             const element = document.getElementById(elements[index].id);
             element.classList.remove("active");
@@ -120,7 +128,7 @@ function activadorColumna() {
 
 }
 
-function columnaContenido(id){
+function columnaContenido(id) {
     switch (id) {
         case "aulas":
             vaciarDiv('modal');

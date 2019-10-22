@@ -10,3 +10,15 @@ body {
 #menu {
     margin-top: 62px;
 }
+
+.carrusel.button{
+    position: absolute;
+    top: 50%;
+}
+.carrusel.button.left{
+    left: -3%;
+}
+
+.carrusel.button.right{
+    right: -3.5%;
+}
