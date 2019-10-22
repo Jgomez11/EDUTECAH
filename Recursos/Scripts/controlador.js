@@ -21,8 +21,8 @@ $(document).ready(function () {
                         nextArrow: '<button class="circular ui mini teal icon carrusel right button" data-content="Siguiente" data-position="left center"><i class="chevron right icon"></i></button>'
                     }
                 );
-                $('.icon.button').popup();
-            }, 300);
+
+            }, 1000);
 
             console.log(pagina);
             break;
@@ -47,8 +47,12 @@ $(document).ready(function () {
             break;
     }
     // Inicializador de elementos de Semantic
-    setTimeout("$('.ui.dropdown').dropdown();", 300);
-    setTimeout("activadorColumna();", 300);
+    setTimeout(() => {
+        $('.ui.dropdown').dropdown();
+        $('.icon.button').popup();
+        activadorColumna();
+        activadorBotones();
+    }, 1000);
 });
 function activadorBotones() {
     var classname = document.getElementsByClassName("agregar");
@@ -56,6 +60,43 @@ function activadorBotones() {
         console.log(this.id);
 
         switch (this.id) {
+            case "imagen":
+                $('#modalImagen')
+                    .modal({
+                        onVisible: function () {
+                            $('.dropdown').dropdown();
+                        },
+                        onApprove: function () {
+                            subirImagen();
+                        },
+
+                        onDeny: function () {
+                            $('#attachmentName').removeAttr('name'); // cancel upload file.
+                            $('#_attachmentName').val("");
+                            $('#previa').removeAttr('src');
+                            document.getElementById("ok").classList.add("disabled");
+                        }
+                    })
+                    .modal('setting', 'transition', 'fade')
+                    .modal('show');
+                break;
+            case "tema":
+                $('#modalTema')
+                    .modal({
+                        onVisible: function () {
+                            $('.dropdown').dropdown();
+                        },
+                        onApprove: function () {
+                            cambiarColor();
+                        },
+
+                        onDeny: function () {
+                            $('.dropdown').dropdown('clear');
+                        }
+                    })
+                    .modal('setting', 'transition', 'fade')
+                    .modal('show');
+                break;
             case "aula":
                 $('#modalAulas')
                     .modal({
@@ -65,6 +106,11 @@ function activadorBotones() {
                         onApprove: function () {
                             cargarDiv('columnaContenido', 'Contenido/Perfil/moduloAulas.php');
                             $('.dropdown').dropdown('clear');
+                            setTimeout(() => {
+                                cargarAulas();
+                                $('.icon.button').popup();
+                                activadorBotones();
+                            }, 150);
                         }
                     })
                     .modal('setting', 'transition', 'fade')
@@ -91,8 +137,12 @@ function activadorBotones() {
                 $('.second.modal')
                     .modal({
                         onApprove: function () {
-                            cargarDiv('columnaContenido', 'Contenido/Perfil/moduloCursos.php');
                             $('.dropdown').dropdown('clear');
+                            setTimeout(() => {
+                                cargarCursos();
+                                $('.icon.button').popup();
+                                activadorBotones();
+                            }, 150);
                         }
                     })
                     .modal('attach events', '.first.modal .approve.button');
@@ -130,6 +180,13 @@ function activadorColumna() {
 
 function columnaContenido(id) {
     switch (id) {
+        case "modificar":
+            vaciarDiv('modal');
+            cargarDiv('modal', 'Contenido/Modales/modalModificar.php');
+            cargarDiv("columnaContenido", "Contenido/Perfil/moduloEdicion.php");
+            setTimeout("activadorBotones()", 300);
+            break;
+
         case "aulas":
             vaciarDiv('modal');
             cargarDiv("columnaContenido", "Contenido/Perfil/moduloAulas.php");
@@ -175,5 +232,58 @@ function columnaContenido(id) {
 
         default:
             break;
+    }
+}
+
+function activadorBotonesModificar() {
+    var aceptar = document.getElementsByClassName("aceptar");
+    var cancelar = document.getElementsByClassName("cancelar");
+    console.log(cancelar);
+
+    var activadorAceptar = function () {
+        console.log(this.id);
+
+        switch (this.id) {
+            case "aula":
+                actualizarAula()
+                break;
+
+            case "curso":
+
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    var activadorCancelar = function () {
+        console.log(this.id);
+
+        switch (this.id) {
+            case "aula":
+                cargarDiv('columnaContenido', 'Contenido/Perfil/ModuloAulas.php');
+                setTimeout(() => {
+                    cargarAulas();
+                    $('.icon.button').popup();
+                    activadorBotones();
+                }, 150);
+                break;
+
+            case "curso":
+
+                break;
+
+            default:
+                break;
+        }
+    };
+
+    for (var i = 0; i < aceptar.length; i++) {
+        aceptar[i].addEventListener('click', activadorAceptar, false);
+    }
+
+    for (var i = 0; i < cancelar.length; i++) {
+        cancelar[i].addEventListener('click', activadorCancelar, false);
     }
 }

@@ -374,7 +374,7 @@ function actualizarUsuario() {
 //  5. Funcion para modificar datos previo a guardar
 function modificarAula(IDAula) {
     $.ajax({
-        url: 'Contenido/modificarAula.php',
+        url: 'Contenido/Perfil/modificarAula.php',
         type: 'POST',
         dataType: 'text',
         data: 'IDAula=' + IDAula,
@@ -404,7 +404,12 @@ function actualizarAula() {
         dataType: 'text',
         success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
-            setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloAulas.php');", 2000);
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/Perfil/moduloAulas.php');", 2000);
+            setTimeout(() => {
+                cargarAulas();
+                $('.icon.button').popup();
+                activadorBotones();
+            }, 2150);
         },
         error: function () { }
     });
@@ -564,6 +569,119 @@ function leerPDF(id) {
         dataType: 'text',
         success: function (response) {
             window.location.href = "lector.php";
+        },
+        error: function () { }
+    });
+}
+
+// Funcion de carga de imagenes
+function cargarImagen() {
+    var fileExtentionRange = '.jpg .png .jpeg';
+    var MAX_SIZE = 5; // MB
+    const inputFile = document.querySelector("#archivoAdjunto");
+
+    console.log(inputFile.files);
+
+
+    $(document).on('change', '.btn-file :file', function () {
+        var input = $(this);
+
+        if (navigator.appVersion.indexOf("MSIE") != -1) { // IE
+            var label = input.val();
+
+            input.trigger('fileselect', [1, label, 0]);
+        } else {
+            var label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            var numFiles = input.get(0).files ? input.get(0).files.length : 1;
+            var size = input.get(0).files[0].size;
+
+            input.trigger('fileselect', [numFiles, label, size]);
+        }
+    });
+
+    $('.btn-file :file').on('fileselect', function (event, numFiles, label, size) {
+        $('#archivoAdjunto').attr('name', 'archivoAdjunto'); // allow upload.
+        var postfix = label.substr(label.lastIndexOf('.'));
+        if (fileExtentionRange.indexOf(postfix.toLowerCase()) > -1) {
+            if (size > 1024 * 1024 * MAX_SIZE) {
+                document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Solo se permiten archivos de ' + MAX_SIZE + ' MB o menos.</p></div>';
+                document.getElementById("ok").classList.add("disabled");
+                setTimeout("$('.message').transition('fade out');listar('')", 2000);
+                setTimeout("vaciarDiv('error')", 2300);
+                $('#attachmentName').removeAttr('name'); // cancel upload file.
+                $('#_attachmentName').val("");
+            } else {
+                if (inputFile.files && inputFile.files[0]) {
+                    var reader = new FileReader();
+        
+                    reader.onload = function (e) {
+                        $('#previa').attr('src', e.target.result);
+                    }
+        
+                    reader.readAsDataURL(inputFile.files[0]);
+                }        
+                $('#_attachmentName').val(label);
+                document.getElementById("ok").classList.remove("disabled");
+            }
+        } else {
+            document.getElementById("errorImagen").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Solo se permiten archivos con las extensiones: ' + fileExtentionRange + '.</p></div>';
+            setTimeout("$('.message').transition('fade out');", 2000);
+            document.getElementById("ok").classList.add("disabled");
+            setTimeout("vaciarDiv('errorImagen')", 2300);
+            $('#attachmentName').removeAttr('name'); // cancel upload file.
+            $('#_attachmentName').val("");
+        }
+    });
+}
+
+function subirImagen() {
+    const inputFile = document.querySelector("#archivoAdjunto");
+    if (inputFile.files.length > 0) {
+        if (navigator.appVersion.indexOf("MSIE") != -1) { // IE
+            var label = $("#archivoAdjunto").val();
+        } else {
+            var label = $("#archivoAdjunto").val().replace(/\\/g, '/').replace(/.*\//, '');
+        }
+
+        var postfix = label.substr(label.lastIndexOf('.'));
+
+        let formData = new FormData();
+        formData.append("Archivo", inputFile.files[0]); // En la posición 0; es decir, el primer elemento
+        formData.append("Extension", postfix);
+        fetch("Acciones/subirImagenUsuario.php", {
+            method: 'POST',
+            body: formData,
+        })
+            .then(respuesta => respuesta.text())
+            .then(decodificado => {
+                console.log(decodificado);
+            });
+
+        $('#modalImagen').modal('hide');
+        $('#modalImagen2').modal('show');
+
+    } else {
+        // El usuario no ha seleccionado archivos
+        document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>Por favor seleccione un archivo.</p></div>';
+        setTimeout("$('.message').transition('fade out');listar('')", 2000);
+        setTimeout("vaciarDiv('error')", 2300);
+    }
+}
+
+function cambiarColor() {
+    color = $('#slcColor').val();
+    $.ajax({
+        url: 'Acciones/cambiarColor.php',
+        type: 'POST',
+        data: 'color=' + color,
+        dataType: 'text',
+
+        success: function (response) {
+            console.log(response);
+            console.log(color);
+            
+            $('#modalTema').modal('hide');
+            $('#modalTema2').modal('show');
         },
         error: function () { }
     });

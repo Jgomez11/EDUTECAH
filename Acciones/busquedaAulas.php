@@ -19,7 +19,7 @@ if ($_SESSION["TipoUsuario"] == '3') {
     );
 } else {
     $consulta = sprintf(
-        "SELECT CONCAT(Nombre, ' ', Apellido) AS Nombre, IDAula, tblaula.CodigoCurso, Estado, Asignatura, NombreCurso, Grado FROM tblaula INNER JOIN tblusuario ON tblusuario.IDUsuario = tblaula.IDDocente INNER JOIN tblcursoxinstituto ON tblaula.CodigoCurso = tblcursoxinstituto.CodigoCurso INNER JOIN tblestado ON tblestado.IDEstado = tblaula.IDEstado INNER JOIN tblcursos ON tblcursoxinstituto.IDCurso = tblcursos.IDCurso INNER JOIN tblgrado ON tblcursoxinstituto.IDGrado = tblgrado.IDGrado WHERE tblaula.IDInstituto = '%s' ORDER BY IDAula ",
+        "SELECT CONCAT(Nombre, ' ', Apellido) AS Nombre, IDAula, tblaula.CodigoCurso, Estado, Asignatura, Imagen, NombreCurso, Grado FROM tblaula INNER JOIN tblusuario ON tblusuario.IDUsuario = tblaula.IDDocente INNER JOIN tblcursoxinstituto ON tblaula.CodigoCurso = tblcursoxinstituto.CodigoCurso INNER JOIN tblestado ON tblestado.IDEstado = tblaula.IDEstado INNER JOIN tblcursos ON tblcursoxinstituto.IDCurso = tblcursos.IDCurso INNER JOIN tblgrado ON tblcursoxinstituto.IDGrado = tblgrado.IDGrado WHERE tblaula.IDInstituto = '%s' ORDER BY IDAula ",
         $conexion->antiInyeccion($_SESSION['Instituto'])
     );
 }
@@ -61,7 +61,7 @@ $iter = $conexion->cantidadRegistros($resultado);
                                 <?php echo $data["Asignatura"] ?>
                             </p>
                             <button class="circular ui right floated icon red button" data-content="Eliminar"><i class="trash icon"></i></button>
-                            <button class="circular ui right floated icon blue button" data-content="Modificar" onclick="modificarAula('<?php echo $data['IDAula'] ?>');"><i class="pencil alternate icon"></i></button>
+                            <button class="circular ui right floated icon blue button" data-content="Modificar" onclick="modificarAula('<?php echo $data['IDAula'] ?>');setTimeout('activadorBotonesModificar()', 150)"><i class="pencil alternate icon"></i></button>
                         </div>
                     </div>
                     <div class="content">
@@ -75,7 +75,11 @@ $iter = $conexion->cantidadRegistros($resultado);
                         <h6><?php echo $data["Estado"] ?></h6>
                         <?php if ($_SESSION["TipoUsuario"] == '2') : ?>
                             <h4 class="ui sub header">Docente: </h4>
-                            <h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.png"><?php echo $data["Nombre"]?></h6>
+                            <?php if ($data["Imagen"] != "NULL") : ?>
+                                <h6><img class="ui avatar image" src="<?php echo 'data:image/png;base64,' . base64_encode($data["Imagen"]) ?>"><?php echo $data["Nombre"] ?></h6>
+                            <?php else : ?>
+                                <h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.jpg><?php echo $data["Nombre"] ?></h6>
+                            <?php endif ?>
                         <?php endif ?>
                         <button class="ui fluid teal button mt-4" onclick="cargarAula('<?php echo $data['IDAula'] ?>');"><i class="eye icon"></i>Ver Aula</button>
                     </div>

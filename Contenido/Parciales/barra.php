@@ -5,8 +5,11 @@ $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 ?>
 
+<?php if (!empty($_SESSION) && isset($_SESSION['Tema'])) :?>
+<div class="ui <?php echo $_SESSION['Tema']?> inverted secondary menu fixed top navbar navbar-expand-md">
+<?php else:?>
 <div class="ui teal inverted secondary menu fixed top navbar navbar-expand-md">
-
+<?php endif?>
 	<!--Botones de izquierda-->
 	<a class="navbar-brand" href="index.php"><img height="40px" src="Recursos/Imagenes/logo.png"></a>
 	<a class="item" href="index.php">Inicio</a>
@@ -52,14 +55,15 @@ $conexion->mysql_set_charset("utf8");
 			<i class="bars icon"></i>
 			<div class="menu">
 				<?php if (isset($_SESSION['TipoUsuario']) && $_SESSION['TipoUsuario'] == '2') : ?>
-					<a class="item" href="planes.php"><i class="alternate list icon"></i> Actualizar plan</a>';
+					<a class="item" href="planes.php"><i class="alternate list icon"></i> Actualizar plan</a>
 				<?php endif ?>
-				<a class="item" href="perfil.php"><img class="ui avatar image" src="<?php echo $img ?>"><span>Tu perfil</span></a>
+				<a class="item" href="perfil.php"><span><i class="user icon"></i>Tu perfil</span></a>
 				<div class="divider"></div>
 				<a class="item" href="Acciones/cerrarSesion.php"><i class="sign out icon"></i>Cerrar sesion</a>
 			</div>
 		</div>
 	<?php endif ?>
+	
 	<?php if (isset($_SESSION['CodigoCurso'])) : ?>
 		<div class="ui top pointing dropdown item">
 			<a><i class="dropdown  icon"></i></a>

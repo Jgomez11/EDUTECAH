@@ -17,5 +17,5 @@ session_start();
 		</div>
 	</div>
 
-	<div id="listaCursos"></div>
+	<div id="listaCursos" class="mb-4"></div>
 </div>

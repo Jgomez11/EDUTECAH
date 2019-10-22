@@ -11,8 +11,8 @@ date_default_timezone_set('America/Tegucigalpa');
 #	Crear conexion
 $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
-
 ?>
+
 <?php if ($_SESSION['Plan'] == '1' && $_SESSION["TipoUsuario"] == '2') : ?>
     <?php
         $consulta = sprintf(
