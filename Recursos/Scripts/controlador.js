@@ -48,11 +48,29 @@ $(document).ready(function () {
             cargarDiv("modal", "Contenido/modalAgregarRecurso.php");
             console.log(pagina);
             break;
+        case "lector.php":
+            document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
+            cargarDiv("barra", "Contenido/Parciales/barra.php");
+            console.log(pagina);
+            break;
         case "curso.php":
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
             cargarDiv("barra", "Contenido/Parciales/barra.php");
             cargarDiv("cuerpo", "Contenido/aulasDeCursos.php");
+            setTimeout(() => {
+                cargarAnuncios();
+            }, 100);
 
+            setTimeout(() => {
+                $('.carrusel').slick(
+                    {
+                        infinite: true,
+                        adaptiveHeight: true,
+                        prevArrow: '<button class="circular ui mini teal icon carrusel left button" data-content="Anterior" data-position="right center"><i class="chevron left icon"></i></button>',
+                        nextArrow: '<button class="circular ui mini teal icon carrusel right button" data-content="Siguiente" data-position="left center"><i class="chevron right icon"></i></button>'
+                    }
+                );
+            }, 500);
             console.log(pagina);
             break;
 
@@ -67,6 +85,7 @@ $(document).ready(function () {
         activadorBotones();
     }, 1000);
 });
+
 function activadorBotones() {
     var classname = document.getElementsByClassName("agregar");
     var activador = function () {
@@ -93,6 +112,7 @@ function activadorBotones() {
                     .modal('setting', 'transition', 'fade')
                     .modal('show');
                 break;
+
             case "tema":
                 $('#modalTema')
                     .modal({
@@ -118,6 +138,29 @@ function activadorBotones() {
                 }, 300);
                 break;
 
+            case "titulo":
+                $('#txtAnuncio').val(function () {
+                    return $('#txtAnuncio').val() + '<h4>Insertar un título</h4>';
+                });
+                break;
+
+            case "negrita":
+                $('#txtAnuncio').val(function () {
+                    return $('#txtAnuncio').val() + '<b>Escribe tu texto aquí</b>';
+                });
+                break;
+
+            case "cursiva":
+                $('#txtAnuncio').val(function () {
+                    return $('#txtAnuncio').val() + '<i>Escribe tu texto aquí</i>';
+                });
+                break;
+
+            case "subrayado":
+                $('#txtAnuncio').val(function () {
+                    return $('#txtAnuncio').val() + '<u>Escribe tu texto aquí</u>';
+                });
+                break;
             case "aula":
                 $('#modalAulas')
                     .modal({
@@ -212,6 +255,7 @@ function columnaContenido(id) {
             vaciarDiv('modal');
             cargarDiv("columnaContenido", "Contenido/Perfil/moduloAnuncios.php");
             setTimeout("cargarAnuncios()", 300);
+            setTimeout("$('.icon.button').popup();", 300);
             setTimeout("activadorBotones()", 300);
             break;
 
@@ -280,6 +324,13 @@ function activadorBotonesModificar() {
 
                 break;
 
+            case "director":
+                actualizarDocente();
+                break;
+            case "su":
+                actualizarUsuario();
+                break;
+
             default:
                 break;
         }
@@ -300,6 +351,12 @@ function activadorBotonesModificar() {
 
             case "curso":
 
+                break;
+
+            case "director":
+            case "su":
+                cargarDiv('columnaContenido', 'Contenido/Perfil/moduloUsuarios.php');
+                setTimeout('cargarUsuarios("")', 300);
                 break;
 
             default:

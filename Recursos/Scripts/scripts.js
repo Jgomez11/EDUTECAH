@@ -148,7 +148,7 @@ function validarLogin() {
                 return true;
             } else if (error == 1) {
                 document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>La contraseña ingresada es incorrecta, por favor intente de nuevo.</p></div>';
-                setTimeout("$('.message').transition('fade out');listar('')", 2000);
+                setTimeout("$('.message').transition('fade out');", 2000);
                 setTimeout("vaciarDiv('error')", 2300);
                 return true;
             } else if (error == 2) {
@@ -165,7 +165,8 @@ function validarLogin() {
 //  1.  Funcion para validar login de alumnos
 function validarCodigo() {
     pass = $("#txtCodAula").val();
-
+    console.log(pass);
+    
     $.ajax({
         url: 'Acciones/entrarCurso.php',
         type: 'POST',
@@ -182,7 +183,7 @@ function validarCodigo() {
                 return true;
             } else if (error == 1) {
                 document.getElementById("error").innerHTML = '<div class="ui error message mb-3"><div class="header">Error:</div><p>El codigo ingresado no es valido.</p></div>';
-                setTimeout("$('.message').transition('fade out');listar('')", 2000);
+                setTimeout("$('.message').transition('fade out');", 2000);
                 setTimeout("vaciarDiv('error')", 2300);
                 return true;
             } else {
@@ -308,7 +309,7 @@ function registrarAula() {
 //  1.  Funcion para mostrar datos previos a modificar
 function modificar(IDUsuario) {
     $.ajax({
-        url: 'Contenido/modificarDirector.php',
+        url: 'Contenido/Perfil/modificarDirector.php',
         type: 'POST',
         dataType: 'text',
         data: 'IDUsuario=' + IDUsuario
@@ -320,7 +321,7 @@ function modificar(IDUsuario) {
 //  2.  Funcion para modificar datos previos a modificar en modo SU
 function modificarSU(IDUsuario) {
     $.ajax({
-        url: 'Contenido/modificarSU.php',
+        url: 'Contenido/Perfil/modificarSU.php',
         type: 'POST',
         dataType: 'text',
         data: 'IDUsuario=' + IDUsuario
@@ -349,7 +350,8 @@ function actualizarDocente() {
         dataType: 'text',
         success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
-            setTimeout("cargarDiv('columnaContenido', 'Contenido/modificarUsuarios.php'); listar('')", 2000);
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/Perfil/moduloUsuarios.php')", 2000);
+            setTimeout("cargarUsuarios('')", 2300);
         },
         error: function () { }
     });
@@ -375,8 +377,8 @@ function actualizarUsuario() {
         dataType: 'text',
         success: function (response) {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
-            setTimeout("cargarDiv('columnaContenido', 'Contenido/moduloModificar.php'); listar('')", 2000);
-
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/Perfil/moduloUsuarios.php')", 2000);
+            setTimeout("cargarUsuarios('')", 2300);
         },
         error: function () { }
     });
@@ -459,7 +461,7 @@ function eliminarRecurso(IDRecurso, Identificador) {
 
                 setTimeout("vaciarDiv('info')", 3300);
             } else {
-                listarRecur('');
+                cargarRecursos('');
                 setTimeout("document.getElementById(\"error\").innerHTML = '<div class=\"row mt-4\"><div class=\"col-md-12\"><div class=\"ui blue icon message\"><i class=\"info circle icon\"></i><div class=\"content\"><div class=\"header\">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';", 200)
                 setTimeout("$('.blue.icon.message').transition('fade out');", 3000);
 

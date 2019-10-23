@@ -67,12 +67,12 @@ $dataW = $conexion->obtenerfila($resultadoW);
 			<br>
 			<div class="row mb-3 ml-2">
 				<div class="col-lg-6 mx-auto">
-					<button class="ui fluid blue button aceptar" id="aula">Aceptar</button>
+					<button class="ui fluid blue button aceptar" id="editar">Aceptar</button>
 				</div>
 			</div>
 			<div class="row mb-3 ml-2">
 				<div class="col-lg-6 mx-auto">
-					<a class="ui fluid red button cancelar" id="aula">Cancelar</a>
+					<a class="ui fluid red button cancelar" id="editar">Cancelar</a>
 				</div>
 			</div>
 		</div>

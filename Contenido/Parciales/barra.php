@@ -21,7 +21,7 @@ $conexion->mysql_set_charset("utf8");
 	<?php endif ?>
 
 	<?php if (isset($_SESSION["CodigoCurso"])) : ?>
-		<a class="item" href="cursos.php">Curso: <?php echo $_SESSION["CodigoCurso"] ?></a>
+		<a class="item" href="curso.php">Curso: <?php echo $_SESSION["CodigoCurso"] ?></a>
 	<?php endif ?>
 
 	<?php if (isset($_SESSION['TipoUsuario']) && $_SESSION['TipoUsuario'] == '2') : ?>

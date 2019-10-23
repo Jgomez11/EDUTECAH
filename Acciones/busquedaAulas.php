@@ -78,7 +78,7 @@ $iter = $conexion->cantidadRegistros($resultado);
                             <?php if ($data["Imagen"] != NULL) : ?>
                                 <h6><img class="ui avatar image" src="<?php echo 'data:image/png;base64,' . base64_encode($data["Imagen"]) ?>"><?php echo $data["Nombre"] ?></h6>
                             <?php else : ?>
-                                <h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.jpg><?php echo $data["Nombre"] ?></h6>
+                                <h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.jpg"><?php echo $data["Nombre"] ?></h6>
                             <?php endif ?>
                         <?php endif ?>
                         <button class="ui fluid teal button mt-4" onclick="cargarAula('<?php echo $data['IDAula'] ?>');"><i class="eye icon"></i>Ver Aula</button>

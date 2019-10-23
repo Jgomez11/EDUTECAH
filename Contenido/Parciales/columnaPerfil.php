@@ -13,7 +13,7 @@ session_start();
     <img style="width: 200px; height: 200px" class="ui circular small bordered image" src="<?php echo $img ?>">
     <p>
         <h5><?php echo $_SESSION['Usuario']; ?>
-            &nbsp;<button class="circular opcion ui mini icon <?php echo $_SESSION['Tema'] ?> button" id="modificar" title="Modificar tu perfil"><i class="edit icon"></i> </button>
+            &nbsp;<button class="circular opcion ui mini icon <?php echo $_SESSION['Tema'] ?> button" id="modificar" data-content="Modificar tu perfil"><i class="edit icon"></i> </button>
         </h5>
     </p>
 
@@ -39,6 +39,14 @@ session_start();
                 Docentes
             </a>
         <?php endif ?>
+
+        <?php if ($_SESSION["TipoUsuario"] == '1') : ?>
+            <a class="opcion item" id="docentes">
+                <i class="users icon"></i>
+                Usuarios
+            </a>
+        <?php endif ?>
+        
 
         <a class="opcion item" id="recursos">
             <i class="book icon"></i>
