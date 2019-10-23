@@ -75,7 +75,7 @@ $iter = $conexion->cantidadRegistros($resultado);
                         <h6><?php echo $data["Estado"] ?></h6>
                         <?php if ($_SESSION["TipoUsuario"] == '2') : ?>
                             <h4 class="ui sub header">Docente: </h4>
-                            <?php if ($data["Imagen"] != "NULL") : ?>
+                            <?php if ($data["Imagen"] != NULL) : ?>
                                 <h6><img class="ui avatar image" src="<?php echo 'data:image/png;base64,' . base64_encode($data["Imagen"]) ?>"><?php echo $data["Nombre"] ?></h6>
                             <?php else : ?>
                                 <h6><img class="ui avatar image" src="Recursos/Imagenes/perfilDefecto.jpg><?php echo $data["Nombre"] ?></h6>

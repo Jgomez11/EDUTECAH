@@ -29,16 +29,13 @@ $(document).ready(function () {
 
         case "perfil.php":
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
-            vaciarDiv('modal');
             cargarDiv("barra", "Contenido/Parciales/barra.php");
             cargarDiv("columnaOpciones", "Contenido/Parciales/columnaPerfil.php");
-            cargarDiv("columnaContenido", "Contenido/Perfil/moduloAulas.php");
-            cargarDiv('modal', 'Contenido/Modales/modalAulas.php');
+            cargarDiv("columnaContenido", "Contenido/Perfil/moduloAnuncios.php");
             setTimeout(() => {
                 cargarDiv('plan', 'Contenido/Parciales/mensajePlan.php');
-                cargarAulas();
+                cargarAnuncios();
                 $('.icon.button').popup();
-                activadorBotones();
             }, 250);
             console.log(pagina);
             break;
@@ -54,8 +51,8 @@ $(document).ready(function () {
         case "curso.php":
             document.getElementById("cargar").innerHTML = '<div class="ui active dimmer"><div class="ui text loader">Cargando</div></div>';
             cargarDiv("barra", "Contenido/Parciales/barra.php");
-            cargarDiv("cuerpo","Contenido/aulasDeCursos.php");		
-		
+            cargarDiv("cuerpo", "Contenido/aulasDeCursos.php");
+
             console.log(pagina);
             break;
 
@@ -113,6 +110,14 @@ function activadorBotones() {
                     .modal('setting', 'transition', 'fade')
                     .modal('show');
                 break;
+
+            case "publicar":
+                publicar();
+                setTimeout(() => {
+                    cargarAnuncios();
+                }, 300);
+                break;
+
             case "aula":
                 $('#modalAulas')
                     .modal({
@@ -200,6 +205,13 @@ function columnaContenido(id) {
             vaciarDiv('modal');
             cargarDiv('modal', 'Contenido/Modales/modalModificar.php');
             cargarDiv("columnaContenido", "Contenido/Perfil/moduloEdicion.php");
+            setTimeout("activadorBotones()", 300);
+            break;
+
+        case "anuncios":
+            vaciarDiv('modal');
+            cargarDiv("columnaContenido", "Contenido/Perfil/moduloAnuncios.php");
+            setTimeout("cargarAnuncios()", 300);
             setTimeout("activadorBotones()", 300);
             break;
 

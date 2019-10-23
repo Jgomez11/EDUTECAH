@@ -104,7 +104,7 @@ function cargarAulas() {
     });
 }
 
-//  5.  Funcion para listar (cargar) Aulas
+//  6.  Funcion para listar (cargar) Aulas
 function cargarCursos() {
     $.ajax({
         url: 'Acciones/busquedaCursos.php',
@@ -112,6 +112,17 @@ function cargarCursos() {
         dataType: 'html'
     }).done(function (respuesta) {
         $("#listaCursos").html(respuesta);
+    });
+}
+
+//  7.  Funcion para listar (cargar) Aulas
+function cargarAnuncios() {
+    $.ajax({
+        url: 'Acciones/busquedaAnuncios.php',
+        type: 'POST',
+        dataType: 'html'
+    }).done(function (respuesta) {
+        $("#listaAnuncios").html(respuesta);
     });
 }
 
@@ -613,13 +624,13 @@ function cargarImagen() {
             } else {
                 if (inputFile.files && inputFile.files[0]) {
                     var reader = new FileReader();
-        
+
                     reader.onload = function (e) {
                         $('#previa').attr('src', e.target.result);
                     }
-        
+
                     reader.readAsDataURL(inputFile.files[0]);
-                }        
+                }
                 $('#_attachmentName').val(label);
                 document.getElementById("ok").classList.remove("disabled");
             }
@@ -679,9 +690,25 @@ function cambiarColor() {
         success: function (response) {
             console.log(response);
             console.log(color);
-            
+
             $('#modalTema').modal('hide');
             $('#modalTema2').modal('show');
+        },
+        error: function () { }
+    });
+}
+
+function publicar() {
+    publi = $('#txtAnuncio').val();
+    $('#txtAnuncio').val("");
+    $.ajax({
+        url: 'Acciones/publicar.php',
+        type: 'POST',
+        data: 'publi=' + publi,
+        dataType: 'text',
+
+        success: function (response) {
+            console.log(response);
         },
         error: function () { }
     });
