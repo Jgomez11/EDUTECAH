@@ -121,7 +121,7 @@ if(isset($_POST['consulta'])){
                 echo'
                 <td class="center aligned">
                 <div class="mini ui fluid buttons">
-                <button class="ui blue button" onclick="modificarCalificacion('.$data["IDCalificacion"].'); setTimeout('activadorBotonesModificar()', 150)"><i class="pencil alternate icon"></i>Editar</button>
+                <button class="ui blue button" onclick="modificarCalificacion('.$data["IDCalificacion"].');setTimeout(\'activadorBotonesModificar()\', 150)"><i class="pencil alternate icon"></i>Editar</button>
                 <button class="ui red button" onclick="$(\'#modalBorrarAlumno\')
                 .modal(
                 {

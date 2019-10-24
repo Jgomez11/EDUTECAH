@@ -336,7 +336,7 @@ function activadorBotonesModificar() {
             actualizarDocente();
             break;
 
-            case "ECalificacion":
+            case "Calificacion":
             actualizarCalificacion();
             break;
             
@@ -365,7 +365,11 @@ function activadorBotonesModificar() {
             case "curso":
 
             break;
+            case "Calificacion":
+            cargarDiv('columnaContenido', 'Contenido/Perfil/moduloCalificaciones.php');
+            setTimeout('cargarCalificaciones("")', 300);
 
+            break;
             case "director":
             case "su":
             cargarDiv('columnaContenido', 'Contenido/Perfil/moduloUsuarios.php');

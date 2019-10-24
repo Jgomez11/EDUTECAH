@@ -390,16 +390,15 @@ function actualizarDocente() {
 
 //  3.1  Funcion para guardar cambios en calificaciones
 function actualizarCalificacion() {
-    IDC = $('#txtIdentificadorC').val();
+    IDC = $('#txtIDC').val();
     not1 = $('#txtNot1').val();
     not2 = $('#txtNot2').val();
     not3 = $('#txtNot3').val();
     acum = $('#txtAcum').val();
     proy = $('#txtProy').val();
-    recu = $('#txtRecu').val();
     notf = $('#txtNotF').val();
 
-    cadena = 'txtIdentificadorC=' + IDC + '&txtNot1=' + not1 + '&txtNot2=' + not2 + '&txtNot3=' + not3 + '&txtAcum=' + acum + '&txtProy=' + proy + '&Recu=' + recu + '&NotF=' + notf;
+    cadena = 'txtIDC=' + IDC + '&txtNot1=' + not1 + '&txtNot2=' + not2 + '&txtNot3=' + not3 + '&txtAcum=' + acum + '&txtProy=' + proy + '&txtNotF=' + notf;
 
     $.ajax({
         url: 'Acciones/modificarCalificaciones.php',

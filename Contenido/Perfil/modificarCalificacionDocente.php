@@ -45,7 +45,7 @@ $data=$conexion->obtenerfila($resultado);
 
 			<div class="col-lg-2">
 				<label>Nota IIIParcial:</label>
-				<input type="text" name="txtNot2" id="txtNot2" value="<?php echo $data['NotaIIIP']; ?>" class="form-control">
+				<input type="text" name="txtNot2" id="txtNot3" value="<?php echo $data['NotaIIIP']; ?>" class="form-control">
 			</div>
 
 			<div class="col-lg-2">
@@ -78,13 +78,13 @@ $data=$conexion->obtenerfila($resultado);
 		<div class="row mb-3 ml-2">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-				<button class="ui fluid blue button aceptar" id="ECalificacion">Guardar cambios</button>
+				<button class="ui fluid blue button aceptar" id="Calificacion">Guardar cambios</button>
 			</div>
 		</div>
 		<div class="row mb-3 ml-2">
 			<div class="col-lg-4"></div>
 			<div class="col-lg-4">
-				<a href="#" class="ui fluid red button cancelar" id="director">Cancelar</a>
+				<a href="#" class="ui fluid red button cancelar" id="Calificacion">Cancelar</a>
 			</div>
 		</div>
 
