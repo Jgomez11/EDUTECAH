@@ -198,5 +198,20 @@ if ($iter == 0) {
 			</div>';
 		}
 		?>
+		<br>
+		<br>	
+		 <div id="contenido" class="container">
+		 	<div class="row">
+		 		<div class="col-md-4  m-auto">
+		 			<?php
+		 			if($_SESSION['TipoUsuario']==2){ 
+      					echo '<a href="index.php" class="btn btn-block ui red button">Regresar</a>';
+      				}elseif ($_SESSION['TipoUsuario']==3) {
+      					echo '<a href="index.php" class="btn btn-block ui red button">Regresar</a>';
+      				}
+      				 ?>
+      			</div>
+      		</div>	
+    	</div>
 	</div>
 </div>

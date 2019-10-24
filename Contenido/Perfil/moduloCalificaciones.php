@@ -22,7 +22,7 @@ $conexion->mysql_set_charset("utf8");
 	<div class="row mt-4">
 		<div class="col-md-4 mx-auto">
 			<?php if ($_SESSION["TipoUsuario"] == '3') : ?>
-				<button class="ui teal fluid button agregar" id="calificaciones"><br>
+				<button class="ui teal fluid button agregar" id="alumno"><br>
 					<i class="add icon"></i><br><br>Agregar Alumnos<br><br>
 				</button>
 			<?php endif ?>

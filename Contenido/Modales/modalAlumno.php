@@ -12,7 +12,7 @@ $conexion = new Conexion();
 $conexion->mysql_set_charset("utf8");
 ?>
 
-<div class="ui first small modal" id="modalAulas">
+<div class="ui first small modal" id="modalAlumno">
 	<div class="header">Agregar nueva aula</div>
 
 	<div class="content">

@@ -161,6 +161,7 @@ function activadorBotones() {
                 return $('#txtAnuncio').val() + '<u>Escribe tu texto aquí</u>';
             });
             break;
+
             case "aula":
             $('#modalAulas')
             .modal({
@@ -183,6 +184,32 @@ function activadorBotones() {
             $('.second.modal')
             .modal('attach events', '.first.modal .approve.button');
             break;
+
+
+
+            case "alumno":
+            $('#modalAlumno')
+            .modal({
+                onVisible: function () {
+                    $('.dropdown').dropdown();
+                },
+                onApprove: function () {
+                    cargarDiv('columnaContenido', 'Contenido/Perfil/moduloCalificaciones.php');
+                    $('.dropdown').dropdown('clear');
+                    setTimeout(() => {
+                        cargarCalificaciones();
+                        $('.icon.button').popup();
+                        activadorBotones();
+                    }, 150);
+                }
+            })
+            .modal('setting', 'transition', 'fade')
+            .modal('show');
+
+            $('.second.modal')
+            .modal('attach events', '.first.modal .approve.button');
+            break;
+
 
             case "curso":
             $('#modalCursos')
@@ -298,6 +325,7 @@ function columnaContenido(id) {
         case "calificaciones":
         vaciarDiv('modal');
         cargarDiv("columnaContenido", "Contenido/Perfil/moduloCalificaciones.php");
+        cargarDiv('modal', 'Contenido/Modales/modalAlumno.php');
         cargarDiv('modal', 'Contenido/Modales/modalConfirmarEliminar.php');
         setTimeout("cargarCalificaciones('');", 150);
         setTimeout("$('.icon.button').popup();", 300);

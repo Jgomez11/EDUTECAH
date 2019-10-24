@@ -30,6 +30,17 @@ $conexion->mysql_set_charset("utf8");
   <script src="Frameworks/Bootstrap/js/bootstrap.min.js"></script>
   <script src="Frameworks/Semantic/semantic.min.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
+    <style type="text/css">
+    #divCard{
+      -webkit-transform:scale(1,1);
+      -webkit-transition-duration:100ms;
+    }
+
+    #divCard:hover{
+      -webkit-transform:scale(1.12,1.12);
+      -webkit-transition-duration:100ms;
+    }
+  </style>
 </head>
 
 <body style="background-color: #eafbf1">
@@ -57,7 +68,7 @@ $conexion->mysql_set_charset("utf8");
           <div class="row">
 
             <?php
-            $consulta="select tbltipoplan.IDTipoPlan, tbltipoplan.TipoPlan , tbltipoplan.Precio, tbltipoplan.Soporte, tbltipoplan.AulasDisponibles from tbltipoplan";
+            $consulta="select tbltipoplan.IDTipoPlan, tbltipoplan.TipoPlan , tbltipoplan.Precio, tbltipoplan.Soporte, tbltipoplan.AulasDisponibles, tbltipoplan.Calificaciones, tbltipoplan.notificacionesEmail from tbltipoplan";
 
             $resultado=$conexion->ejecutarconsulta($consulta);
 
@@ -65,11 +76,9 @@ $conexion->mysql_set_charset("utf8");
               echo'
 
 
-              <div class="col-md-3">
+              <div class="col-md-3" id="divCard">
               
-              <div class="ui card">
-              
-              <div class="content">
+              <div class="card ui">
               
               <div class="ui center aligned header"> <br> '.$arreglo['TipoPlan'].'<br> $  '   .$arreglo['Precio']. ' </div>
               <div class="meta">
@@ -81,6 +90,10 @@ $conexion->mysql_set_charset("utf8");
               <div class="item"> <strong>Cantidad de Aulas: </strong> &emsp;&emsp;&emsp;&emsp; <em>'.$arreglo['AulasDisponibles'].'</em>  <br> <br></div>
               
               <div class="item"><strong> Soporte Guiado por Video: </strong> &nbsp; &nbsp; <em>  '.$arreglo['Soporte'].'</em>  <br><br></div>
+
+              <div class="item"><strong> Calificaciones: </strong> &nbsp; &nbsp; &nbsp; &nbsp;  &emsp;  &emsp;  &emsp; &nbsp; <em>  '.$arreglo['Calificaciones'].'</em>  <br><br></div>
+
+              <div class="item"><strong> Notificaciones via email: </strong> &nbsp; &nbsp; &nbsp; <em>  '.$arreglo['notificacionesEmail'].'</em>  <br><br></div>
 
               <div class="item"> <strong>Contenido Disponible 24/7: </strong> &nbsp;  <em>SI</em> <br> <br> </div>
 
@@ -98,7 +111,6 @@ $conexion->mysql_set_charset("utf8");
 
               </div>
               
-              </div>
               </div>
               ';     }  ?>  
 
