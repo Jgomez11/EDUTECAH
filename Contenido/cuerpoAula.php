@@ -200,9 +200,10 @@ if ($iter == 0) {
 		?>
 		<br>
 		<br>	
-		 <div id="contenido" class="container">
-		 	<div class="row">
-		 		<div class="col-md-4  m-auto">
+		
+		<div id="contenido" class="container">
+			<div class="row">
+		 	<!--	<div class="col-md-4  m-auto">
 		 			<?php
 		 			if($_SESSION['TipoUsuario']==2){ 
       					echo '<a href="index.php" class="btn btn-block ui red button">Regresar</a>';
@@ -210,8 +211,8 @@ if ($iter == 0) {
       					echo '<a href="index.php" class="btn btn-block ui red button">Regresar</a>';
       				}
       				 ?>
-      			</div>
-      		</div>	
-    	</div>
-	</div>
-</div>
+      				</div>-->
+      			</div>	
+      		</div>
+      	</div>
+      </div>

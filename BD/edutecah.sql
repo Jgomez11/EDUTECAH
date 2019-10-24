@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 24-10-2019 a las 02:20:25
+-- Tiempo de generación: 24-10-2019 a las 08:07:44
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -46,20 +46,15 @@ CREATE TABLE IF NOT EXISTS `tblanuncios` (
   `Fecha` date DEFAULT NULL,
   `Hora` time DEFAULT NULL,
   PRIMARY KEY (`IDAnuncio`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblanuncios`
 --
 
 INSERT INTO `tblanuncios` (`IDAnuncio`, `IDUsuario`, `IDInstituto`, `Anuncio`, `Fecha`, `Hora`) VALUES
-(1, 1, 1, 'Hola, esta es una prueba', '2019-10-23', '10:00:00'),
-(2, 1, 1, 'Hola, esta es una prueba 2', '2019-10-23', '10:08:00'),
-(3, 2, 1, 'Hey', '2019-10-23', '10:37:41'),
-(4, 1, 1, 'q pepsi\n', '2019-10-23', '17:10:16'),
-(5, 1, 1, '', '2019-10-23', '17:10:19'),
-(6, 1, 1, 'Asamblea a las 7 am para alumnos\nobligatorio asistir', '2019-10-23', '17:25:48'),
-(7, 1, 1, '<h4>Comunicado</h4>\n\n<b>Asamblea a las 7 am para alumnos\nobligatorio asistir</b>', '2019-10-23', '17:27:25');
+(8, 1, 1, '<h4>Esta Es una Prueba De Anuncio</h4>\n\n<b>Bienvenidos todos.</b>', '2019-10-24', '01:06:35'),
+(9, 2, 1, '<h4>Alerta a todos mis Alumnos</h4>\r\n<b>No olvidar revisar cada fin de semana nuevo contenido</b>', '2019-10-24', '01:08:01');
 
 -- --------------------------------------------------------
 
@@ -76,21 +71,25 @@ CREATE TABLE IF NOT EXISTS `tblaula` (
   `Asignatura` varchar(30) NOT NULL,
   `IDEstado` int(10) NOT NULL,
   PRIMARY KEY (`IDAula`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblaula`
 --
 
 INSERT INTO `tblaula` (`IDAula`, `IDDocente`, `IDInstituto`, `CodigoCurso`, `Asignatura`, `IDEstado`) VALUES
-(1, 2, 1, 'WICWCNVT', 'Informatica', 2),
-(2, 2, 1, 'WICWCNVT', 'Sociologia', 2),
-(3, 2, 1, 'WICWCNVT', 'Finanzas', 2),
+(1, 2, 1, 'E9I1OM6Q', 'Informatica', 2),
+(2, 2, 1, 'E9I1OM6Q', 'Sociologia', 2),
+(3, 2, 1, 'E9I1OM6Q', 'Finanzas', 2),
 (4, 2, 1, 'E9I1OM6Q', 'Lo que sea', 1),
-(5, 2, 1, 'KNNFIPQ1', 'Mate', 1),
+(5, 2, 1, 'KU63RWP8', 'Matematicas', 2),
 (6, 2, 1, 'E9I1OM6Q', 'Otra', 1),
-(7, 2, 1, 'KU63RWP8', 'Biologia', 2),
-(8, 2, 1, 'KU63RWP8', 'Quimica', 2);
+(7, 6, 1, 'KU63RWP8', 'Biologia', 2),
+(8, 2, 1, 'KU63RWP8', 'Quimica', 2),
+(9, 2, 1, 'KNNFIPQ1', 'Español', 2),
+(10, 2, 1, 'UI5A3B9V', 'Matematicas', 1),
+(11, 2, 1, 'UI5A3B9V', 'Español', 1),
+(12, 2, 1, 'UI5A3B9V', 'Matematicas', 1);
 
 -- --------------------------------------------------------
 
@@ -221,16 +220,16 @@ CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
 
 INSERT INTO `tblcursoxinstituto` (`IDCurso`, `IDGrado`, `CodigoCurso`, `IDInstituto`) VALUES
 (1, 1, 'NN3NHZ0W', 1),
-(1, 1, 'UI5A3B9V', 1),
+(1, 2, 'UI5A3B9V', 1),
 (1, 3, 'KNNFIPQ1', 1),
-(2, 2, 'WICWCNVT', 1),
-(3, 2, 'E9I1OM6Q', 1),
-(1, 1, 'Q3WUSW08', 1),
-(4, 3, 'SJ9X3V22', 1),
+(2, 1, 'WICWCNVT', 1),
+(3, 3, 'K1QVCU9X', 1),
+(2, 2, 'Q3WUSW08', 1),
+(4, 1, 'SJ9X3V22', 1),
 (4, 2, 'LZ34GVZT', 1),
-(4, 1, 'KL27B77S', 1),
-(1, 1, 'UA1FU69C', 1),
-(2, 2, 'KU63RWP8', 1);
+(4, 3, 'KL27B77S', 1),
+(3, 1, 'UA1FU69C', 1),
+(3, 2, 'KU63RWP8', 1);
 
 -- --------------------------------------------------------
 
@@ -290,7 +289,7 @@ INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (2, 1),
 (3, 2),
 (4, 2),
-(5, 2),
+(5, 1),
 (6, 1),
 (7, 1),
 (8, 1),
@@ -302,10 +301,10 @@ INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 (14, 1),
 (15, 1),
 (16, 1),
-(17, 3),
-(18, 3),
+(17, 1),
+(18, 1),
 (19, 3),
-(20, 3),
+(20, 1),
 (21, 3);
 
 -- --------------------------------------------------------
@@ -396,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=274 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -675,7 +674,34 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (270, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '19:12:06', '::1', 2),
 (271, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '19:29:03', '::1', 1),
 (272, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '19:29:12', '::1', 1),
-(273, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '19:48:30', '::1', 2);
+(273, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '19:48:30', '::1', 2),
+(274, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '23:47:35', '::1', 2),
+(275, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '00:53:14', '::1', 1),
+(276, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '01:05:47', '::1', 1),
+(277, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:11:47', '::1', 1),
+(278, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:12:35', '::1', 1),
+(279, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:13:03', '::1', 1),
+(280, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-24', '01:16:33', '::1', 2),
+(281, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '01:20:45', '::1', 1),
+(282, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:21:33', '::1', 1),
+(283, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:22:05', '::1', 1),
+(284, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:22:16', '::1', 1),
+(285, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:22:26', '::1', 1),
+(286, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: K1QVCU9X', '2019-10-24', '01:35:18', '::1', 1),
+(287, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:36:32', '::1', 1),
+(288, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-24', '01:37:17', '::1', 2),
+(289, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:37:48', '::1', 2),
+(290, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:38:04', '::1', 2),
+(291, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-24', '01:38:28', '::1', 2),
+(292, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:39:23', '::1', 2),
+(293, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-24', '01:39:41', '::1', 2),
+(294, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-24', '01:40:14', '::1', 2),
+(295, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-24', '01:52:27', '::1', 2),
+(296, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '01:59:49', '::1', 1),
+(297, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:09', '::1', 1),
+(298, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:24', '::1', 1),
+(299, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:32', '::1', 1),
+(300, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '02:03:48', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -1035,7 +1061,7 @@ CREATE TABLE IF NOT EXISTS `tblrecurso` (
   `Tipo` varchar(10) NOT NULL,
   `Categorias` varchar(8) NOT NULL,
   PRIMARY KEY (`IDRecurso`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tblrecurso`
@@ -1043,8 +1069,10 @@ CREATE TABLE IF NOT EXISTS `tblrecurso` (
 
 INSERT INTO `tblrecurso` (`IDRecurso`, `IDAula`, `Titulo`, `Tipo`, `Categorias`) VALUES
 (17, 1, 'FOXIT', '.pdf', '2'),
-(18, 7, 'tarea para el viernes', '.pdf', '1,6'),
-(19, 8, 'dashdiahsd', '.pdf', '7');
+(21, 5, 'Documento de prueba', '.docx', '4,1'),
+(22, 5, 'Documento de prueba 2', '.pdf', '1,2'),
+(23, 8, 'Documento de prueba 3', '.pdf', '2'),
+(24, 8, 'Documento de prueba 4', '.docx', '2');
 
 -- --------------------------------------------------------
 
@@ -1156,11 +1184,11 @@ INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password
 (1, 'Abner', 'Betancourt', 'abner@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0801199022222', '96989852', NULL),
 (2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199585855', '98969698', NULL),
 (3, 'Super', 'User', 'su@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, '0801198754185', '97854252', NULL),
-(5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0808199658472', '96325481', NULL),
+(5, 'Nahun', 'Lopez', 'nahunl@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0808199658472', '96325481', NULL),
 (6, 'Juana', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0804196945875', '98548756', NULL),
-(20, 'Pedro', 'Picapiedra', 'yabadabadu@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0809198766881', '96587452', NULL),
+(20, 'Pedro', 'Ponce', 'pedroponce@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0809198766881', '96587452', NULL),
 (17, 'Jairo', 'Gomez', 'jairo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0810199022443', '96584587', NULL),
-(18, 'Doris', 'Garcia', 'doris@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199322764', '98548511', NULL);
+(18, 'Doris', 'Garcia', 'dorisgarcia@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199322764', '98548511', NULL);
 
 DELIMITER $$
 --
