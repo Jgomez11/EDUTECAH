@@ -55,7 +55,7 @@ $conexion->mysql_set_charset("utf8");
 			<div class="center aligned floated author">
 			<img class="ui image" width="250px" src="recursos/imagenes/Portadas Tarjetas Videos/V_CrearAUL.jpg">
 			</div>
-			<div class="ui center aligned header">¿Como Crear Una Nueva Aula?</div>
+			<div class="ui center aligned header">¿Como Crear Una Nueva Asignatura?</div>
 			</div>
 			<button class="ui basic green button" type="button"onclick="$(\'#modalComoCrearUnaNuevaAula\')
 
@@ -209,7 +209,7 @@ $conexion->mysql_set_charset("utf8");
  				onDeny: function () {
  					$(\'video\').trigger(\'pause\'); 
  				}		
- 			})
+ 				})
  				.modal(\'setting\', \'transition\', \'scale\')
  				.modal(\'show\');"> 
  				<i class="play icon"></i>Ver </button>
