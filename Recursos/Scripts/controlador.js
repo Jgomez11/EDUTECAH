@@ -324,7 +324,8 @@ function columnaContenido(id) {
 
         case "calificaciones":
         vaciarDiv('modal');
-        cargarDiv("columnaContenido", "Contenido/Perfil/moduloCalificaciones.php");
+
+        cargarDiv("columnaContenido", "Contenido/Perfil/moduloWeAreWorking.php"); /**moduloCalificaciones.php**/
         cargarDiv('modal', 'Contenido/Modales/modalAlumno.php');
         cargarDiv('modal', 'Contenido/Modales/modalConfirmarEliminar.php');
         setTimeout("cargarCalificaciones('');", 150);
