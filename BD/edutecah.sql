@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 24-10-2019 a las 08:07:44
+-- Tiempo de generación: 24-10-2019 a las 08:24:35
 -- Versión del servidor: 5.7.23
 -- Versión de PHP: 7.2.10
 
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS `tblanuncios` (
 --
 
 INSERT INTO `tblanuncios` (`IDAnuncio`, `IDUsuario`, `IDInstituto`, `Anuncio`, `Fecha`, `Hora`) VALUES
-(8, 1, 1, '<h4>Esta Es una Prueba De Anuncio</h4>\n\n<b>Bienvenidos todos.</b>', '2019-10-24', '01:06:35'),
-(9, 2, 1, '<h4>Alerta a todos mis Alumnos</h4>\r\n<b>No olvidar revisar cada fin de semana nuevo contenido</b>', '2019-10-24', '01:08:01');
+(8, 1, 1, '<h4>Esta Es una Prueba De Anuncio</h4>\r\n\r\n<b>Como Director les doy la Bienvenida a todos a este espacio educativo.</b>', '2019-10-24', '01:06:35'),
+(9, 2, 1, '<h4>Alerta a todos mis Alumnos</h4>\r\n<b>Cada fin de semana subo nuevo contenido</b>', '2019-10-24', '01:08:01');
 
 -- --------------------------------------------------------
 
@@ -395,7 +395,7 @@ CREATE TABLE IF NOT EXISTS `tbllogs` (
   `IDUsuario` int(10) NOT NULL,
   PRIMARY KEY (`IDLog`),
   KEY `IDUsuario` (`IDUsuario`)
-) ENGINE=MyISAM AUTO_INCREMENT=301 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=302 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `tbllogs`
@@ -701,7 +701,8 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (297, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:09', '::1', 1),
 (298, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:24', '::1', 1),
 (299, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-24', '02:00:32', '::1', 1),
-(300, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '02:03:48', '::1', 1);
+(300, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '02:03:48', '::1', 1),
+(301, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-24', '02:11:48', '::1', 1);
 
 -- --------------------------------------------------------
 
@@ -1120,6 +1121,11 @@ DROP TABLE IF EXISTS `tbltipoplan`;
 CREATE TABLE IF NOT EXISTS `tbltipoplan` (
   `IDTIpoPlan` int(10) NOT NULL AUTO_INCREMENT,
   `TipoPlan` varchar(15) NOT NULL,
+  `Precio` float DEFAULT NULL,
+  `Soporte` varchar(2) DEFAULT NULL,
+  `AulasDisponibles` int(3) DEFAULT NULL,
+  `Calificaciones` varchar(2) DEFAULT NULL,
+  `notificacionesEmail` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`IDTIpoPlan`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
@@ -1127,11 +1133,11 @@ CREATE TABLE IF NOT EXISTS `tbltipoplan` (
 -- Volcado de datos para la tabla `tbltipoplan`
 --
 
-INSERT INTO `tbltipoplan` (`IDTIpoPlan`, `TipoPlan`) VALUES
-(1, 'Prueba'),
-(2, 'Básico'),
-(3, 'Medio'),
-(4, 'Completo');
+INSERT INTO `tbltipoplan` (`IDTIpoPlan`, `TipoPlan`, `Precio`, `Soporte`, `AulasDisponibles`, `Calificaciones`, `notificacionesEmail`) VALUES
+(1, 'Prueba', 0, 'SI', 10, 'NO', 'NO'),
+(2, 'Básico', 10, 'SI', 20, 'SI', 'NO'),
+(3, 'Medio', 15, 'SI', 40, 'SI', 'SI'),
+(4, 'Completo', 20, 'SI', 100, 'SI', 'SI');
 
 -- --------------------------------------------------------
 

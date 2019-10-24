@@ -30,7 +30,7 @@ $conexion->mysql_set_charset("utf8");
   <script src="Frameworks/Bootstrap/js/bootstrap.min.js"></script>
   <script src="Frameworks/Semantic/semantic.min.js"></script>
   <script type="text/javascript" src="Recursos/Scripts/scripts.js"></script>
-    <style type="text/css">
+  <style type="text/css">
     #divCard{
       -webkit-transform:scale(1,1);
       -webkit-transition-duration:100ms;
@@ -115,6 +115,7 @@ $conexion->mysql_set_charset("utf8");
               ';     }  ?>  
 
             </div>
+            <br>
             <a href="index.php" class="form-signin btn btn-block ui red button mt-5">Seleccionar mas tarde</a>
           </div>
         </div>
