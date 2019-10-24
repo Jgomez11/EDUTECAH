@@ -107,7 +107,7 @@ $conexion->mysql_set_charset("utf8");
               </div>
               
               
-              <a class="ui basic green button"  href="Acciones/actualizarPlan.php?planID='.$arreglo['IDTipoPlan'].'&Aulas='.$arreglo['AulasDisponibles'].'">Seleccionar</a>
+              <a class="ui basic green button"  href="#">Seleccionar</a>
 
               </div>
               

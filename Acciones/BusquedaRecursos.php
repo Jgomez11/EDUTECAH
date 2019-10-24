@@ -14,7 +14,7 @@ $conexion->mysql_set_charset("utf8");
 
 <?php
 if(isset($_POST['consulta'])){
-    $sql  = "SELECT IDRecurso, Titulo, Categorias, Tipo, Asignatura, NombreCurso, Grado FROM tblrecurso, tblaula, tblcursoxinstituto, tblcursos, tblgrado where tblaula.IDAula=tblrecurso.IDAula and tblaula.CodigoCurso=tblcursoxinstituto.CodigoCurso and tblcursoxinstituto.IDCurso=tblcursos.IDCurso and tblcursoxinstituto.IDGrado=tblgrado.IDGrado and (titulo like '%".$_POST['consulta']."%' or tipo like '%".$_POST['consulta']."%' or NombreCurso like '%".$_POST['consulta']."%')  order by NombreCurso";
+    $sql  = "SELECT IDRecurso, Titulo, Categorias, Tipo, Asignatura, NombreCurso, Grado FROM tblinstituto, tblrecurso, tblaula, tblcursoxinstituto, tblcursos, tblgrado where tblaula.IDAula=tblrecurso.IDAula and tblaula.CodigoCurso=tblcursoxinstituto.CodigoCurso and tblcursoxinstituto.IDCurso=tblcursos.IDCurso and tblcursoxinstituto.IDGrado=tblgrado.IDGrado and tblaula.IDinstituto=tblinstituto.IDinstituto and tblinstituto.IDinstituto=".$_SESSION['Instituto']." and (titulo like '%".$_POST['consulta']."%' or tipo like '%".$_POST['consulta']."%' or NombreCurso like '%".$_POST['consulta']."%')  order by NombreCurso";
 
 
     $resultado = $conexion->ejecutarconsulta($sql);
