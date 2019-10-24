@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 23, 2019 at 04:48 PM
--- Server version: 5.7.24
--- PHP Version: 7.2.19
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 24-10-2019 a las 02:20:25
+-- Versión del servidor: 5.7.23
+-- Versión de PHP: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `edutecah`
+-- Base de datos: `edutecah`
 --
 
 DELIMITER $$
 --
--- Procedures
+-- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `ActualizarDias`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `ActualizarDias` ()  UPDATE tblplan SET DiasPrueba = DiasPrueba - 1 WHERE tblplan.IDTipoPlan = 1 AND DiasPrueba != '0'$$
 
 DELIMITER ;
@@ -33,68 +34,114 @@ DELIMITER ;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblanuncios`
+-- Estructura de tabla para la tabla `tblanuncios`
 --
 
-CREATE TABLE `tblanuncios` (
-  `IDAnuncio` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tblanuncios`;
+CREATE TABLE IF NOT EXISTS `tblanuncios` (
+  `IDAnuncio` int(11) NOT NULL AUTO_INCREMENT,
   `IDUsuario` int(11) NOT NULL,
   `IDInstituto` int(11) NOT NULL,
   `Anuncio` text NOT NULL,
   `Fecha` date DEFAULT NULL,
-  `Hora` time DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Hora` time DEFAULT NULL,
+  PRIMARY KEY (`IDAnuncio`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblanuncios`
+-- Volcado de datos para la tabla `tblanuncios`
 --
 
 INSERT INTO `tblanuncios` (`IDAnuncio`, `IDUsuario`, `IDInstituto`, `Anuncio`, `Fecha`, `Hora`) VALUES
 (1, 1, 1, 'Hola, esta es una prueba', '2019-10-23', '10:00:00'),
 (2, 1, 1, 'Hola, esta es una prueba 2', '2019-10-23', '10:08:00'),
-(3, 2, 1, 'Hey', '2019-10-23', '10:37:41');
+(3, 2, 1, 'Hey', '2019-10-23', '10:37:41'),
+(4, 1, 1, 'q pepsi\n', '2019-10-23', '17:10:16'),
+(5, 1, 1, '', '2019-10-23', '17:10:19'),
+(6, 1, 1, 'Asamblea a las 7 am para alumnos\nobligatorio asistir', '2019-10-23', '17:25:48'),
+(7, 1, 1, '<h4>Comunicado</h4>\n\n<b>Asamblea a las 7 am para alumnos\nobligatorio asistir</b>', '2019-10-23', '17:27:25');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblaula`
+-- Estructura de tabla para la tabla `tblaula`
 --
 
-CREATE TABLE `tblaula` (
-  `IDAula` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tblaula`;
+CREATE TABLE IF NOT EXISTS `tblaula` (
+  `IDAula` int(11) NOT NULL AUTO_INCREMENT,
   `IDDocente` int(11) NOT NULL,
   `IDInstituto` int(11) NOT NULL,
   `CodigoCurso` varchar(8) NOT NULL,
   `Asignatura` varchar(30) NOT NULL,
-  `IDEstado` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IDEstado` int(10) NOT NULL,
+  PRIMARY KEY (`IDAula`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblaula`
+-- Volcado de datos para la tabla `tblaula`
 --
 
 INSERT INTO `tblaula` (`IDAula`, `IDDocente`, `IDInstituto`, `CodigoCurso`, `Asignatura`, `IDEstado`) VALUES
-(1, 2, 1, 'WICWCNVT', 'Informatica', 1),
+(1, 2, 1, 'WICWCNVT', 'Informatica', 2),
 (2, 2, 1, 'WICWCNVT', 'Sociologia', 2),
 (3, 2, 1, 'WICWCNVT', 'Finanzas', 2),
 (4, 2, 1, 'E9I1OM6Q', 'Lo que sea', 1),
 (5, 2, 1, 'KNNFIPQ1', 'Mate', 1),
-(6, 2, 1, 'E9I1OM6Q', 'Otra', 1);
+(6, 2, 1, 'E9I1OM6Q', 'Otra', 1),
+(7, 2, 1, 'KU63RWP8', 'Biologia', 2),
+(8, 2, 1, 'KU63RWP8', 'Quimica', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcategorias`
+-- Estructura de tabla para la tabla `tblcalificaciones`
 --
 
-CREATE TABLE `tblcategorias` (
-  `IDCategoria` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tblcalificaciones`;
+CREATE TABLE IF NOT EXISTS `tblcalificaciones` (
+  `IDCalificacion` int(11) NOT NULL AUTO_INCREMENT,
+  `IDAula` int(11) DEFAULT NULL,
+  `CodigoAlumno` varchar(12) NOT NULL,
+  `NotaIP` float DEFAULT NULL,
+  `NotaIIP` float DEFAULT NULL,
+  `NotaIIIP` float DEFAULT NULL,
+  `Acumulativo` float DEFAULT NULL,
+  `Proyecto` float DEFAULT NULL,
+  `Recuperacion` float DEFAULT NULL,
+  `NotaFinal` float DEFAULT NULL,
+  PRIMARY KEY (`IDCalificacion`),
+  KEY `IDAulafkc` (`IDAula`)
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `tblcalificaciones`
+--
+
+INSERT INTO `tblcalificaciones` (`IDCalificacion`, `IDAula`, `CodigoAlumno`, `NotaIP`, `NotaIIP`, `NotaIIIP`, `Acumulativo`, `Proyecto`, `Recuperacion`, `NotaFinal`) VALUES
+(1, 1, '20150000000', 20, 20, 20, 11, 10, NULL, 81),
+(2, 1, '20161111111', 20, 20, 20, 10, 10, NULL, 80),
+(3, 1, '20162222222', 25, 20, 21, 10, 10, NULL, 86),
+(4, 1, '20163333333', 23, 20, 20, 10, 10, NULL, 83),
+(5, 1, '20164444444', 15, 21, 20, 10, 10, NULL, 76),
+(6, 1, '20165555555', 22, 22, 20, 10, 10, NULL, 84);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tblcategorias`
+--
+
+DROP TABLE IF EXISTS `tblcategorias`;
+CREATE TABLE IF NOT EXISTS `tblcategorias` (
+  `IDCategoria` int(10) NOT NULL AUTO_INCREMENT,
   `Categoria` varchar(30) NOT NULL,
-  `Color` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Color` varchar(20) NOT NULL,
+  PRIMARY KEY (`IDCategoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblcategorias`
+-- Volcado de datos para la tabla `tblcategorias`
 --
 
 INSERT INTO `tblcategorias` (`IDCategoria`, `Categoria`, `Color`) VALUES
@@ -109,16 +156,18 @@ INSERT INTO `tblcategorias` (`IDCategoria`, `Categoria`, `Color`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcolor`
+-- Estructura de tabla para la tabla `tblcolor`
 --
 
-CREATE TABLE `tblcolor` (
-  `IDColor` int(11) NOT NULL,
-  `Color` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tblcolor`;
+CREATE TABLE IF NOT EXISTS `tblcolor` (
+  `IDColor` int(11) NOT NULL AUTO_INCREMENT,
+  `Color` varchar(20) NOT NULL,
+  PRIMARY KEY (`IDColor`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblcolor`
+-- Volcado de datos para la tabla `tblcolor`
 --
 
 INSERT INTO `tblcolor` (`IDColor`, `Color`) VALUES
@@ -132,16 +181,18 @@ INSERT INTO `tblcolor` (`IDColor`, `Color`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcursos`
+-- Estructura de tabla para la tabla `tblcursos`
 --
 
-CREATE TABLE `tblcursos` (
-  `IDCurso` int(11) NOT NULL,
-  `NombreCurso` varchar(30) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tblcursos`;
+CREATE TABLE IF NOT EXISTS `tblcursos` (
+  `IDCurso` int(11) NOT NULL AUTO_INCREMENT,
+  `NombreCurso` varchar(30) NOT NULL,
+  PRIMARY KEY (`IDCurso`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblcursos`
+-- Volcado de datos para la tabla `tblcursos`
 --
 
 INSERT INTO `tblcursos` (`IDCurso`, `NombreCurso`) VALUES
@@ -153,10 +204,11 @@ INSERT INTO `tblcursos` (`IDCurso`, `NombreCurso`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblcursoxinstituto`
+-- Estructura de tabla para la tabla `tblcursoxinstituto`
 --
 
-CREATE TABLE `tblcursoxinstituto` (
+DROP TABLE IF EXISTS `tblcursoxinstituto`;
+CREATE TABLE IF NOT EXISTS `tblcursoxinstituto` (
   `IDCurso` int(11) NOT NULL,
   `IDGrado` int(11) NOT NULL,
   `CodigoCurso` varchar(8) NOT NULL,
@@ -164,7 +216,7 @@ CREATE TABLE `tblcursoxinstituto` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblcursoxinstituto`
+-- Volcado de datos para la tabla `tblcursoxinstituto`
 --
 
 INSERT INTO `tblcursoxinstituto` (`IDCurso`, `IDGrado`, `CodigoCurso`, `IDInstituto`) VALUES
@@ -177,21 +229,24 @@ INSERT INTO `tblcursoxinstituto` (`IDCurso`, `IDGrado`, `CodigoCurso`, `IDInstit
 (4, 3, 'SJ9X3V22', 1),
 (4, 2, 'LZ34GVZT', 1),
 (4, 1, 'KL27B77S', 1),
-(1, 1, 'UA1FU69C', 1);
+(1, 1, 'UA1FU69C', 1),
+(2, 2, 'KU63RWP8', 1);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldepartamentos`
+-- Estructura de tabla para la tabla `tbldepartamentos`
 --
 
-CREATE TABLE `tbldepartamentos` (
-  `IDDepartamento` int(10) NOT NULL,
-  `NombreDepartamento` varchar(50) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tbldepartamentos`;
+CREATE TABLE IF NOT EXISTS `tbldepartamentos` (
+  `IDDepartamento` int(10) NOT NULL AUTO_INCREMENT,
+  `NombreDepartamento` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`IDDepartamento`)
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbldepartamentos`
+-- Volcado de datos para la tabla `tbldepartamentos`
 --
 
 INSERT INTO `tbldepartamentos` (`IDDepartamento`, `NombreDepartamento`) VALUES
@@ -217,16 +272,17 @@ INSERT INTO `tbldepartamentos` (`IDDepartamento`, `NombreDepartamento`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbldocxinstituto`
+-- Estructura de tabla para la tabla `tbldocxinstituto`
 --
 
-CREATE TABLE `tbldocxinstituto` (
+DROP TABLE IF EXISTS `tbldocxinstituto`;
+CREATE TABLE IF NOT EXISTS `tbldocxinstituto` (
   `IDDocente` int(10) NOT NULL,
   `IDInstituto` int(10) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbldocxinstituto`
+-- Volcado de datos para la tabla `tbldocxinstituto`
 --
 
 INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
@@ -255,16 +311,18 @@ INSERT INTO `tbldocxinstituto` (`IDDocente`, `IDInstituto`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblestado`
+-- Estructura de tabla para la tabla `tblestado`
 --
 
-CREATE TABLE `tblestado` (
-  `IDEstado` int(10) NOT NULL,
-  `Estado` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tblestado`;
+CREATE TABLE IF NOT EXISTS `tblestado` (
+  `IDEstado` int(10) NOT NULL AUTO_INCREMENT,
+  `Estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`IDEstado`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblestado`
+-- Volcado de datos para la tabla `tblestado`
 --
 
 INSERT INTO `tblestado` (`IDEstado`, `Estado`) VALUES
@@ -274,16 +332,18 @@ INSERT INTO `tblestado` (`IDEstado`, `Estado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblgrado`
+-- Estructura de tabla para la tabla `tblgrado`
 --
 
-CREATE TABLE `tblgrado` (
-  `IDGrado` int(11) NOT NULL,
-  `Grado` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tblgrado`;
+CREATE TABLE IF NOT EXISTS `tblgrado` (
+  `IDGrado` int(11) NOT NULL AUTO_INCREMENT,
+  `Grado` varchar(10) NOT NULL,
+  PRIMARY KEY (`IDGrado`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblgrado`
+-- Volcado de datos para la tabla `tblgrado`
 --
 
 INSERT INTO `tblgrado` (`IDGrado`, `Grado`) VALUES
@@ -294,21 +354,24 @@ INSERT INTO `tblgrado` (`IDGrado`, `Grado`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblinstituto`
+-- Estructura de tabla para la tabla `tblinstituto`
 --
 
-CREATE TABLE `tblinstituto` (
-  `IDInstituto` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tblinstituto`;
+CREATE TABLE IF NOT EXISTS `tblinstituto` (
+  `IDInstituto` int(10) NOT NULL AUTO_INCREMENT,
   `CodigoIns` varchar(9) NOT NULL,
   `NombreIns` varchar(30) NOT NULL,
   `Pase` varchar(8) NOT NULL,
   `IDMunicipio` int(3) NOT NULL,
   `Direccion` varchar(50) NOT NULL,
-  `Director` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Director` int(10) NOT NULL,
+  PRIMARY KEY (`IDInstituto`),
+  KEY `Director` (`Director`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblinstituto`
+-- Volcado de datos para la tabla `tblinstituto`
 --
 
 INSERT INTO `tblinstituto` (`IDInstituto`, `CodigoIns`, `NombreIns`, `Pase`, `IDMunicipio`, `Direccion`, `Director`) VALUES
@@ -319,21 +382,24 @@ INSERT INTO `tblinstituto` (`IDInstituto`, `CodigoIns`, `NombreIns`, `Pase`, `ID
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbllogs`
+-- Estructura de tabla para la tabla `tbllogs`
 --
 
-CREATE TABLE `tbllogs` (
-  `IDLog` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tbllogs`;
+CREATE TABLE IF NOT EXISTS `tbllogs` (
+  `IDLog` int(10) NOT NULL AUTO_INCREMENT,
   `Evento` varchar(20) NOT NULL,
   `Descripcion` varchar(60) NOT NULL,
   `Fecha` date NOT NULL,
   `Hora` time NOT NULL,
   `IPUsuario` varchar(20) NOT NULL,
-  `IDUsuario` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IDUsuario` int(10) NOT NULL,
+  PRIMARY KEY (`IDLog`),
+  KEY `IDUsuario` (`IDUsuario`)
+) ENGINE=MyISAM AUTO_INCREMENT=274 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbllogs`
+-- Volcado de datos para la tabla `tbllogs`
 --
 
 INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsuario`, `IDUsuario`) VALUES
@@ -588,22 +654,46 @@ INSERT INTO `tbllogs` (`IDLog`, `Evento`, `Descripcion`, `Fecha`, `Hora`, `IPUsu
 (249, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-22', '16:00:01', '::1', 2),
 (250, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-22', '16:05:31', '::1', 2),
 (251, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '09:31:05', '::1', 1),
-(252, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '10:37:34', '::1', 2);
+(252, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '10:37:34', '::1', 2),
+(253, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '16:55:26', '::1', 1),
+(254, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '16:56:39', '::1', 1),
+(255, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '16:58:21', '::1', 1),
+(256, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '17:09:43', '::1', 1),
+(257, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '17:11:30', '::1', 2),
+(258, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-23', '17:12:22', '::1', 1),
+(259, 'Nuevo curso', 'Se ha registrado un nuevo curso con el codigo: KU63RWP8', '2019-10-23', '17:12:41', '::1', 1),
+(260, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-23', '17:15:14', '::1', 2),
+(261, 'Nueva aula', 'Se ha registrado una nuevo aula para el curso: ', '2019-10-23', '17:19:18', '::1', 2),
+(262, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-23', '17:19:40', '::1', 2),
+(263, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-23', '17:19:50', '::1', 2),
+(264, 'Nuevos datos', 'Se ha actualizado un registro en la tabla aulas', '2019-10-23', '17:20:45', '::1', 2),
+(265, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '18:23:31', '::1', 1),
+(266, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '18:23:44', '::1', 1),
+(267, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '18:59:14', '::1', 1),
+(268, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '18:59:31', '::1', 1),
+(269, 'Inicio de sesion', 'El usuario con correo: abner@algo.hn ha iniciado sesion', '2019-10-23', '19:11:25', '::1', 1),
+(270, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '19:12:06', '::1', 2),
+(271, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '19:29:03', '::1', 1),
+(272, 'Nuevos datos', 'Se ha actualizado un registro en la tabla usuario', '2019-10-23', '19:29:12', '::1', 1),
+(273, 'Inicio de sesion', 'El usuario con correo: truman@algo.hn ha iniciado sesion', '2019-10-23', '19:48:30', '::1', 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblmunicipio`
+-- Estructura de tabla para la tabla `tblmunicipio`
 --
 
-CREATE TABLE `tblmunicipio` (
-  `IDMunicipio` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tblmunicipio`;
+CREATE TABLE IF NOT EXISTS `tblmunicipio` (
+  `IDMunicipio` int(10) NOT NULL AUTO_INCREMENT,
   `NombreMunicipio` varchar(50) DEFAULT NULL,
-  `IDDepartamento` int(10) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `IDDepartamento` int(10) DEFAULT NULL,
+  PRIMARY KEY (`IDMunicipio`),
+  KEY `IDDepartamento` (`IDDepartamento`)
+) ENGINE=MyISAM AUTO_INCREMENT=299 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblmunicipio`
+-- Volcado de datos para la tabla `tblmunicipio`
 --
 
 INSERT INTO `tblmunicipio` (`IDMunicipio`, `NombreMunicipio`, `IDDepartamento`) VALUES
@@ -909,19 +999,21 @@ INSERT INTO `tblmunicipio` (`IDMunicipio`, `NombreMunicipio`, `IDDepartamento`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblplan`
+-- Estructura de tabla para la tabla `tblplan`
 --
 
-CREATE TABLE `tblplan` (
-  `IDPlan` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tblplan`;
+CREATE TABLE IF NOT EXISTS `tblplan` (
+  `IDPlan` int(10) NOT NULL AUTO_INCREMENT,
   `IDTipoPlan` int(10) NOT NULL,
   `IDInstituto` int(10) NOT NULL,
   `DiasPrueba` int(2) DEFAULT NULL,
-  `AulasDisponibles` int(3) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `AulasDisponibles` int(3) NOT NULL,
+  PRIMARY KEY (`IDPlan`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblplan`
+-- Volcado de datos para la tabla `tblplan`
 --
 
 INSERT INTO `tblplan` (`IDPlan`, `IDTipoPlan`, `IDInstituto`, `DiasPrueba`, `AulasDisponibles`) VALUES
@@ -932,37 +1024,42 @@ INSERT INTO `tblplan` (`IDPlan`, `IDTipoPlan`, `IDInstituto`, `DiasPrueba`, `Aul
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblrecurso`
+-- Estructura de tabla para la tabla `tblrecurso`
 --
 
-CREATE TABLE `tblrecurso` (
-  `IDRecurso` int(11) NOT NULL,
+DROP TABLE IF EXISTS `tblrecurso`;
+CREATE TABLE IF NOT EXISTS `tblrecurso` (
+  `IDRecurso` int(11) NOT NULL AUTO_INCREMENT,
   `IDAula` int(10) NOT NULL,
   `Titulo` varchar(45) NOT NULL,
   `Tipo` varchar(10) NOT NULL,
-  `Categorias` varchar(8) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `Categorias` varchar(8) NOT NULL,
+  PRIMARY KEY (`IDRecurso`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblrecurso`
+-- Volcado de datos para la tabla `tblrecurso`
 --
 
 INSERT INTO `tblrecurso` (`IDRecurso`, `IDAula`, `Titulo`, `Tipo`, `Categorias`) VALUES
-(17, 1, 'FOXIT', '.pdf', '2');
+(17, 1, 'FOXIT', '.pdf', '2'),
+(18, 7, 'tarea para el viernes', '.pdf', '1,6'),
+(19, 8, 'dashdiahsd', '.pdf', '7');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltema`
+-- Estructura de tabla para la tabla `tbltema`
 --
 
-CREATE TABLE `tbltema` (
+DROP TABLE IF EXISTS `tbltema`;
+CREATE TABLE IF NOT EXISTS `tbltema` (
   `IDUsuario` int(11) NOT NULL,
   `IDColor` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbltema`
+-- Volcado de datos para la tabla `tbltema`
 --
 
 INSERT INTO `tbltema` (`IDUsuario`, `IDColor`) VALUES
@@ -988,16 +1085,18 @@ INSERT INTO `tbltema` (`IDUsuario`, `IDColor`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltipoplan`
+-- Estructura de tabla para la tabla `tbltipoplan`
 --
 
-CREATE TABLE `tbltipoplan` (
-  `IDTIpoPlan` int(10) NOT NULL,
-  `TipoPlan` varchar(15) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tbltipoplan`;
+CREATE TABLE IF NOT EXISTS `tbltipoplan` (
+  `IDTIpoPlan` int(10) NOT NULL AUTO_INCREMENT,
+  `TipoPlan` varchar(15) NOT NULL,
+  PRIMARY KEY (`IDTIpoPlan`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbltipoplan`
+-- Volcado de datos para la tabla `tbltipoplan`
 --
 
 INSERT INTO `tbltipoplan` (`IDTIpoPlan`, `TipoPlan`) VALUES
@@ -1009,16 +1108,18 @@ INSERT INTO `tbltipoplan` (`IDTIpoPlan`, `TipoPlan`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbltipousuario`
+-- Estructura de tabla para la tabla `tbltipousuario`
 --
 
-CREATE TABLE `tbltipousuario` (
-  `IDTipoUs` int(10) NOT NULL,
-  `Tipo` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `tbltipousuario`;
+CREATE TABLE IF NOT EXISTS `tbltipousuario` (
+  `IDTipoUs` int(10) NOT NULL AUTO_INCREMENT,
+  `Tipo` varchar(10) NOT NULL,
+  PRIMARY KEY (`IDTipoUs`)
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tbltipousuario`
+-- Volcado de datos para la tabla `tbltipousuario`
 --
 
 INSERT INTO `tbltipousuario` (`IDTipoUs`, `Tipo`) VALUES
@@ -1029,11 +1130,12 @@ INSERT INTO `tbltipousuario` (`IDTipoUs`, `Tipo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tblusuario`
+-- Estructura de tabla para la tabla `tblusuario`
 --
 
-CREATE TABLE `tblusuario` (
-  `IDUsuario` int(10) NOT NULL,
+DROP TABLE IF EXISTS `tblusuario`;
+CREATE TABLE IF NOT EXISTS `tblusuario` (
+  `IDUsuario` int(10) NOT NULL AUTO_INCREMENT,
   `Nombre` varchar(30) NOT NULL,
   `Apellido` varchar(30) NOT NULL,
   `Correo` varchar(30) NOT NULL,
@@ -1041,11 +1143,13 @@ CREATE TABLE `tblusuario` (
   `TipoUsuario` int(10) NOT NULL,
   `Cedula` varchar(13) DEFAULT NULL,
   `Telefono` varchar(8) DEFAULT NULL,
-  `Imagen` mediumblob
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `Imagen` mediumblob,
+  PRIMARY KEY (`IDUsuario`),
+  KEY `TipoUsuario` (`TipoUsuario`)
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `tblusuario`
+-- Volcado de datos para la tabla `tblusuario`
 --
 
 INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password`, `TipoUsuario`, `Cedula`, `Telefono`, `Imagen`) VALUES
@@ -1053,220 +1157,16 @@ INSERT INTO `tblusuario` (`IDUsuario`, `Nombre`, `Apellido`, `Correo`, `Password
 (2, 'Truman', 'Harper', 'truman@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199585855', '98969698', NULL),
 (3, 'Super', 'User', 'su@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 1, '0801198754185', '97854252', NULL),
 (5, 'Nahun', 'Lopez', 'nahun@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0808199658472', '96325481', NULL),
-(6, 'Juan', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0804196945875', '98548756', NULL),
-(8, 'David', 'Garcia', 'davidg@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0816198736524', '96321458', NULL),
+(6, 'Juana', 'Zapata', 'josez@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0804196945875', '98548756', NULL),
 (20, 'Pedro', 'Picapiedra', 'yabadabadu@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0809198766881', '96587452', NULL),
 (17, 'Jairo', 'Gomez', 'jairo@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 2, '0810199022443', '96584587', NULL),
 (18, 'Doris', 'Garcia', 'doris@algo.hn', '7c4a8d09ca3762af61e59520943dc26494f8941b', 3, '0801199322764', '98548511', NULL);
 
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `tblanuncios`
---
-ALTER TABLE `tblanuncios`
-  ADD PRIMARY KEY (`IDAnuncio`);
-
---
--- Indexes for table `tblaula`
---
-ALTER TABLE `tblaula`
-  ADD PRIMARY KEY (`IDAula`);
-
---
--- Indexes for table `tblcategorias`
---
-ALTER TABLE `tblcategorias`
-  ADD PRIMARY KEY (`IDCategoria`);
-
---
--- Indexes for table `tblcolor`
---
-ALTER TABLE `tblcolor`
-  ADD PRIMARY KEY (`IDColor`);
-
---
--- Indexes for table `tblcursos`
---
-ALTER TABLE `tblcursos`
-  ADD PRIMARY KEY (`IDCurso`);
-
---
--- Indexes for table `tbldepartamentos`
---
-ALTER TABLE `tbldepartamentos`
-  ADD PRIMARY KEY (`IDDepartamento`);
-
---
--- Indexes for table `tblestado`
---
-ALTER TABLE `tblestado`
-  ADD PRIMARY KEY (`IDEstado`);
-
---
--- Indexes for table `tblgrado`
---
-ALTER TABLE `tblgrado`
-  ADD PRIMARY KEY (`IDGrado`);
-
---
--- Indexes for table `tblinstituto`
---
-ALTER TABLE `tblinstituto`
-  ADD PRIMARY KEY (`IDInstituto`),
-  ADD KEY `Director` (`Director`);
-
---
--- Indexes for table `tbllogs`
---
-ALTER TABLE `tbllogs`
-  ADD PRIMARY KEY (`IDLog`),
-  ADD KEY `IDUsuario` (`IDUsuario`);
-
---
--- Indexes for table `tblmunicipio`
---
-ALTER TABLE `tblmunicipio`
-  ADD PRIMARY KEY (`IDMunicipio`),
-  ADD KEY `IDDepartamento` (`IDDepartamento`);
-
---
--- Indexes for table `tblplan`
---
-ALTER TABLE `tblplan`
-  ADD PRIMARY KEY (`IDPlan`);
-
---
--- Indexes for table `tblrecurso`
---
-ALTER TABLE `tblrecurso`
-  ADD PRIMARY KEY (`IDRecurso`);
-
---
--- Indexes for table `tbltipoplan`
---
-ALTER TABLE `tbltipoplan`
-  ADD PRIMARY KEY (`IDTIpoPlan`);
-
---
--- Indexes for table `tbltipousuario`
---
-ALTER TABLE `tbltipousuario`
-  ADD PRIMARY KEY (`IDTipoUs`);
-
---
--- Indexes for table `tblusuario`
---
-ALTER TABLE `tblusuario`
-  ADD PRIMARY KEY (`IDUsuario`),
-  ADD KEY `TipoUsuario` (`TipoUsuario`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `tblanuncios`
---
-ALTER TABLE `tblanuncios`
-  MODIFY `IDAnuncio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tblaula`
---
-ALTER TABLE `tblaula`
-  MODIFY `IDAula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tblcategorias`
---
-ALTER TABLE `tblcategorias`
-  MODIFY `IDCategoria` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `tblcolor`
---
-ALTER TABLE `tblcolor`
-  MODIFY `IDColor` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- AUTO_INCREMENT for table `tblcursos`
---
-ALTER TABLE `tblcursos`
-  MODIFY `IDCurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tbldepartamentos`
---
-ALTER TABLE `tbldepartamentos`
-  MODIFY `IDDepartamento` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `tblestado`
---
-ALTER TABLE `tblestado`
-  MODIFY `IDEstado` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT for table `tblgrado`
---
-ALTER TABLE `tblgrado`
-  MODIFY `IDGrado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tblinstituto`
---
-ALTER TABLE `tblinstituto`
-  MODIFY `IDInstituto` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tbllogs`
---
-ALTER TABLE `tbllogs`
-  MODIFY `IDLog` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=253;
-
---
--- AUTO_INCREMENT for table `tblmunicipio`
---
-ALTER TABLE `tblmunicipio`
-  MODIFY `IDMunicipio` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=299;
-
---
--- AUTO_INCREMENT for table `tblplan`
---
-ALTER TABLE `tblplan`
-  MODIFY `IDPlan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tblrecurso`
---
-ALTER TABLE `tblrecurso`
-  MODIFY `IDRecurso` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `tbltipoplan`
---
-ALTER TABLE `tbltipoplan`
-  MODIFY `IDTIpoPlan` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT for table `tbltipousuario`
---
-ALTER TABLE `tbltipousuario`
-  MODIFY `IDTipoUs` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `tblusuario`
---
-ALTER TABLE `tblusuario`
-  MODIFY `IDUsuario` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
 DELIMITER $$
 --
--- Events
+-- Eventos
 --
+DROP EVENT `jobDecDiasPrueba`$$
 CREATE DEFINER=`root`@`localhost` EVENT `jobDecDiasPrueba` ON SCHEDULE EVERY 1 DAY STARTS '2019-08-01 00:00:00' ON COMPLETION NOT PRESERVE ENABLE DO CALL ActualizarDias()$$
 
 DELIMITER ;

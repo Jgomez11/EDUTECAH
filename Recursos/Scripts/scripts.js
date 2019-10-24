@@ -79,6 +79,20 @@ function cargarUsuarios(consulta) {
 }
 
 
+//  5.  Funcion para listar (cargar) Calificaciones en tablas y gestionar
+function cargarCalificaciones(consulta) {
+    $.ajax({
+        url: 'Acciones/busquedaCalificaciones.php',
+        type: 'POST',
+        dataType: 'html',
+        data: {
+            consulta: consulta
+        }
+    }).done(function (respuesta) {
+        $("#ListarCalificaciones").html(respuesta);
+    });
+}
+
 //  4.  Funcion para listar (cargar) Recursos en tablas y gestionar
 function cargarRecursos(consulta) {
     $.ajax({
@@ -318,6 +332,21 @@ function modificar(IDUsuario) {
     });
 }
 
+//  1.1  Funcion para mostrar datos previos a modificar en calificaciones
+function modificarCalificacion(IDCalificacion) {
+    $.ajax({
+        url: 'Contenido/Perfil/modificarCalificacionDocente.php',
+        type: 'POST',
+        dataType: 'text',
+        data: 'IDCalificacion=' + IDCalificacion
+    }).done(function (res) {
+        $('#columnaContenido').html(res);
+    });
+}
+
+
+
+
 //  2.  Funcion para modificar datos previos a modificar en modo SU
 function modificarSU(IDUsuario) {
     $.ajax({
@@ -352,6 +381,35 @@ function actualizarDocente() {
             document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
             setTimeout("cargarDiv('columnaContenido', 'Contenido/Perfil/moduloUsuarios.php')", 2000);
             setTimeout("cargarUsuarios('')", 2300);
+        },
+        error: function () { }
+    });
+
+}
+
+
+//  3.1  Funcion para guardar cambios en calificaciones
+function actualizarCalificacion() {
+    IDC = $('#txtIdentificadorC').val();
+    not1 = $('#txtNot1').val();
+    not2 = $('#txtNot2').val();
+    not3 = $('#txtNot3').val();
+    acum = $('#txtAcum').val();
+    proy = $('#txtProy').val();
+    recu = $('#txtRecu').val();
+    notf = $('#txtNotF').val();
+
+    cadena = 'txtIdentificadorC=' + IDC + '&txtNot1=' + not1 + '&txtNot2=' + not2 + '&txtNot3=' + not3 + '&txtAcum=' + acum + '&txtProy=' + proy + '&Recu=' + recu + '&NotF=' + notf;
+
+    $.ajax({
+        url: 'Acciones/modificarCalificaciones.php',
+        type: 'POST',
+        data: cadena,
+        dataType: 'text',
+        success: function (response) {
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui teal icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se actualizó exitosamente.</p></div></div></div></div>';
+            setTimeout("cargarDiv('columnaContenido', 'Contenido/Perfil/moduloCalificaciones.php')", 2000);
+            setTimeout("cargarCalificaciones('')", 2300);
         },
         error: function () { }
     });
@@ -444,6 +502,23 @@ function eliminar(IDUsuario) {
         error: function () { }
     });
 }
+
+//  1.2  Funcion para ELIMINAR ALUMNOS
+function eliminarAlumno(IDCalificacion) {
+    $.ajax({
+        url: 'Acciones/eliminarAlumno.php',
+        type: 'POST',
+        data: 'IDCalificacion=' + IDCalificacion,
+        dataType: 'text',
+        success: function (response) {
+            document.getElementById("error").innerHTML = '<div class="row mt-4"><div class="col-md-12"><div class="ui blue icon message"><i class="info circle icon"></i><div class="content"><div class="header">Exito</div><p>El registro se elimino exitosamente.</p></div></div></div></div>';
+            setTimeout("$('.message').transition('fade out');listar('')", 2000);
+            setTimeout("vaciarDiv('error')", 2300);
+        },
+        error: function () { }
+    });
+}
+
 
 
 //  1.  Funcion para ELIMINAR Recursos
@@ -556,10 +631,10 @@ function subirRecurso() {
                 method: 'POST',
                 body: formData,
             })
-                .then(respuesta => respuesta.text())
-                .then(decodificado => {
-                    console.log(decodificado);
-                });
+            .then(respuesta => respuesta.text())
+            .then(decodificado => {
+                console.log(decodificado);
+            });
 
             $('#modalRecursos').modal('hide');
             $('.second.modal').modal('show');
@@ -665,10 +740,10 @@ function subirImagen() {
             method: 'POST',
             body: formData,
         })
-            .then(respuesta => respuesta.text())
-            .then(decodificado => {
-                console.log(decodificado);
-            });
+        .then(respuesta => respuesta.text())
+        .then(decodificado => {
+            console.log(decodificado);
+        });
 
         $('#modalImagen').modal('hide');
         $('#modalImagen2').modal('show');
