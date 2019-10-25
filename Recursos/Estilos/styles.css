@@ -1,5 +1,6 @@
 body {
     background-color: rgb(243, 242, 242);
+    font-family: 'Varela Round', sans-serif;
 }
 
 #myiframe {
@@ -21,4 +22,20 @@ body {
 
 .carrusel.button.right{
     right: -3.5%;
+}
+
+.fluid.image{
+    margin-top: 62px;
+}
+
+@media only screen and (max-width: 768px) {
+    .ui.menu.browser{
+        display: none;
+    }
+}
+
+@media only screen and (min-width: 769px) {
+    .ui.menu.movil{
+        display: none;
+    }
 }

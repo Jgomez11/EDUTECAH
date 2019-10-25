@@ -19,5 +19,5 @@ session_start();
 		</div>
 	</div>
 
-	<div class="mb-4" id="listaAulas"></div>
+	<div class="row" id="listaAulas"></div>
 </div>

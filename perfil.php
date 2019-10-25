@@ -12,6 +12,7 @@ if (empty($_SESSION)) {
   <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Recursos/Estilos/floating-labels.css">
   <link rel="stylesheet" type="text/css" href="Recursos/Estilos/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Dancing+Script&display=swap" rel="stylesheet"> 
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

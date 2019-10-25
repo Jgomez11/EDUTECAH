@@ -33,5 +33,5 @@ session_start();
         </div>
     </div>
     <hr>
-    <div id="listaAnuncios" class="my-4"></div>
+    <div id="listaAnuncios" class="container my-4"></div>
 </div>

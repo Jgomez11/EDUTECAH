@@ -5,9 +5,8 @@
 
 	<div class="col-md-12">
 		<div class="carrusel">
-
-			<div class="col-md-12">
-				<div class="ui link card">
+			<div class="col-md-12 my-2">
+				<div class="ui fluid link card">
 					<div class="content">
 						<div class="center aligned floated author">
 							<img class="ui medium image" src="recursos/imagenes/Modulos/M_Recursos.jpg">
@@ -24,8 +23,8 @@
 					</div>
 				</div>
 
-				<div class="col-md-12">
-					<div class="ui link card">
+				<div class="col-md-12 my-2">
+					<div class="ui fluid link card">
 						<div class="content">
 							<div class="center aligned floated author">
 								<img class="ui medium image" width="450px" src="recursos/imagenes/Modulos/M_Casillero.jpg">
@@ -36,14 +35,14 @@
 							</div>
 							<div class="description">
 								<p>En este espacio puedes guardar tus libros favoritos, y volver a ellos de una forma facil
-									y rapida. <br> <br> <br></p>
+									y rapida. <br> <br> <br> <br></p>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<div class="col-md-12">
-						<div class="ui link card">
+					<div class="col-md-12 my-2">
+						<div class="ui fluid link card">
 							<div class="content">
 								<div class="center aligned floated author">
 									<img class="ui medium image" src="recursos/imagenes/Modulos/M_Inventario.jpg">
@@ -60,8 +59,8 @@
 							</div>
 						</div>
 
-						<div class="col-md-12">
-							<div class="ui link card">
+						<div class="col-md-12 my-2">
+							<div class="ui fluid link card">
 								<div class="content">
 									<div class="center aligned floated author">
 										<img class="ui medium image" src="recursos/imagenes/Modulos/M_Soporte.jpg">
@@ -79,8 +78,8 @@
 							</div>
 						</div>
 
-						<div class="col-md-12">
-							<div class="ui link card">
+						<div class="col-md-12 my-2">
+							<div class="ui fluid link card">
 								<div class="content">
 									<div class="center aligned floated author">
 										<img class="ui medium image" src="recursos/imagenes/Modulos/M_Calificaciones.jpg">
@@ -97,8 +96,8 @@
 						</div>
 
 
-						<div class="col-md-12">
-							<div class="ui link card">
+						<div class="col-md-12 my-2">
+							<div class="ui fluid link card">
 								<div class="content">
 									<div class="center aligned floated author">
 										<img class="ui medium image" src="recursos/imagenes/Modulos/M_Notificaciones.jpg">

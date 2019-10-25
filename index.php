@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="Frameworks/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="Frameworks/slick/slick-theme.css">
     <link rel="stylesheet" type="text/css" href="Recursos/Estilos/styles.css">
-    
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> 
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -29,7 +29,7 @@
 
     <div id="barra"></div>
 
-    <img class="ui fluid image mt-0" src="Recursos/Imagenes/indexImgPrincipal.jpg">
+    <img class="ui fluid image" src="Recursos/Imagenes/indexImgPrincipal.jpg">
 
     <div id="cuerpo" class="p-5"></div>
 

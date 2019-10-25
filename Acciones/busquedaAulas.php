@@ -50,10 +50,10 @@ $iter = $conexion->cantidadRegistros($resultado);
     <?php $contador = 0;
         for ($i = 0; $i < $iter; $i++) {
             if ($contador == 0) {  ?>
-            <div class="row mt-4">
+            <div class="row">
             <?php }
                     $data = $conexion->obtenerFila($resultado); ?>
-            <div class="col-md-4">
+            <div class="col-md-4 my-2">
                 <div class="ui card">
                     <div class="content">
                         <div class="header">
