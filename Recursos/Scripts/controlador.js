@@ -307,12 +307,6 @@ function columnaContenido(id) {
             cargarDiv('modal', 'Contenido/Modales/modalAulas.php');
             setTimeout("cargarAulas();", 150);
             setTimeout(() => {
-                if (window.innerWidth < 768) {
-                    var tarjetas = document.getElementsByClassName("card");
-                    for (var i = 0; i < tarjetas.length; i++) {
-                        tarjetas[i].classList.add("fluid");
-                    }
-                }
                 $('.icon.button').popup()
                 activadorBotones()
             }, 300);

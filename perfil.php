@@ -7,7 +7,9 @@ if (empty($_SESSION)) {
 <!DOCTYPE html>
 <html>
 <head>
-	<title><?php  echo $_SESSION["Usuario"]; ?></title>
+  <title><?php  echo $_SESSION["Usuario"]; ?></title>
+  
+  <link rel="icon" type="ico" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.css">
   <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Recursos/Estilos/floating-labels.css">

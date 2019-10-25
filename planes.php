@@ -16,11 +16,12 @@ $conexion->mysql_set_charset("utf8");
 <head>
   <title>Selecciona un plan</title>
 
-  <link rel="icon" type="png" href="Recursos/Imagenes/logo.png">
+  <link rel="icon" type="ico" href="favicon.ico">
   
   <link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="Frameworks/Bootstrap/css/bootstrap.css">
   <link rel="stylesheet" type="text/css" href="Recursos/Estilos/floating-labels.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> 
 
   <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="

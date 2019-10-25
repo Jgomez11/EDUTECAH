@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="icon" type="ico" href="favicon.ico">
+    
     <title>EDUTECAH</title>
 
     <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="Frameworks/slick/slick.css">
     <link rel="stylesheet" type="text/css" href="Frameworks/slick/slick-theme.css">
-    <link rel="stylesheet" type="text/css" href="Recursos/Estilos/styles.css">
     <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" type="text/css" href="Recursos/Estilos/styles.css">
 
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>

@@ -20,14 +20,13 @@
 	<!-- Barra Principal-->
 	<div id="barra"></div>
 	<!--Fin de Barra Principal-->
-	<div class="row mb-4"  style="margin-top: 100px">
+	<div class="row"  style="margin-top: 100px">
 		<div id="cuerpo" class="col-md-8"></div>
 		<div class="col-md-4">
 			<h2 align="center">Anuncios</h2>
-			<div id="listaAnuncios"></div>
+			<div class="p-4" id="listaAnuncios"></div>
 		</div>
 	</div>
 	<div id="cargar"></div>
 </body>
-
 </html>

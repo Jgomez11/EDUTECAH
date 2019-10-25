@@ -1,6 +1,6 @@
     <div class="ui fluid input form-label-group">
-      <input type="text" id="txtCodAula" name="txtCodAula" class="form-control" placeholder="Password" required autofocus>
-      <label for="txtCodAula">Codigo de curso</label>
+      <input type="text" id="txtCodAula" name="txtCodAula" class="form-control" placeholder="Código de curso" required autofocus>
+      <label for="txtCodAula">Código de curso</label>
     </div>
 
     <!--<div class="checkbox mb-3">

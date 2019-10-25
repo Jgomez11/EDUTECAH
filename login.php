@@ -4,7 +4,8 @@
 <head>
   <title>Iniciar Sesión</title>
 
-  <link rel="icon" type="png" href="Recursos/Imagenes/logo.png">
+
+  <link rel="icon" type="ico" href="favicon.ico">
 
   <link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="Frameworks/Bootstrap/css/bootstrap.css">

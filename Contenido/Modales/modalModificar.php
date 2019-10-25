@@ -11,7 +11,7 @@ session_start();
         </div>
         <div class="row mb-4">
             <div class="col-md-4 mx-auto">
-                <img class="ui big rounded image" id="" alt="" src="<?php echo 'data:image/png;base64,' . base64_encode($_SESSION['Imagen']) ?>">
+                <img style="width: 200px; height: 200px; object-fit: cover" class="ui big circular thumbnail bordered image" id="" alt="" src="<?php echo 'data:image/png;base64,' . base64_encode($_SESSION['Imagen']) ?>">
             </div>
         </div>
         <div class="row mb-4">
@@ -33,7 +33,7 @@ session_start();
         </div>
         <div class="row mb-4">
             <div class="col-md-4 mx-auto">
-                <img class="ui big rounded image" id="previa" alt="">
+                <img style="width: 200px; height: 200px; object-fit: cover" class="ui big circular bordered image" id="previa" alt="">
             </div>
         </div>
         <div id="errorImagen"></div>
@@ -55,7 +55,7 @@ session_start();
 <div class="ui first small modal" id="modalTema">
     <div class="header">Cambiar color de aplicación</div>
     <div class="content">
-    <label>Seleccionar un color:</label>
+        <label>Seleccionar un color:</label>
         <div class="ui fluid search selection dropdown">
             <input type="hidden" name="country" id="slcColor">
             <i class="dropdown icon"></i>

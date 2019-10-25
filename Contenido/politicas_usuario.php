@@ -6,12 +6,14 @@
 	<meta name="author" description="Jairo">
 
 	<link rel="stylesheet" type="text/css" href="../Frameworks/Bootstrap/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="../Recursos/Estilos/styles.css">
 	
 
 	<title>Terminos de condición</title>
 </head>
 
-<body style="background-color: #eafbf1">
+<body>
 	
 	<center>
 		<div style="padding: 1em 15em; text-align: justify;">

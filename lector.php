@@ -19,9 +19,12 @@ $conexion->mysql_set_charset("utf8");
 <html>
 
 <head>
+  
+<link rel="icon" type="ico" href="favicon.ico">
     <title>Lector</title>
     <link rel="stylesheet" type="text/css" href="Frameworks/Semantic/semantic.css">
     <link rel="stylesheet" href="Frameworks/Bootstrap/css/bootstrap.css">
+    <link href="https://fonts.googleapis.com/css?family=Varela+Round&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="Recursos/Estilos/styles.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"
         integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
